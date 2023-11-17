@@ -1,6 +1,10 @@
 
+#if defined(DYNAMIC_KEYMAP_LAYER_COUNT)
+    #undef DYNAMIC_KEYMAP_LAYER_COUNT
+#endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
 
+#define ONESHOT_TIMEOUT 2000
 
 // Mouse mode Combined: accelerated + speed button
 #define MK_COMBINED

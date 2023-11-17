@@ -5,7 +5,7 @@
 - K1 Pro  (bluetooth)
 - K11 Pro (bluetooth)
 
-* for Bluetooth keyboards use Keychron's fork of QMK
+for Bluetooth keyboards use Keychron's fork of QMK
 
 
 ## How to use

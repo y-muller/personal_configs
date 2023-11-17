@@ -53,9 +53,10 @@ enum my_keycodes {
 // KC_RALT becomes Compose/RAlt with Compose set to RWin in Gnome
 #define CMP_RALT RALT_T(KC_RWIN)
 
-// Shortcut for Crtl+Gui, Ctrl+Shift
+// Shortcut for Crtl+Gui, Ctrl+Shift, Ctrl+Alt
 #define LCG(kc) (QK_LCTL | QK_LGUI | (kc))
 #define LCS(kc) (QK_LCTL | QK_LSFT | (kc))
+#define CA(kc) (QK_LCTL | QK_LALT | (kc))
 
 // shortcut for One Shot Mods
 #define OSM_LSFT OSM(MOD_LSFT)
