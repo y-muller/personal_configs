@@ -1,0 +1,81 @@
+# Colour definitions
+
+c_statusfg="colour250"
+c_statusbg="colour233"
+
+c_sessionfg="colour232"
+c_sessionbg="colour255"
+c_sessionprefixfg="colour255"
+c_sessionprefixbg="colour179"
+
+c_wintxt="colour255"
+c_winbg="colour67"
+c_winnum="colour74"
+c_wincurtxt="colour255"
+c_wincurbg="colour133"
+c_wincurnum="colour177"
+
+c_gitbg="colour59"
+
+c_hostfg="colour253"
+c_hostbg="colour24"
+
+SEPR=''
+SEPL=''
+
+# Update interval
+set -g status-interval 2
+
+# Status bar colors
+set -g status-style "fg=$c_statusfg bg=$c_statusbg"
+
+# Left status bar
+set -g status-left-style "bg=$c_statusbg fg=colour243"
+set -g status-left-length 40
+set -g status-left "#{?client_prefix,#[fg=$c_sessionprefixfg]#[bg=$c_sessionprefixbg]#[bold] #S #[fg=$c_sessionprefixbg]#[bg=$c_statusbg]$SEPR,#[fg=$c_sessionfg]#[bg=$c_sessionbg]#[bold] #S #[fg=$c_sessionbg]#[bg=$c_statusbg]$SEPR}"
+
+# Right status bar
+# icons: 󰧛 󰱠 
+set -g status-right-style "bg=colour233 fg=colour243"
+set -g status-right-length 100
+
+set -g status-right "#[fg=$c_gitbg,bg=$c_statusbg]$SEPL#[fg=$c_wintxt,bg=$c_gitbg] #(gitmux -cfg $HOME/.gitmux.conf #{pane_current_path})#[fg=$c_statusbg,bg=$c_gitbg] $SEPL#[fg=$c_hostbg,bg=$c_statusbg]$SEPL#[fg=$c_hostfg,bg=$c_hostbg,bold]  #[fg=$c_hostfg,bg=$c_hostbg,bold]#H"
+
+# Window status
+set -g window-status-format "#[fg=$c_statusbg,bg=$c_winnum]$SEPR#[fg=$c_wintxt,bg=$c_winnum]#I#[fg=$c_winnum,bg=$c_winbg]$SEPR#[fg=$c_wintxt,bg=$c_winbg] #W #[fg=$c_winbg,bg=$c_statusbg,nobold]$SEPR"
+set -g window-status-current-format "#[fg=$c_statusbg,bg=$c_wincurnum]$SEPR#[fg=$c_wintxt,bg=$c_wincurnum,bold]#I#[fg=$c_wincurnum,bg=$c_wincurbg,nobold]$SEPR#[fg=$c_wintxt,bg=$c_wincurbg,bold] #W #[fg=$c_wincurbg,bg=$c_statusbg,nobold]$SEPR"
+
+# Selected window status
+set -g window-status-current-style "bg=colour39 fg=colour255"
+
+# Window activity status
+set -g window-status-activity-style "bg=colour233 fg=colour245"
+
+# Window separator
+set -g window-status-separator ""
+
+# Window status alignment
+set -g status-justify left
+
+# Pane border
+set -g pane-border-style "bg=default fg=colour238"
+
+# Active pane border
+set -g pane-active-border-style "bg=default fg=colour39"
+
+# Pane number indicator
+set -g display-panes-colour colour233
+set -g display-panes-active-colour colour245
+
+# Clock mode
+set -g clock-mode-colour colour39
+set -g clock-mode-style 24
+
+# Message
+set -g message-style "bg=colour39 fg=black"
+
+# Command message
+set -g message-command-style "bg=colour233 fg=black"
+
+# Mode
+set -g mode-style "bg=colour39 fg=colour232"

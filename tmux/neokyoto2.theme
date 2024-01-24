@@ -1,0 +1,60 @@
+# Set net speed format
+set -g @net_speed_format " %8s  %8s"
+
+# Update interval
+set -g status-interval 2
+
+# Status bar colors
+set -g status-style "fg=colour250 bg=colour233"
+
+# Left status bar
+set -g status-left-style "bg=colour233 fg=colour243"
+set -g status-left-length 40
+set -g status-left "#{?client_prefix,#[fg=colour255]#[bg=colour179]#[bold] #S #[fg=colour179]#[bg=colour233],#[fg=colour232]#[bg=colour255]#[bold] #S #[fg=colour255]#[bg=colour233]}"
+
+# Right status bar
+# icons: 󰧛 󰱠 
+set -g status-right-style "bg=colour233 fg=colour243"
+set -g status-right-length 100
+#set -g status-right "#{net_speed} #[fg=colour236,bg=colour233]#[fg=colour255,bg=colour236] %H:%M #[fg=colour233,bg=colour236]#[fg=colour255,bg=colour233,bold] #{session_attached} #[fg=colour255,bg=colour233]#[fg=colour233,bg=colour255] 󰱠 #[fg=colour232,bg=colour255,bold]#H #(gitmux -cfg $HOME/.gitmux.conf #{pane_current_path})"
+
+set -g status-right "#[fg=colour59,bg=colour233]#[fg=colour255,bg=colour59] #(gitmux -cfg $HOME/.gitmux.conf #{pane_current_path})#[fg=colour233,bg=colour59] #[fg=colour24,bg=colour52]#[fg=colour253,bg=colour24,bold]  #[fg=colour253,bg=colour24,bold]#H"
+
+# Window status
+set -g window-status-format "#[fg=colour233,bg=colour110]#[fg=colour255,bg=colour74]#I#[fg=colour74,bg=colour67]#[fg=colour255,bg=colour67] #W #[fg=colour67,bg=colour233,nobold]"
+set -g window-status-current-format "#[fg=colour233,bg=colour177]#[fg=colour255,bg=colour177,bold]#I#[fg=colour177,bg=colour133,nobold]#[fg=colour255,bg=colour133,bold] #W #[fg=colour133,bg=colour233,nobold]"
+
+# Selected window status
+set -g window-status-current-style "bg=colour39 fg=colour255"
+
+# Window activity status
+set -g window-status-activity-style "bg=colour233 fg=colour245"
+
+# Window separator
+set -g window-status-separator ""
+
+# Window status alignment
+set -g status-justify left
+
+# Pane border
+set -g pane-border-style "bg=default fg=colour238"
+
+# Active pane border
+set -g pane-active-border-style "bg=default fg=colour39"
+
+# Pane number indicator
+set -g display-panes-colour colour233
+set -g display-panes-active-colour colour245
+
+# Clock mode
+set -g clock-mode-colour colour39
+set -g clock-mode-style 24
+
+# Message
+set -g message-style "bg=colour39 fg=black"
+
+# Command message
+set -g message-command-style "bg=colour233 fg=black"
+
+# Mode
+set -g mode-style "bg=colour39 fg=colour232"
