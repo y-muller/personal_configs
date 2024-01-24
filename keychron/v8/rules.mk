@@ -1,0 +1,12 @@
+ENCODER_MAP_ENABLE = yes
+
+CAPS_WORD_ENABLE = yes
+
+LEADER_ENABLE = yes
+
+KEY_OVERRIDE_ENABLE = yes
+
+MOUSEKEY_ENABLE = yes
+
+# Debug only
+CONSOLE_ENABLE = yes

@@ -16,26 +16,23 @@
 
 #include QMK_KEYBOARD_H
 
-#include "bluetooth/transport.h"
-
 #include "keymap_french.h"
 #include "rgb_map.h"
 
 enum layers{
     AZERTY,
+    AZ_SYM,
     COLEMAK,
     NUMPAD,
     EXTEND,
     NAV,
     SYSTEM,
-    AZ_SYM,
 };
 
 enum my_keycodes {
-  CC_DISP = SAFE_RANGE + 10, // Thinkpad display switching F7
+  CC_DISP = SAFE_RANGE, // Thinkpad display switching F7
+  CC_MINRGB,            // RGB mostly off, used for indicators
   CC_ELOCK,             // Lock Extend layer
-  CC_RGBTG,             // RGB mostly off, used for indicators, toggle
-  CC_RGBRT,             // RGB reset (not eeprom)
   CC_ANYK,              // For the extra B
   CC_TEST
 };
@@ -74,8 +71,6 @@ enum my_keycodes {
 
 uint8_t one_shot_active_mods = 0;
 bool trilayer_system_state = false;
-HSV prev_hsv;
-int prev_rgb_mode;
 
 // Key overrides - mouse scroll wheel on Shift, mouse buttons on Control
 const key_override_t left_scrollwheel_override   = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_L, KC_WH_L, (1 << EXTEND));
@@ -85,9 +80,6 @@ const key_override_t down_scrollwheel_override   = ko_make_with_layers(MOD_MASK_
 const key_override_t left_mousebutton_override   = ko_make_with_layers(MOD_MASK_ALT,   KC_MS_L, KC_BTN1, (1 << EXTEND));
 const key_override_t right_mousebutton_override  = ko_make_with_layers(MOD_MASK_ALT,   KC_MS_R, KC_BTN2, (1 << EXTEND));
 const key_override_t middle_mousebutton_override = ko_make_with_layers(MOD_MASK_ALT,   KC_MS_D, KC_BTN3, (1 << EXTEND));
-// tilde in its usual place with Shift+Esc, backtick with AltGr+Esc 
-const key_override_t tilde_override    = ko_make_with_layers(MOD_MASK_SHIFT,   KC_ESC,  KC_TILDE, (1 << COLEMAK));
-const key_override_t backtick_override = ko_make_with_layers(MOD_BIT(KC_RIGHT_ALT),   KC_ESC,  KC_GRV, (1 << COLEMAK));
 // AZERTY number row and other symbols overrides
 const key_override_t fr1_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_1,    FR_EXLM, (1 << AZERTY));
 const key_override_t fr2_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_2,    FR_AT, (1 << AZERTY));
@@ -117,8 +109,6 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &left_mousebutton_override,
     &right_mousebutton_override,
     &middle_mousebutton_override,
-    &tilde_override,
-    &backtick_override,
     &fr1_override,
     &fr2_override,
     &fr3_override,
@@ -180,14 +170,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            KC_MS_L, KC_MS_D, KC_MS_R),
 
     [NAV] = LAYOUT_69_ansi(
-        KC_NO,   A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  A(KC_7), A(KC_8), A(KC_9), A(KC_0),  KC_F11,   KC_F12,   _______,          _______,
+        KC_ESC,  A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  A(KC_7), A(KC_8), A(KC_9), A(KC_0),  KC_F11,   KC_F12,   _______,          _______,
         _______, _______,  CG(KC_W), CG(KC_F),CA(KC_P),CG(KC_B),_______,  CG(KC_L),_______, CG(KC_Y),_______,  CA(KC_LBRC),CA(KC_RBRC),_______,      KC_HOME,
         TG(NUMPAD),_______,_______,  CG(KC_S),CG(KC_T),_______,           _______, G(KC_F1),G(KC_F2),G(KC_F3), G(KC_F4), _______,  _______,          KC_END,
         _______,           _______,  CS(KC_C),_______, CS(KC_V),CG(KC_Z), _______, _______, _______, CS(KC_PGUP),CS(KC_PGDN), _______,  KC_CAPS, _______,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
 
     [SYSTEM] = LAYOUT_69_ansi(
-        _______, KC_MUTE,  KC_VOLD,  KC_VOLU, KC_F20,  KC_BRID, KC_BRIU,  CC_DISP, _______, _______, _______,  _______,  _______,  CC_RGBRT,         CC_RGBTG,
+        KC_GRV,  KC_MUTE,  KC_VOLD,  KC_VOLU, KC_F20,  KC_BRID, KC_BRIU,  CC_DISP, _______, _______, _______,  _______,  _______,  _______,          RGB_TOG,
         _______, BT_HST1,  BT_HST2,  BT_HST3, _______, _______, _______,  _______, KC_APP,  KC_SCRL, KC_INS,   KC_PGUP,  _______,  _______,          QK_BOOT,
         RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI,           _______, _______, _______, KC_PSCR,  KC_PGDN,  KC_END,   _______,          DB_TOGG,
         _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD,  _______, BAT_LVL, _______, _______,  _______,  _______,  _______, _______,
@@ -229,28 +219,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        case CC_RGBTG:
-            // toggle RGB between indicators only and a previous value
-            if (record->event.pressed) {
-                if( rgb_matrix_get_mode() == RGB_MATRIX_SOLID_COLOR) {
-                    rgb_matrix_mode_noeeprom(prev_rgb_mode);
-                    rgb_matrix_sethsv_noeeprom(prev_hsv.h,prev_hsv.s,prev_hsv.v);
-                } else {
-                    // set indicators only (solid black)
-                    prev_hsv = rgb_matrix_get_hsv();
-                    prev_rgb_mode = rgb_matrix_get_mode();
-                    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-                    rgb_matrix_sethsv_noeeprom(HSV_OFF);
-                }
-            }
-            return true;
-
-        case CC_RGBRT:
-            // set RGB to defaults
-            if (record->event.pressed) {
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_RAINBOW_MOVING_CHEVRON);
-                rgb_matrix_sethsv_noeeprom(255,255,255);
-            }
+        case CC_MINRGB:
+            // TODO: create an RGB mode in black with no effect (fake off)
             return true;
 
         case CC_DISP: // handle the display switch key on Thinhpad (F7)
@@ -298,12 +268,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         rgb_matrix_set_color(LED_T, RGB_CYAN);
         rgb_matrix_set_color(LED_SCLN, RGB_RED); // Delete
         rgb_matrix_set_color(LED_O, RGB_RED);    // Backspace
-    }
-    // NAV layer
-    else if (get_highest_layer(layer_state) == NAV) {
-        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NEIO); i++) {
-            rgb_matrix_set_color(LED_LIST_NEIO[i], RGB_BLUE);
-        }
     }
 
     // Caps lock - turn all the modifier red
@@ -365,13 +329,4 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void oneshot_mods_changed_user(uint8_t mods) {
     one_shot_active_mods = mods;
     //uprintf("Oneshot mods %d\n", mods);
-}
-
-void keyboard_post_init_user(void) {
-    if (get_transport() == TRANSPORT_BLUETOOTH) {
-        prev_hsv = rgb_matrix_get_hsv();
-        prev_rgb_mode = rgb_matrix_get_mode();
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-        rgb_matrix_sethsv_noeeprom(HSV_BLUE);
-    }
 }
