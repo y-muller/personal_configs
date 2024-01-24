@@ -1,0 +1,4 @@
+! option = symbols
+  yann_custom:intl    = +yann_custom(intl)
+! include %S/evdev
+
