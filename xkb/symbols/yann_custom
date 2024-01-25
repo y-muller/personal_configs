@@ -14,23 +14,24 @@ xkb_symbols "intl" {
     key <AE11> { [ minus,   underscore,  yen,           dead_belowdot ] };
     key <AE12> { [ equal,   plus,        multiply,      division ] };
  
-    key <AD01> { [     q,          Q,    grave,       dead_grave ] };
-    key <AD02> { [     w,          W,    asciitilde,  dead_tilde ] };
-    key <AD03> { [     e,          E,        eacute,           Eacute ] };
-    key <AD04> { [     r,          R,    registered,       registered ] };
+    key <AD01> { [     q,          Q,        grave,          dead_grave ] };
+    key <AD02> { [     w,          W,        asciitilde,     dead_tilde ] };
+    key <AD03> { [     e,          E,        eacute,         Eacute ] };
+    key <AD04> { [     r,          R,        registered,     registered ] };
+    key <AD06> { [     y,          Y,        ugrave,         Ugrave ] };
     key <AD07> { [     u,          U,        ucircumflex,    Ucircumflex ] };
     key <AD08> { [     i,          I,        idiaeresis,     Idiaeresis ] };
-    key <AD09> { [     o,          O,        ocircumflex,           Ocircumflex ] };
-    key <AD11> { [ bracketleft,  braceleft,  guillemotleft, leftdoublequotemark ] };
+    key <AD09> { [     o,          O,        ocircumflex,    Ocircumflex ] };
+    key <AD11> { [ bracketleft,  braceleft,  guillemotleft,  leftdoublequotemark ] };
     key <AD12> { [ bracketright, braceright, guillemotright, rightdoublequotemark ] };
-    key <BKSL> { [ backslash,        bar,       notsign,        brokenbar ] };
+    key <BKSL> { [ backslash,    bar,        dead_grave,     brokenbar ] };
 
-    key <AC01> { [     a,          A,        agrave,           Agrave ] };
-    key <AC02> { [     s,          S,        ssharp,          section ] };
-    key <AC05> { [     g,          G,    egrave,         Egrave ] };
+    key <AC01> { [     a,          A,        agrave,         Agrave ] };
+    key <AC02> { [     s,          S,        ssharp,         section ] };
+    key <AC05> { [     g,          G,        egrave,         Egrave ] };
     key <AC09> { [     l,          L,        oslash,         Ooblique ] };
-    key <AC10> { [ semicolon,      colon,    dead_diaeresis,           degree ] };
-    key <AC11> { [ apostrophe, quotedbl, dead_acute,    dead_diaeresis ] };
+    key <AC10> { [ semicolon,    colon,      dead_diaeresis, degree ] };
+    key <AC11> { [ apostrophe,   quotedbl,   dead_acute,     dead_diaeresis ] };
 
     key <AB03> { [     c,          C,     copyright,             cent ] };
     key <AB06> { [     n,          N,        ntilde,           Ntilde ] };
