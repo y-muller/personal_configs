@@ -16,6 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef _RGB_MAP_ALICE69_H_
+#define _RGB_MAP_ALICE69_H_
+
 #ifdef RGB_MATRIX_ENABLE
 
 // Custom colours
@@ -231,4 +234,4 @@ const uint8_t LED_LIST_NUMPAD_SYM[] = {
 };
 
 #endif
-
+#endif

@@ -140,6 +140,13 @@ const uint8_t LED_LIST_UNEI[] = {
     LED_I
 };
 
+const uint8_t LED_LIST_NEIO[] = {
+    LED_N,
+    LED_E,
+    LED_I,
+    LED_O
+};
+
 const uint8_t LED_LIST_ARROWS[] = {
     LED_LEFT,
     LED_RIGHT,

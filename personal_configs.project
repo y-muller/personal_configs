@@ -10,6 +10,19 @@
   </VirtualDirectory>
   <VirtualDirectory Name="tmux"/>
   <VirtualDirectory Name="QMK keyboards">
+    <VirtualDirectory Name="userspace">
+      <File Name="qmk_keyboards/userspace/bluetooth_keys.h"/>
+      <File Name="qmk_keyboards/userspace/custom_keys.h"/>
+      <File Name="qmk_keyboards/userspace/keymap_alice69.h"/>
+      <File Name="qmk_keyboards/userspace/tri_layer.c"/>
+      <File Name="qmk_keyboards/userspace/overrides.c"/>
+      <File Name="qmk_keyboards/userspace/layers.h"/>
+      <File Name="qmk_keyboards/userspace/rgb_map_alice69.h"/>
+      <File Name="qmk_keyboards/userspace/rgb_alice69.c"/>
+      <File Name="qmk_keyboards/userspace/y-muller.h"/>
+      <File Name="qmk_keyboards/userspace/y-muller.c"/>
+      <File Name="qmk_keyboards/userspace/rules.mk"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="Keychron K1 pro"/>
     <VirtualDirectory Name="Keychron V3"/>
     <VirtualDirectory Name="Keychron V8">
@@ -20,7 +33,6 @@
     </VirtualDirectory>
     <VirtualDirectory Name="Keychron K11 pro">
       <File Name="qmk_keyboards/keychron_k11pro/rules.mk"/>
-      <File Name="qmk_keyboards/keychron_k11pro/rgb_map.h"/>
       <File Name="qmk_keyboards/keychron_k11pro/keymap.c"/>
       <File Name="qmk_keyboards/keychron_k11pro/config.h"/>
     </VirtualDirectory>

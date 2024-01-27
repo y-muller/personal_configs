@@ -10,3 +10,7 @@ MOUSEKEY_ENABLE = yes
 
 # Debug only
 CONSOLE_ENABLE = yes
+
+# userspace
+ALICE69_RGB_ENABLE = yes
+OVERRIDES_ENABLE = yes
