@@ -4,6 +4,8 @@
 #include "rgb_map_alice69.h"
 #include "layers.h"
 
+extern bool alt_encoder_mode;
+
 uint8_t one_shot_active_mods = 0;
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
@@ -24,8 +26,14 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         }
     }
 
+    if (get_highest_layer(layer_state) == 0) { // default layer
+        if (alt_encoder_mode) {
+            rgb_matrix_set_color(LED_DEL, RGB_ORANGE);
+            rgb_matrix_set_color(LED_HOME, RGB_ORANGE);
+        }
+    }
     // EXTEND layer
-    if (get_highest_layer(layer_state) == EXTEND) {
+    else if (get_highest_layer(layer_state) == EXTEND) {
         for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_UNEI); i++) {
             rgb_matrix_set_color(LED_LIST_UNEI[i], RGB_GREEN);
         }
@@ -43,6 +51,17 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     else if (get_highest_layer(layer_state) == NAV) {
         for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NEIO); i++) {
             rgb_matrix_set_color(LED_LIST_NEIO[i], RGB_BLUE);
+        }
+    }
+    else if (get_highest_layer(layer_state) == NUMPAD) {
+        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMPAD); i++) {
+            rgb_matrix_set_color(LED_LIST_NUMPAD[i], RGB_BLUE);
+        }
+        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMPAD_SYM); i++) {
+            rgb_matrix_set_color(LED_LIST_NUMPAD_SYM[i], RGB_ORANGE);
+        }
+        if ( ! host_keyboard_led_state().num_lock) {
+            rgb_matrix_set_color(LED_Z, RGB_RED);
         }
     }
 

@@ -9,17 +9,83 @@
 HSV prev_hsv;
 int prev_rgb_mode;
 
+bool alt_encoder_mode = false;
 
+uint8_t mod_state;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case CC_ELOCK:
             if (record->event.pressed) {
-                if (is_oneshot_layer_active())
-                {
+                if (is_oneshot_layer_active()) {
                     reset_oneshot_layer();
                     layer_on(EXTEND);
                 } else {
                     layer_off(EXTEND);
+                }
+            }
+            return false;
+
+        case CC_EMTG:
+            if (record->event.pressed) {
+                alt_encoder_mode = !alt_encoder_mode;
+            }
+            return false;
+
+        case CC_ECCW:
+            if (record->event.pressed) {
+                if (alt_encoder_mode) {
+                    tap_code( KC_WH_U );
+                } else {
+                    tap_code( KC_LEFT );
+                }
+            }
+            return false;
+
+        case CC_ECW:
+            if (record->event.pressed) {
+                if (alt_encoder_mode) {
+                    tap_code( KC_WH_D );
+                } else {
+                    tap_code( KC_RIGHT );
+                }
+            }
+            return false;
+
+        case CC_SRCN:
+            mod_state = get_mods();
+            if (mod_state & MOD_MASK_SHIFT) {
+                if (record->event.pressed) {
+                    del_mods(MOD_MASK_SHIFT);
+                    register_code( KC_F8 );
+                    set_mods(mod_state);
+                } else {
+                    unregister_code( KC_F8 );
+                }
+            } else {
+                if (record->event.pressed) {
+                    register_code( KC_F3 );
+                } else {
+                    unregister_code( KC_F3 );
+                }
+            }
+            return false;
+
+        case CC_SRCP:
+            mod_state = get_mods();
+            if (mod_state & MOD_MASK_SHIFT) {
+                if (record->event.pressed) {
+                    del_mods(MOD_MASK_SHIFT);
+                    add_mods(MOD_MASK_CTRL);
+                    register_code( KC_F8 );
+                    set_mods(mod_state);
+                } else {
+                    unregister_code( KC_F8 );
+                }
+            } else {
+                if (record->event.pressed) {
+                    register_code16( S(KC_F3) );
+                } else {
+                    unregister_code16( S(KC_F3) );
                 }
             }
             return false;

@@ -227,10 +227,10 @@ const uint8_t LED_LIST_NUMPAD[] = {
 };
 
 const uint8_t LED_LIST_NUMPAD_SYM[] = {
-    LED_0,      // MULT.
+    LED_O,      // MULT.
     LED_MINS,   // MINUS
-    LED_QUOT,   // DIV.
-    LED_O,      // PLUS
+    LED_SLSH,   // DIV.
+    LED_SCLN,   // PLUS
 };
 
 #endif

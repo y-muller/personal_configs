@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
     [COLEMAK] = LAYOUT_69_auto(     // the host is set to QWERTY
-        KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          XXXXXXX,
+        KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          CC_EMTG,
         KC_TAB,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_PGUP,
         L_EXTEND,KC_A,     KC_R,     KC_S,    KC_T,    KC_G,              KC_M,    KC_N,    KC_E,    KC_I,     KC_O,     KC_QUOT,  KC_ENT,           KC_PGDN,
         OSM_LSFT,          KC_X,     KC_C,    KC_D,    KC_V,    KC_Z,     K_TMUX,  KC_K,    KC_H,    KC_COMM,  KC_DOT,   KC_SLSH,  OSM_RSFT,KC_UP,
@@ -76,38 +76,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           KC_MUTE,
         A(KC_TAB),XXXXXXX, C(KC_W),  C(KC_F), XXXXXXX, XXXXXXX, KC_HOME,  KC_PGUP, KC_UP,   KC_PGDN, KC_DEL,   XXXXXXX,  XXXXXXX,  CC_ELOCK,         KC_DEL,
         XXXXXXX, OSM_LALT, KC_ACL0,  OSM_LSFT,OSM_LCTL,KC_LWIN,           KC_END,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_BSPC,  KC_GRV,   _______,          KC_INS,
-        _______,           C(KC_X),  C(KC_C), XXXXXXX, C(KC_V), C(KC_Z),  XXXXXXX, KC_TAB,  KS_AHOM, KS_DPW,   XXXXXXX,  XXXXXXX,  CW_TOGG, KC_MS_U,
+        _______,           C(KC_X),  C(KC_C), XXXXXXX, C(KC_V), C(KC_Z),  XXXXXXX, KC_TAB,  KS_AHOM, XXXXXXX,  XXXXXXX,  KS_DPW,   CW_TOGG, KC_MS_U,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            KC_MS_L, KC_MS_D, KC_MS_R),
 
     [NAV] = LAYOUT_69_auto(
         KC_NO,   A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  A(KC_7), A(KC_8), A(KC_9), A(KC_0),  KC_F11,   KC_F12,   _______,          _______,
         _______, _______,  CG(KC_W), CG(KC_F),CA(KC_P),CG(KC_B),_______,  CG(KC_L),_______, CG(KC_Y),_______,  CA(KC_LBRC),CA(KC_RBRC),_______,      KC_HOME,
         TG(NUMPAD),_______,_______,  CG(KC_S),CG(KC_T),_______,           _______, G(KC_F1),G(KC_F2),G(KC_F3), G(KC_F4), _______,  _______,          KC_END,
-        _______,           _______,  CS(KC_C),_______, CS(KC_V),CG(KC_Z), _______, _______, _______, CS(KC_PGUP),CS(KC_PGDN), _______,  KC_CAPS, _______,
+        _______,           _______,  CS(KC_C),_______, CS(KC_V),CG(KC_Z), _______, CC_SRCP, CC_SRCN, CA(KC_PGUP),CA(KC_PGDN), _______,  KC_CAPS, _______,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
 
     [NUMPAD] = LAYOUT_69_auto(
         TG(NUMPAD),_______, _______,  _______, _______,  _______, _______,  KC_P7,   KC_P8,   KC_P9,   _______,  _______,  _______,  _______,          _______,
-        _______,  _______,  _______,  _______, _______,  _______, _______,  KC_P4,   KC_P5,   KC_P6,   _______,  _______,  _______,  _______,          _______,
-        L_EXTEND, _______,  _______,  _______, _______,  _______,           _______, KC_P1,   KC_P2,   KC_P3,    _______,  _______,  _______,          _______,
-        _______,            _______,  _______, _______,  _______, KC_NUM,   _______, KC_COMM, KC_P0,   KC_P0,    KC_PDOT,  _______,  _______, _______,
+        _______,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,  KC_P4,   KC_P5,   KC_P6,   KC_PLUS,  KC_LPRN,  KC_RPRN,  _______,          _______,
+        L_EXTEND, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX,           XXXXXXX, KC_P1,   KC_P2,   KC_P3,    KC_ASTR,  XXXXXXX,  _______,          _______,
+        _______,            XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, KC_NUM,   _______, KC_COMM, KC_P0,   KC_P0,    KC_PDOT,  _______,  _______, _______,
         _______,  _______,  _______,           _______,           L_NAV,    L_EXTEND,         _______,           _______,            _______, _______, _______),
 
     [SYSTEM] = LAYOUT_69_auto(
-#ifdef BLUETOOTH_KEY_CONTROL
         _______, KC_MUTE,  KC_VOLD,  KC_VOLU, KC_F20,  KC_BRID, KC_BRIU,  CC_DISP, _______, _______, _______,  _______,  _______,  CC_RGBRT,         CC_RGBTG,
         _______, BT_HST1,  BT_HST2,  BT_HST3, _______, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          QK_BOOT,
         RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI,           _______, _______, _______, _______,  _______,  _______,  _______,          DB_TOGG,
         _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD,  _______, BAT_LVL, _______, _______,  _______,  _______,  _______, _______,
-        _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______
-#else
-        _______, KC_MUTE,  KC_VOLD,  KC_VOLU, KC_F20,  KC_BRID, KC_BRIU,  CC_DISP, _______, _______, _______,  _______,  _______,  CC_RGBRT,         CC_RGBTG,
-        _______, _______,  _______,  _______, _______, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          QK_BOOT,
-        RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI,           _______, _______, _______, _______,  _______,  _______,  _______,          DB_TOGG,
-        _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD,  _______, _______, _______, _______,  _______,  _______,  _______, _______,
-        _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______
-#endif
-        ),
+        _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
 
 #ifdef AZERTY_LAYER_ENABLE
     [AZ_SYM] = LAYOUT_69_auto(
@@ -134,10 +125,10 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 #ifdef AZERTY_LAYER_ENABLE
     [AZERTY]   = { ENCODER_AUTO(KC_VOLD, KC_VOLU)},
 #endif
-    [COLEMAK]  = { ENCODER_AUTO(KC_LEFT, KC_RIGHT)},
+    [COLEMAK]  = { ENCODER_AUTO(CC_ECCW, CC_ECW)},
     [EXTEND]   = { ENCODER_AUTO(KC_VOLD, KC_VOLU)},
     [NAV]      = { ENCODER_AUTO(KC_BRID, KC_BRIU)},
-    [NUMPAD]   = { ENCODER_AUTO(KC_VOLD, KC_VOLU)},
+    [NUMPAD]   = { ENCODER_AUTO(KC_WH_U, KC_WH_D)},     // scrollwheel
     [SYSTEM]   = { ENCODER_AUTO(RGB_VAD, RGB_VAI)},
 #ifdef AZERTY_LAYER_ENABLE
     [AZ_SYM]   = { ENCODER_AUTO(KC_VOLD, KC_VOLU)},
