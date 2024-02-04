@@ -16,12 +16,6 @@
 #define LAYOUT_69_auto LAYOUT_ansi_69
 #endif
 
-#ifndef INVERTED_ENCODER
-#define ENCODER_AUTO ENCODER_CCW_CW
-#else
-#define ENCODER_AUTO(a,b) ENCODER_CCW_CW(b,a)
-#endif
-
 // KC_CAPS becomes Esc/Ctrl
 //#define ESC_CTL LCTL_T(KC_ESC)
 #define ESC_CTL KC_NO     // disabled while I get used to the layout
@@ -74,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [EXTEND] = LAYOUT_69_auto(
         KC_NO,   KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           KC_MUTE,
-        A(KC_TAB),XXXXXXX, C(KC_W),  C(KC_F), XXXXXXX, XXXXXXX, KC_HOME,  KC_PGUP, KC_UP,   KC_PGDN, KC_DEL,   XXXXXXX,  XXXXXXX,  CC_ELOCK,         KC_DEL,
+        A(KC_TAB),KC_ESC,  C(KC_W),  C(KC_F), XXXXXXX, XXXXXXX, KC_HOME,  KC_PGUP, KC_UP,   KC_PGDN, KC_DEL,   XXXXXXX,  XXXXXXX,  CC_ELOCK,         KC_DEL,
         XXXXXXX, OSM_LALT, KC_ACL0,  OSM_LSFT,OSM_LCTL,KC_LWIN,           KC_END,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_BSPC,  KC_GRV,   _______,          KC_INS,
         _______,           C(KC_X),  C(KC_C), XXXXXXX, C(KC_V), C(KC_Z),  XXXXXXX, KC_TAB,  KS_AHOM, XXXXXXX,  XXXXXXX,  KS_DPW,   CW_TOGG, KC_MS_U,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            KC_MS_L, KC_MS_D, KC_MS_R),
@@ -123,15 +117,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 #ifdef AZERTY_LAYER_ENABLE
-    [AZERTY]   = { ENCODER_AUTO(KC_VOLD, KC_VOLU)},
+    [AZERTY]   = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
 #endif
-    [COLEMAK]  = { ENCODER_AUTO(CC_ECCW, CC_ECW)},
-    [EXTEND]   = { ENCODER_AUTO(KC_VOLD, KC_VOLU)},
-    [NAV]      = { ENCODER_AUTO(KC_BRID, KC_BRIU)},
-    [NUMPAD]   = { ENCODER_AUTO(KC_WH_U, KC_WH_D)},     // scrollwheel
-    [SYSTEM]   = { ENCODER_AUTO(RGB_VAD, RGB_VAI)},
+    [COLEMAK]  = { ENCODER_CCW_CW(CC_ECCW, CC_ECW)},
+    [NUMPAD]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D)},     // scrollwheel
+    [EXTEND]   = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [NAV]      = { ENCODER_CCW_CW(KC_BRID, KC_BRIU)},
+    [SYSTEM]   = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
 #ifdef AZERTY_LAYER_ENABLE
-    [AZ_SYM]   = { ENCODER_AUTO(KC_VOLD, KC_VOLU)},
+    [AZ_SYM]   = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
 #endif
 };
 #endif // ENCODER_MAP_ENABLE

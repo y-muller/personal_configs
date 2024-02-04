@@ -82,6 +82,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                 process_rgb( RGB_VAD, &record );
             }
         }
+#ifdef AZERTY_LAYER_ENABLE
         // AZ_SYM layer
         else if (get_highest_layer(layer_state) == AZ_SYM) {
             if (clockwise) {
@@ -90,6 +91,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                 tap_code( KC_VOLD );
             }
         }
+#endif  // AZERTY_LAYER_ENABLE
     }
     return false;
 }

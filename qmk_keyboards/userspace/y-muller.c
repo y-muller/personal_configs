@@ -31,6 +31,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+// only if using ENCODER_MAP, otherwise handled in encoder.c
+#if defined(ENCODER_MAP_ENABLE)
         case CC_ECCW:
             if (alt_encoder_mode) {
                 if (record->event.pressed) {
@@ -38,16 +40,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             } else {
                 if (record->event.pressed) {
-                    mod_state = get_mods();
-                    if (mod_state & MOD_MASK_CTRL) {
-                        del_mods(MOD_MASK_CTRL);
-                    } else {
-                        add_mods(MOD_MASK_CTRL);
-                    }
-                    register_code( KC_LEFT );
-                    set_mods(mod_state);
-                } else {
-                    unregister_code( KC_LEFT );
+                    tap_code( KC_LEFT );
                 }
             }
             return false;
@@ -59,19 +52,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             } else {
                 if (record->event.pressed) {
-                    mod_state = get_mods();
-                    if (mod_state & MOD_MASK_CTRL) {
-                        del_mods(MOD_MASK_CTRL);
-                    } else {
-                        add_mods(MOD_MASK_CTRL);
-                    }
-                    register_code( KC_RIGHT );
-                    set_mods(mod_state);
-                } else {
-                    unregister_code( KC_RIGHT );
+                    tap_code( KC_RIGHT );
                 }
             }
             return false;
+#endif
 
         case CC_SRCN:
             mod_state = get_mods();
