@@ -32,21 +32,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         case CC_ECCW:
-            if (record->event.pressed) {
-                if (alt_encoder_mode) {
+            if (alt_encoder_mode) {
+                if (record->event.pressed) {
                     tap_code( KC_WH_U );
+                }
+            } else {
+                if (record->event.pressed) {
+                    mod_state = get_mods();
+                    if (mod_state & MOD_MASK_CTRL) {
+                        del_mods(MOD_MASK_CTRL);
+                    } else {
+                        add_mods(MOD_MASK_CTRL);
+                    }
+                    register_code( KC_LEFT );
+                    set_mods(mod_state);
                 } else {
-                    tap_code( KC_LEFT );
+                    unregister_code( KC_LEFT );
                 }
             }
             return false;
 
         case CC_ECW:
-            if (record->event.pressed) {
-                if (alt_encoder_mode) {
+            if (alt_encoder_mode) {
+                if (record->event.pressed) {
                     tap_code( KC_WH_D );
+                }
+            } else {
+                if (record->event.pressed) {
+                    mod_state = get_mods();
+                    if (mod_state & MOD_MASK_CTRL) {
+                        del_mods(MOD_MASK_CTRL);
+                    } else {
+                        add_mods(MOD_MASK_CTRL);
+                    }
+                    register_code( KC_RIGHT );
+                    set_mods(mod_state);
                 } else {
-                    tap_code( KC_RIGHT );
+                    unregister_code( KC_RIGHT );
                 }
             }
             return false;

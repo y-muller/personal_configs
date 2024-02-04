@@ -11,6 +11,7 @@
   <VirtualDirectory Name="tmux"/>
   <VirtualDirectory Name="QMK keyboards">
     <VirtualDirectory Name="userspace">
+      <File Name="qmk_keyboards/userspace/encoder.c"/>
       <File Name="qmk_keyboards/userspace/bluetooth_keys.h"/>
       <File Name="qmk_keyboards/userspace/custom_keys.h"/>
       <File Name="qmk_keyboards/userspace/keymap_alice69.h"/>

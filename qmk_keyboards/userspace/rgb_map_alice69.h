@@ -133,7 +133,9 @@ const uint8_t LED_LIST_MODS[] = {
     LED_FN1,
     LED_FN2,
     LED_RALT,
-    LED_RSFT
+    LED_RSFT,
+    LED_CAPS,   // add CapsLock for more visibility 
+    LED_SPC     // space is not a mod but treat is as such for indicators
 };
 
 const uint8_t LED_LIST_UNEI[] = {

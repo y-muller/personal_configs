@@ -46,6 +46,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         rgb_matrix_set_color(LED_T, RGB_CYAN);
         rgb_matrix_set_color(LED_SCLN, RGB_RED); // Delete
         rgb_matrix_set_color(LED_O, RGB_RED);    // Backspace
+        rgb_matrix_set_color(LED_SLSH, RGB_RED); // Delete previous word
     }
     // NAV layer
     else if (get_highest_layer(layer_state) == NAV) {

@@ -4,6 +4,12 @@
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 7
 
+#if defined(CAPS_LOCK_INDEX)
+    #undef CAPS_LOCK_INDEX
+#endif
+
+#undef ENCODER_MAP_ENABLE
+
 #define ONESHOT_TIMEOUT 2000
 
 // Mouse mode Combined: accelerated + speed button
