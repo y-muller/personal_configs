@@ -8,6 +8,7 @@
 #include "process_rgb.h"
 
 extern bool alt_encoder_mode;
+extern uint8_t indicator_brightness;
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) { /* First encoder */
@@ -73,13 +74,21 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
         // SYSTEM layer
         else if (get_highest_layer(layer_state) == SYSTEM) {
-            // create a fake key record to process the RGB value
-            keyrecord_t record;
-            record.event.pressed = false;
-            if (clockwise) {
-                process_rgb( RGB_VAI, &record );
+            if (get_mods() & MOD_BIT(KC_LSFT)) {
+                if (clockwise) {
+                    indicator_brightness = (indicator_brightness+16 <= 255) ? indicator_brightness+16 : 255;
+                } else {
+                    indicator_brightness = (indicator_brightness >= 16) ? indicator_brightness-16 : 0;
+                }
             } else {
-                process_rgb( RGB_VAD, &record );
+                // create a fake key record to process the RGB value
+                keyrecord_t record;
+                record.event.pressed = false;
+                if (clockwise) {
+                    process_rgb( RGB_VAI, &record );
+                } else {
+                    process_rgb( RGB_VAD, &record );
+                }
             }
         }
 #ifdef AZERTY_LAYER_ENABLE
