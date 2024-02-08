@@ -74,11 +74,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            KC_MS_L, KC_MS_D, KC_MS_R),
 
     [NAV] = LAYOUT_69_auto(
-        KC_NO,   A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  A(KC_7), A(KC_8), A(KC_9), A(KC_0),  KC_F11,   KC_F12,   _______,          _______,
-        _______, _______,  CG(KC_W), CG(KC_F),CA(KC_P),CG(KC_B),_______,  CG(KC_L),_______, CG(KC_Y),_______,  CA(KC_LBRC),CA(KC_RBRC),_______,      KC_HOME,
-        TG(NUMPAD),_______,_______,  CG(KC_S),CG(KC_T),_______,           _______, G(KC_F1),G(KC_F2),G(KC_F3), G(KC_F4), _______,  _______,          KC_END,
+        KC_NO,   A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  A(KC_7), A(KC_8), A(KC_9), A(KC_0),  DM_PLY1,  DM_PLY1,  _______,          _______,
+        _______, _______,  CG(KC_W), CG(KC_F),CA(KC_L),CG(KC_B),CG(KC_O), _______, _______, _______, _______,  CA(KC_LBRC),CA(KC_RBRC),KC_MPLY,      KC_HOME,
+        TG(NUMPAD),CG(KC_A),CG(KC_Y),CG(KC_S),CG(KC_T),_______,           _______, G(KC_F1),G(KC_F2),G(KC_F3), G(KC_F4), _______,  _______,          KC_END,
         _______,           _______,  CS(KC_C),_______, CS(KC_V),CG(KC_Z), _______, CC_SRCP, CC_SRCN, CA(KC_PGUP),CA(KC_PGDN), _______,  KC_CAPS, _______,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
+        // App shortcuts with CG(x): W:web F:files L:codelite Y:skype S:slack A:signal T:term B:buildterm O:transmission
+        // Shortcuts managed by run-or-raise Gnome extension.
 
     [NUMPAD] = LAYOUT_69_auto(
         TG(NUMPAD),_______, _______,  _______, _______,  _______, _______,  KC_P7,   KC_P8,   KC_P9,   _______,  _______,  _______,  _______,          _______,
@@ -88,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,           _______,           L_NAV,    L_EXTEND,         _______,           _______,            _______, _______, _______),
 
     [SYSTEM] = LAYOUT_69_auto(
-        _______, KC_MUTE,  KC_VOLD,  KC_VOLU, KC_F20,  KC_BRID, KC_BRIU,  CC_DISP, _______, _______, _______,  _______,  _______,  CC_RGBRT,         CC_RGBTG,
-        _______, BT_HST1,  BT_HST2,  BT_HST3, _______, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          QK_BOOT,
+        _______, KC_MUTE,  KC_VOLD,  KC_VOLU, KC_F20,  KC_BRID, KC_BRIU,  CC_DISP, _______, _______, _______,  DM_REC1,  DM_REC2,  DM_RSTP,          CC_RGBTG,
+        _______, BT_HST1,  BT_HST2,  BT_HST3, _______, _______, _______,  _______, _______, _______, _______,  _______,  _______,  CC_RGBRT,         QK_BOOT,
         RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI,           _______, _______, _______, _______,  _______,  _______,  _______,          DB_TOGG,
         _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD,  _______, BAT_LVL, _______, _______,  _______,  _______,  _______, _______,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),

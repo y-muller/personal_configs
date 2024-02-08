@@ -10,6 +10,7 @@ HSV prev_hsv;
 int prev_rgb_mode;
 
 bool alt_encoder_mode = false;
+bool macro_recording_mode = false;
 
 uint8_t mod_state;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -134,13 +135,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-#ifdef BLUETOOTH_POST_INIT
+void dynamic_macro_record_start_user(void) {
+    macro_recording_mode = true;
+}
+
+void dynamic_macro_record_end_user(int8_t direction) {
+    macro_recording_mode = false;
+}
+
 void keyboard_post_init_user(void) {
+#ifdef USER_CONFIG_ENABLE
+    user_config_init();
+#endif  // USER_CONFIG_ENABLE
+
+#ifdef BLUETOOTH_POST_INIT
     if (get_transport() == TRANSPORT_BLUETOOTH) {
         prev_hsv = rgb_matrix_get_hsv();
         prev_rgb_mode = rgb_matrix_get_mode();
         rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
         rgb_matrix_sethsv_noeeprom(HSV_BLUE);
     }
+#endif  // BLUETOOTH_POST_INIT
 }
-#endif

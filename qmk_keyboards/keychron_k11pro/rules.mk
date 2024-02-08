@@ -8,6 +8,8 @@ KEY_OVERRIDE_ENABLE = yes
 
 MOUSEKEY_ENABLE = yes
 
+DYNAMIC_MACRO_ENABLE = yes
+
 # Debug only
 CONSOLE_ENABLE = yes
 
