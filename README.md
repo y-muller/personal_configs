@@ -8,6 +8,7 @@
 
 for Bluetooth keyboards use Keychron's fork of QMK
 
+My layouts are described on the [QMK page](qmk_keyboards/README.md).
 
 #### How to use
 Create a new keymap with `qmk new-keymap`, move the new directory to this repo and create a link.
@@ -22,4 +23,9 @@ dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'c
 
 Get the current value:
 dconf read /org/gnome/desktop/input-sources/xkb-options
+
+## Compose
+https://help.ubuntu.com/community/GtkComposeTable
+
+`.XCompose` for custom compose sequences.
 
