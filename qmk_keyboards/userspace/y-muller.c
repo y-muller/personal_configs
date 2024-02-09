@@ -11,6 +11,7 @@ int prev_rgb_mode;
 
 bool alt_encoder_mode = false;
 bool macro_recording_mode = false;
+bool help_shown = false;
 
 uint8_t mod_state;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -26,9 +27,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        // Toggle the encoder mode
         case CC_EMTG:
             if (record->event.pressed) {
                 alt_encoder_mode = !alt_encoder_mode;
+            }
+            return false;
+
+        // Help / Tmux
+        case CC_HELP:
+            uint8_t mod_shift = get_mods() & MOD_MASK_SHIFT;
+            uint8_t osm_shift = get_oneshot_mods() & MOD_MASK_SHIFT;
+            if (record->event.pressed) {
+                if (mod_shift || osm_shift ) {
+                    help_shown = true;
+                    switch (get_highest_layer(layer_state)) {
+                        case 0:
+                            tap_code( KC_LNG1 );
+                            break;
+                        case EXTEND:
+                            tap_code( KC_LNG2 );
+                            break;
+                        case NAV:
+                            tap_code( KC_LNG3 );
+                            break;
+                        case SYSTEM:
+                            tap_code( KC_LNG4 );
+                            break;
+                        case NUMPAD:
+                            tap_code( KC_LNG5 );
+                            break;
+                    }
+                } else {
+                    // TMUX
+                    add_mods(MOD_MASK_CTRL);
+                    wait_ms(10);
+                    tap_code( KC_A );
+                    wait_ms(10);
+                    unregister_mods(MOD_MASK_CTRL);
+                }
+            } else if (help_shown) {
+                // help key is released
+                help_shown = false;
+                tap_code16( C(KC_LNG1) );
             }
             return false;
 

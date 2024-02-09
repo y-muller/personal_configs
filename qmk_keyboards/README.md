@@ -1,13 +1,17 @@
 # QMK config
 ## Alice 69 keys (Keychron)
 
+To get help, pressing `LShift-Help` shows a the layout for the current layer on screen until the key is released. In the main layer `Alt-Shift-Help` displays the layout for the AltGr symbols.
+
 #### Main layer
 
 ![main](../.img/layout_alice69_main.png)
 
-Encoder moves the cursor word by word in most contexts and Control reverts to moving character by character.
+Encoder moves the cursor word by word in most contexts and Control reverts to moving character by character. Press the encoder to toggle to the alternate mode where it acts as the mouse scrollwheel.
 
 The backtick is on `AltGr-Esc` (also on the Extend layer over the apostrophe). 
+
+Tap the `Compose` (COMP) key once for the normal Linux compose behaviour or hold it for `AltGr` symbols.
 
 The alternate characters are configured in [XKB](../xkb/README.md).
 
@@ -41,3 +45,11 @@ Encoder control the brightness of the RGB effects or with `Shift` the brightness
 
 RGB defaults returns to the rainbow effect and 100% brightness.
 
+### Layout images
+The layouts were created with [keyboard-layout-editor.com](http://www.keyboard-layout-editor.com).
+
+[blank](http://www.keyboard-layout-editor.com/#/gists/3bfed02864e018f692c1bb9a38c1b25) -
+[main](http://www.keyboard-layout-editor.com/#/gists/b42f83b159878ef53c8cfe383613fbdb) -
+[extend](http://www.keyboard-layout-editor.com/#/gists/5c048b99cea0962223a2aa11d8d6f741) -
+[nav](http://www.keyboard-layout-editor.com/#/gists/b65235844553a408eae33be10ab5b621) -
+[system](http://www.keyboard-layout-editor.com/#/gists/7d0409ff0df964887f6e4fe35cc3be79)

@@ -16,16 +16,15 @@ Create a new keymap with `qmk new-keymap`, move the new directory to this repo a
 For shared files across keyboards, create a link in `users` with the github user name to the `userspace` directory of this repo.
 
 ## XKB user extensions
-Copy the `xkb` directory to `.config`.
 
-Set the modified keyboard option;
-dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin', 'yann_custom:intl']"
-
-Get the current value:
-dconf read /org/gnome/desktop/input-sources/xkb-options
+XKB layouts can be modified by user configuration without modifying system files. See the [XKB page](xkb/README.md).
 
 ## Compose
 https://help.ubuntu.com/community/GtkComposeTable
 
 `.XCompose` for custom compose sequences.
+
+## run-or-raise Gnome extension
+
+Used to launch applications, display the keyboard layout help...
 

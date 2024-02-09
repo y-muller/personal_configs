@@ -14,6 +14,7 @@ enum my_keycodes {
   CC_RGBTG,             // RGB mostly off, used for indicators, toggle
   CC_RGBRT,             // RGB reset (not eeprom)
   CC_ANYK,              // For the extra B
+  CC_HELP,
   CC_TEST
 };
 
