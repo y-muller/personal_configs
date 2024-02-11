@@ -9,6 +9,7 @@
 #include "layers.h"
 #include "custom_keys.h"
 #include "bluetooth_keys.h"
+#include "tap_dance.h"
 
 #ifndef MACRO_ANSI_69
 #define LAYOUT_69_auto LAYOUT_69_ansi
@@ -45,8 +46,8 @@
 // Alt+Home (real Home for CodeLite: start of line)
 #define KS_AHOM A(KC_HOME)
 
-// tmux key
-#define K_TMUX LCTL(KC_A)
+// TMUX key is a tap dance with HELP and LEADER
+#define K_TMUX TD(TD_TMUX)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -63,19 +64,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          CC_EMTG,
         KC_TAB,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_PGUP,
         L_EXTEND,KC_A,     KC_R,     KC_S,    KC_T,    KC_G,              KC_M,    KC_N,    KC_E,    KC_I,     KC_O,     KC_QUOT,  KC_ENT,           KC_PGDN,
-        OSM_LSFT,          KC_X,     KC_C,    KC_D,    KC_V,    KC_Z,     CC_HELP, KC_K,    KC_H,    KC_COMM,  KC_DOT,   KC_SLSH,  OSM_RSFT,KC_UP,
+        OSM_LSFT,          KC_X,     KC_C,    KC_D,    KC_V,    KC_Z,     K_TMUX,  KC_K,    KC_H,    KC_COMM,  KC_DOT,   KC_SLSH,  OSM_RSFT,KC_UP,
         OSM_LCTL,KC_LWIN,  KC_LALT,           KC_LSFT,          L_NAV,    L_EXTEND,         KC_SPC,            CMP_RALT,           KC_LEFT, KC_DOWN, KC_RGHT),
 
     [EXTEND] = LAYOUT_69_auto(
         KC_NO,   KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           KC_MUTE,
         A(KC_TAB),KC_ESC,  C(KC_W),  C(KC_F), XXXXXXX, XXXXXXX, KC_HOME,  KC_PGUP, KC_UP,   KC_PGDN, KC_DEL,   XXXXXXX,  XXXXXXX,  CC_ELOCK,         KC_DEL,
-        XXXXXXX, OSM_LALT, KC_ACL0,  OSM_LSFT,OSM_LCTL,KC_LWIN,           KC_END,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_BSPC,  KC_GRV,   _______,          KC_INS,
+        XXXXXXX, OSM_LALT, KC_ACL0,  OSM_LSFT,OSM_LCTL,KC_LWIN,           KC_END,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_BSPC,  KC_GRV,   S(KC_ENT),        KC_INS,
         _______,           C(KC_X),  C(KC_C), XXXXXXX, C(KC_V), C(KC_Z),  _______, KC_TAB,  KS_AHOM, XXXXXXX,  XXXXXXX,  KS_DPW,   CW_TOGG, KC_MS_U,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            KC_MS_L, KC_MS_D, KC_MS_R),
 
     [NAV] = LAYOUT_69_auto(
         KC_NO,   A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  A(KC_7), A(KC_8), A(KC_9), A(KC_0),  DM_PLY1,  DM_PLY1,  _______,          _______,
-        _______, _______,  CG(KC_W), CG(KC_F),CA(KC_L),CG(KC_B),CG(KC_O), _______, _______, _______, _______,  CA(KC_LBRC),CA(KC_RBRC),KC_MPLY,      KC_HOME,
+        _______, _______,  CG(KC_W), CG(KC_F),CA(KC_L),CG(KC_B),CG(KC_O), _______, _______, _______, _______,  KC_MS_L,  KC_MS_R,  KC_MPLY,      KC_HOME,
         TG(NUMPAD),CG(KC_A),CG(KC_Y),CG(KC_S),CG(KC_T),_______,           _______, G(KC_F1),G(KC_F2),G(KC_F3), G(KC_F4), _______,  _______,          KC_END,
         _______,           _______,  CS(KC_C),_______, CS(KC_V),CG(KC_Z), _______, CC_SRCP, CC_SRCN, CA(KC_PGUP),CA(KC_PGDN), _______,  KC_CAPS, _______,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
@@ -87,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,  KC_P4,   KC_P5,   KC_P6,   KC_PLUS,  KC_LPRN,  KC_RPRN,  _______,          _______,
         L_EXTEND, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX,           XXXXXXX, KC_P1,   KC_P2,   KC_P3,    KC_ASTR,  XXXXXXX,  _______,          _______,
         _______,            XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, KC_NUM,   _______, KC_COMM, KC_P0,   KC_P0,    KC_PDOT,  _______,  _______, _______,
-        _______,  _______,  _______,           _______,           L_NAV,    L_EXTEND,         _______,           _______,            _______, _______, _______),
+        _______,  _______,  _______,           _______,           L_NAV,    _______,         _______,           _______,            _______, _______, _______),
 
     [SYSTEM] = LAYOUT_69_auto(
         _______, KC_MUTE,  KC_VOLD,  KC_VOLU, KC_F20,  KC_BRID, KC_BRIU,  CC_DISP, _______, _______, _______,  DM_REC1,  DM_REC2,  DM_RSTP,          CC_RGBTG,

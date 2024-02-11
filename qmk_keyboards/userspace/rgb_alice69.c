@@ -6,6 +6,7 @@
 
 extern bool alt_encoder_mode;
 extern bool macro_recording_mode;
+extern bool tmux_lock;
 
 uint8_t one_shot_active_mods = 0;
 uint8_t indicator_brightness = 255;
@@ -27,6 +28,16 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (macro_recording_mode) {
          for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
             indicator_set_color(i, HSV_PINK);
+        }
+    }
+    else if (leader_sequence_active()) {
+         for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
+            indicator_set_color(i, HSV_WHITE);
+        }
+    }
+    else if (tmux_lock) {
+         for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
+            indicator_set_color(i, HSV_ORANGE);
         }
     }
     // Turn off RGB on undefined layer keys

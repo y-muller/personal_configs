@@ -11,6 +11,8 @@
   <VirtualDirectory Name="tmux"/>
   <VirtualDirectory Name="QMK keyboards">
     <VirtualDirectory Name="userspace">
+      <File Name="qmk_keyboards/userspace/tap_dance.h"/>
+      <File Name="qmk_keyboards/userspace/tap_dance.c"/>
       <File Name="qmk_keyboards/userspace/user_config.h"/>
       <File Name="qmk_keyboards/userspace/user_config.c"/>
       <File Name="qmk_keyboards/userspace/encoder.c"/>

@@ -5,16 +5,30 @@
 
 #include "layers.h"
 #include "custom_keys.h"
+#include "tap_dance.h"
 
 HSV prev_hsv;
 int prev_rgb_mode;
 
 bool alt_encoder_mode = false;
 bool macro_recording_mode = false;
-bool help_shown = false;
+
+extern bool tmux_lock;
 
 uint8_t mod_state;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (tmux_lock) {
+        // While TMUX is locked on, send C(A) before all other keys
+        if (record->event.pressed) {
+            register_code( KC_LCTL );
+            wait_ms(10);
+            tap_code( KC_A );
+            wait_ms(10);
+            unregister_code( KC_LCTL );
+            wait_ms(10);
+        }
+    }
+
     switch (keycode) {
         case CC_ELOCK:
             if (record->event.pressed) {
@@ -31,45 +45,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CC_EMTG:
             if (record->event.pressed) {
                 alt_encoder_mode = !alt_encoder_mode;
-            }
-            return false;
-
-        // Help / Tmux
-        case CC_HELP:
-            uint8_t mod_shift = get_mods() & MOD_MASK_SHIFT;
-            uint8_t osm_shift = get_oneshot_mods() & MOD_MASK_SHIFT;
-            if (record->event.pressed) {
-                if (mod_shift || osm_shift ) {
-                    help_shown = true;
-                    switch (get_highest_layer(layer_state)) {
-                        case 0:
-                            tap_code( KC_LNG1 );
-                            break;
-                        case EXTEND:
-                            tap_code( KC_LNG2 );
-                            break;
-                        case NAV:
-                            tap_code( KC_LNG3 );
-                            break;
-                        case SYSTEM:
-                            tap_code( KC_LNG4 );
-                            break;
-                        case NUMPAD:
-                            tap_code( KC_LNG5 );
-                            break;
-                    }
-                } else {
-                    // TMUX
-                    add_mods(MOD_MASK_CTRL);
-                    wait_ms(10);
-                    tap_code( KC_A );
-                    wait_ms(10);
-                    unregister_mods(MOD_MASK_CTRL);
-                }
-            } else if (help_shown) {
-                // help key is released
-                help_shown = false;
-                tap_code16( C(KC_LNG1) );
             }
             return false;
 
@@ -173,6 +148,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         default:
             return true; // Process all other keycodes normally
+    }
+}
+
+void leader_start_user(void) {
+    print("leader_start_user\n");
+}
+
+void leader_end_user(void) {
+    print("leader_end_user\n");
+    if (leader_sequence_one_key( TD_TMUX )) {
+        // cancel leader sequence
+    } else if (leader_sequence_one_key(KC_COMM)) {
+        register_code( KC_LSFT );
+        wait_ms(10);
+        tap_code( KC_COMM );
+        tap_code( KC_DOT );
+        wait_ms(10);
+        unregister_code( KC_LSFT );
+        wait_ms(10);
+        tap_code( KC_LEFT );
+    } else if (leader_sequence_one_key(KC_DOT)) {
+        register_code( KC_LSFT );
+        wait_ms(10);
+        tap_code( KC_COMM );
+        wait_ms(10);
+        unregister_code( KC_LSFT );
+        wait_ms(10);
+        tap_code( KC_SLSH );
+        wait_ms(10);
+        register_code( KC_LSFT );
+        wait_ms(10);
+        tap_code( KC_DOT );
+        wait_ms(10);
+        unregister_code( KC_LSFT );
+        wait_ms(10);
+        tap_code( KC_LEFT );
     }
 }
 

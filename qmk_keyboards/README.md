@@ -36,6 +36,8 @@ Tab switching is with Control-Alt-PgUp/Dn and works is several editors and can b
 Dynamic macros 1 and 2 are recorded in the System layer.  
 Application shortcuts work with the [run-or-raise](../run-or-raise/README.md) Gnome extension.  
 
+The mouse left and right keys are duplicated on this layer for quickly moving the cursor out of the way.
+
 #### System layer
 Accessible by activating both the Extend and Nav layers at the same time.
 
