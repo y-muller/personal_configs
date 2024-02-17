@@ -1,5 +1,41 @@
 
 
+
+// KC_CAPS becomes Esc/Ctrl
+//#define ESC_CTL LCTL_T(KC_ESC)
+#define ESC_CTL KC_NO     // disabled while I get used to the layout
+// or EXTEND
+//#define L_EXTEND LT(0, KC_NO)
+#define L_EXTEND OSL(EXTEND)
+#define L_NAV OSL(NAV)
+#define L_AZSYM OSL(AZ_SYM)
+
+// KC_RALT becomes Compose/RAlt with Compose set to RWin in Gnome
+#define CMP_RALT RALT_T(KC_RWIN)
+
+// Shortcut for Crtl+Gui, Ctrl+Shift, Ctrl+Alt
+#define CG(kc) (QK_LCTL | QK_LGUI | (kc))
+#define CS(kc) (QK_LCTL | QK_LSFT | (kc))
+#define CA(kc) (QK_LCTL | QK_LALT | (kc))
+
+// shortcut for One Shot Mods
+#define OSM_LSFT OSM(MOD_LSFT)
+#define OSM_RSFT OSM(MOD_RSFT)
+#define OSM_LCTL OSM(MOD_LCTL)
+#define OSM_RCTL OSM(MOD_RCTL)
+#define OSM_LALT OSM(MOD_LALT)
+
+// Delete Previous Word (Ctrl+Backspace)
+#define KS_DPW LCTL(KC_BSPC)
+// Alt+Home (real Home for CodeLite: start of line)
+#define KS_AHOM A(KC_HOME)
+
+// TMUX key is a tap dance with HELP and LEADER
+#define K_TMUX TD(TD_TMUX)
+
+// Boot on double tap
+#define K_BOOT TD(TD_BOOT)
+
 #ifndef _CUSTOM_KEYS_H_
 #define _CUSTOM_KEYS_H_
 

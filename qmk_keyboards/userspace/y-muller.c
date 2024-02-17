@@ -20,12 +20,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (tmux_lock) {
         // While TMUX is locked on, send C(A) before all other keys
         if (record->event.pressed) {
-            register_code( KC_LCTL );
-            wait_ms(10);
-            tap_code( KC_A );
-            wait_ms(10);
-            unregister_code( KC_LCTL );
-            wait_ms(10);
+            tap_code16( C(KC_A) );
         }
     }
 
@@ -76,6 +71,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
         case CC_SRCN:
+            // navigate through search results - next
+            // with F3 and Shift-F3 or with F8 and Ctrl-F8 if Shift is pressed
             mod_state = get_mods();
             if (mod_state & MOD_MASK_SHIFT) {
                 if (record->event.pressed) {
@@ -95,6 +92,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         case CC_SRCP:
+            // navigate through search results - previous
+            // with F3 and Shift-F3 or with F8 and Ctrl-F8 if Shift is pressed
             mod_state = get_mods();
             if (mod_state & MOD_MASK_SHIFT) {
                 if (record->event.pressed) {
@@ -148,42 +147,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         default:
             return true; // Process all other keycodes normally
-    }
-}
-
-void leader_start_user(void) {
-    print("leader_start_user\n");
-}
-
-void leader_end_user(void) {
-    print("leader_end_user\n");
-    if (leader_sequence_one_key( TD_TMUX )) {
-        // cancel leader sequence
-    } else if (leader_sequence_one_key(KC_COMM)) {
-        register_code( KC_LSFT );
-        wait_ms(10);
-        tap_code( KC_COMM );
-        tap_code( KC_DOT );
-        wait_ms(10);
-        unregister_code( KC_LSFT );
-        wait_ms(10);
-        tap_code( KC_LEFT );
-    } else if (leader_sequence_one_key(KC_DOT)) {
-        register_code( KC_LSFT );
-        wait_ms(10);
-        tap_code( KC_COMM );
-        wait_ms(10);
-        unregister_code( KC_LSFT );
-        wait_ms(10);
-        tap_code( KC_SLSH );
-        wait_ms(10);
-        register_code( KC_LSFT );
-        wait_ms(10);
-        tap_code( KC_DOT );
-        wait_ms(10);
-        unregister_code( KC_LSFT );
-        wait_ms(10);
-        tap_code( KC_LEFT );
     }
 }
 

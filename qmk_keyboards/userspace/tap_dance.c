@@ -89,9 +89,7 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_TAP:
             if (!leader_sequence_active()) {
                 register_code( KC_LCTL );
-                wait_ms(10);
                 tap_code( KC_A );
-                wait_ms(10);
                 unregister_code( KC_LCTL );
             }
             break;
@@ -99,6 +97,9 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
             uint8_t mod_shift = get_mods() & MOD_MASK_SHIFT;
             uint8_t osm_shift = get_oneshot_mods() & MOD_MASK_SHIFT;
             if (mod_shift || osm_shift ) {
+                //
+                // Send keycode for run-or-raise to display layout help
+                //
                 help_is_shown = true;
                 switch (get_highest_layer(layer_state)) {
                     case 0:
@@ -118,8 +119,11 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
                         break;
                 }
             } else {
+                //
+                // TMUX mode, handled in process_record_user
+                // resets at the end of the tap dance
+                //
                 tmux_lock = true;
-                print("tmux mode ON\n");
             }
             break;
         case TD_DOUBLE_TAP:
@@ -146,8 +150,8 @@ void td_tmux_reset(tap_dance_state_t *state, void *user_data) {
                 help_is_shown = false;
                 tap_code16( C(KC_LNG1) );
             }
+            // cancel TMUX mode
             tmux_lock = false;
-            print("tmux mode OFF\n");
             break;
         case TD_DOUBLE_TAP:
             break;
@@ -160,9 +164,17 @@ void td_tmux_reset(tap_dance_state_t *state, void *user_data) {
     ext_tap_state.state = TD_NONE;
 }
 
+void td_bootloader(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 2) {
+        reset_keyboard();
+        reset_tap_dance(state);
+    }
+}
+
 tap_dance_action_t tap_dance_actions[] = {
+    [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
     [TD_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(td_leader_each, td_leader_finished, NULL),
-    [TD_TMUX]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tmux_finished, td_tmux_reset)
+    [TD_TMUX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tmux_finished, td_tmux_reset)
 };
 
 #endif  // USER_CONFIG_ENABLE

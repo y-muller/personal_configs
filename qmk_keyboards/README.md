@@ -15,6 +15,8 @@ Tap the `Compose` (COMP) key once for the normal Linux compose behaviour or hold
 
 The alternate characters are configured in [XKB](../xkb/README.md).
 
+Tapping the Tmux key sends `Ctrl-A` and holding it sends `Ctrl-A` before each key press until released. A double tap on the same key triggers the start of a [leader key](LeaderKey.md) sequence.
+
 #### Extend layer
 Accessible with the EXTEND or EXT keys. Press LAYER LOCK to lock to this layer and again to exit it.
 
@@ -36,7 +38,7 @@ Tab switching is with Control-Alt-PgUp/Dn and works is several editors and can b
 Dynamic macros 1 and 2 are recorded in the System layer.  
 Application shortcuts work with the [run-or-raise](../run-or-raise/README.md) Gnome extension.  
 
-The mouse left and right keys are duplicated on this layer for quickly moving the cursor out of the way.
+The mouse keys are duplicated on this layer, mostly to quickly move the cursor out of the way.
 
 #### System layer
 Accessible by activating both the Extend and Nav layers at the same time.

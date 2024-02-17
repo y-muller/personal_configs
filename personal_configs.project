@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="personal configs" Version="11000" InternalType="">
   <VirtualDirectory Name="docs">
+    <File Name="qmk_keyboards/LeaderKey.md"/>
+    <File Name="qmk_keyboards/README.md"/>
     <File Name="README.md"/>
   </VirtualDirectory>
   <VirtualDirectory Name="xkb"/>
@@ -11,6 +13,8 @@
   <VirtualDirectory Name="tmux"/>
   <VirtualDirectory Name="QMK keyboards">
     <VirtualDirectory Name="userspace">
+      <File Name="qmk_keyboards/userspace/private.h"/>
+      <File Name="qmk_keyboards/userspace/leader_key.c"/>
       <File Name="qmk_keyboards/userspace/tap_dance.h"/>
       <File Name="qmk_keyboards/userspace/tap_dance.c"/>
       <File Name="qmk_keyboards/userspace/user_config.h"/>

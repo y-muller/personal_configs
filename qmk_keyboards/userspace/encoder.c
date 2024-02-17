@@ -29,8 +29,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                     } else {
                         tap_code( KC_LEFT );
                     }
-                    // delay to make sure the mods change
-                    wait_ms(10);
                     if (mod_ctrl) {
                         add_mods(mod_ctrl);
                     }
@@ -41,8 +39,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                     } else {
                         tap_code( KC_LEFT );
                     }
-                    // delay to make sure the mods change
-                    wait_ms(10);
                     // unregister_mods rather than del_mods so the laptop keyboard is not stuck with Ctrl
                     unregister_mods(MOD_MASK_CTRL);
                 }

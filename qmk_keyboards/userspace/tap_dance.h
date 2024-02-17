@@ -21,6 +21,7 @@ typedef struct {
 
 // Tap dance enums
 enum {
+    TD_BOOT,
     TD_LEAD,
     TD_TMUX
 };

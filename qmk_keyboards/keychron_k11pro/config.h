@@ -8,6 +8,8 @@
     #undef CAPS_LOCK_INDEX
 #endif
 
+#define TAP_CODE_DELAY 5
+
 #define ONESHOT_TIMEOUT 2000
 
 // Tap dance config
@@ -15,7 +17,7 @@
 #define TAPPING_TERM_PER_KEY
 
 // Leader key config
-#define LEADER_TIMEOUT 250
+#define LEADER_TIMEOUT 450
 #define LEADER_PER_KEY_TIMING
 #define LEADER_NO_TIMEOUT
 
