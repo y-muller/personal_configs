@@ -13,8 +13,16 @@ Set the modified keyboard option:
 dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin', 'yann_custom:intl']"
 ```
 
+To reload after a change:
+```
+dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin']"
+dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin', 'yann_custom:intl']"
+```
+
 Get the current value:
 ```
 dconf read /org/gnome/desktop/input-sources/xkb-options
 ```
+
+Use `/usr/share/X11/xkb/symbols/us` as a source for the key names.
 

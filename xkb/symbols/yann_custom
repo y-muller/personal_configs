@@ -1,45 +1,51 @@
 partial alphanumeric_keys
 xkb_symbols "intl" {
-    key <TLDE> { [ grave,   asciitilde,  dead_grave,    dead_tilde ] };
-    key <AE01> { [ 1,       exclam,      exclamdown,    onesuperior ] };
-    key <AE02> { [ 2,       at,          twosuperior,   twosuperior ] };
-    key <AE03> { [ 3,       numbersign,  threesuperior, dead_macron ] };
-    key <AE04> { [ 4,       dollar,      sterling,      currency ] };
-    key <AE05> { [ 5,       percent,     EuroSign,      dead_cedilla ] };
-    key <AE06> { [ 6,       asciicircum, onequarter,    dead_circumflex ] };
-    key <AE07> { [ 7,       ampersand,   onehalf,       dead_horn ] };
-    key <AE08> { [ 8,       asterisk,    threequarters, dead_ogonek ] };
-    key <AE09> { [ 9,       parenleft,   leftsinglequotemark, dead_breve ] };
-    key <AE10> { [ 0,       parenright,  rightsinglequotemark, dead_abovering ] };
-    key <AE11> { [ minus,   underscore,  yen,           dead_belowdot ] };
-    key <AE12> { [ equal,   plus,        multiply,      division ] };
+    key <TLDE> { [ grave,        asciitilde,  dead_grave,      dead_tilde ] };
+    key <AE01> { [ 1,            exclam,      onesuperior,     onequarter ] };
+    key <AE02> { [ 2,            at,          twosuperior,     onehalf ] };
+    key <AE03> { [ 3,            numbersign,  threesuperior,   threequarters ] };
+    key <AE04> { [ 4,            dollar,      sterling,        currency ] };
+    key <AE05> { [ 5,            percent,     EuroSign,        permille ] };
+    key <AE06> { [ 6,            asciicircum, dead_circumflex, dead_circumflex ] };
+    key <AE07> { [ 7,            ampersand,   dead_cedilla,    dead_macron ] };
+    key <AE08> { [ 8,            asterisk,    dead_belowdot,   dead_ogonek ] };
+    key <AE09> { [ 9,            parenleft,   leftsinglequotemark, dead_breve ] };
+    key <AE10> { [ 0,            parenright,  rightsinglequotemark, dead_abovering ] };
+    key <AE11> { [ minus,        underscore,  division,        yen ] };
+    key <AE12> { [ equal,        plus,        multiply,        notequal ] };
  
-    key <AD01> { [     q,          Q,        grave,          dead_grave ] };
-    key <AD02> { [     w,          W,        asciitilde,     dead_tilde ] };
-    key <AD03> { [     e,          E,        eacute,         Eacute ] };
-    key <AD04> { [     r,          R,        registered,     registered ] };
-    key <AD06> { [     y,          Y,        ugrave,         Ugrave ] };
-    key <AD07> { [     u,          U,        ucircumflex,    Ucircumflex ] };
-    key <AD08> { [     i,          I,        idiaeresis,     Idiaeresis ] };
-    key <AD09> { [     o,          O,        ocircumflex,    Ocircumflex ] };
-    key <AD11> { [ bracketleft,  braceleft,  guillemotleft,  leftdoublequotemark ] };
-    key <AD12> { [ bracketright, braceright, guillemotright, rightdoublequotemark ] };
-    key <BKSL> { [ backslash,    bar,        dead_grave,     brokenbar ] };
+    key <AD01> { [ q,            Q,           grave,           dead_grave ] };
+    key <AD02> { [ w,            W,           asciitilde,      dead_tilde ] };
+    key <AD03> { [ e,            E,           eacute,          Eacute ] };
+    key <AD04> { [ r,            R,           registered,      trademark ] };
+    key <AD06> { [ y,            Y,           ugrave,          Ugrave ] };
+    key <AD07> { [ u,            U,           ucircumflex,     Ucircumflex ] };
+    key <AD08> { [ i,            I,           idiaeresis,      Idiaeresis ] };
+    key <AD09> { [ o,            O,           ocircumflex,     Ocircumflex ] };
+    key <AD10> { [ p,            P,           Greek_pi,        Greek_alpha ] };
+    key <AD11> { [ bracketleft,  braceleft,   guillemotleft,   leftdoublequotemark ] };
+    key <AD12> { [ bracketright, braceright,  guillemotright,  rightdoublequotemark ] };
+    key <BKSL> { [ backslash,    bar,         dead_grave,      brokenbar ] };
 
-    key <AC01> { [     a,          A,        agrave,         Agrave ] };
-    key <AC02> { [     s,          S,        ssharp,         section ] };
-    key <AC05> { [     g,          G,        egrave,         Egrave ] };
-    key <AC09> { [     l,          L,        oslash,         Ooblique ] };
-    key <AC10> { [ semicolon,    colon,      dead_diaeresis, degree ] };
-    key <AC11> { [ apostrophe,   quotedbl,   dead_acute,     dead_diaeresis ] };
+    key <AC01> { [ a,            A,           agrave,          Agrave ] };
+    key <AC02> { [ s,            S,           ssharp,          section ] };
+    key <AC04> { [ f,            F,           squareroot,      paragraph ] };
+    key <AC05> { [ g,            G,           egrave,          Egrave ] };
+    key <AC06> { [ h,            H,           U2248,           plusminus ] };
+    key <AC07> { [ j,            J,           ae,              AE ] };
+    key <AC09> { [ l,            L,           oe,              OE ] };
+    key <AC10> { [ semicolon,    colon,       dead_diaeresis,  degree ] };
+    key <AC11> { [ apostrophe,   quotedbl,    dead_acute,      dead_diaeresis ] };
 
-    key <AB03> { [     c,          C,     copyright,             cent ] };
-    key <AB06> { [     n,          N,        ntilde,           Ntilde ] };
-    key <AB07> { [     m,          M,            mu,               mu ] };
-    key <AB08> { [     comma,       less,      ccedilla,         Ccedilla ] };
-    key <AB09> { [    period,    greater, dead_abovedot,       dead_caron ] };
+    key <AB02> { [ x,            X,           copyright,       cent ]   };
+    key <AB03> { [ c,            C,           ccedilla,        Ccedilla ] };
+    key <AB05> { [ b,            B,           oslash,          Ooblique ] };
+    key <AB06> { [ n,            N,           ntilde,          Ntilde ] };
+    key <AB07> { [ m,            M,           mu,              infinity ] };
+    key <AB08> { [ comma,        less,        dead_abovedot,   lessthanequal ] };
+    key <AB09> { [ period,       greater,     ellipsis,        greaterthanequal ] };
 
-    key <AB10> { [     slash,   question,  questiondown,        dead_hook ] };
+    key <AB10> { [ slash,        question,    questiondown,    exclamdown ] };
 
     include "level3(ralt_switch)"
 };
