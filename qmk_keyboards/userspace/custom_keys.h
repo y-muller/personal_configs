@@ -25,6 +25,10 @@
 #define OSM_RCTL OSM(MOD_RCTL)
 #define OSM_LALT OSM(MOD_LALT)
 
+// Tabs left and right
+#define K_TAB_L CA(KC_PGUP)
+#define K_TAB_R CA(KC_PGDN)
+
 // Delete Previous Word (Ctrl+Backspace)
 #define KS_DPW LCTL(KC_BSPC)
 // Alt+Home (real Home for CodeLite: start of line)
@@ -32,6 +36,9 @@
 
 // TMUX key is a tap dance with HELP and LEADER
 #define K_TMUX TD(TD_TMUX)
+
+// LEADER is a tap dance with Backslash
+#define K_LEAD TD(TD_LEAD)
 
 // Boot on double tap
 #define K_BOOT TD(TD_BOOT)
@@ -45,6 +52,7 @@ enum my_keycodes {
   CC_EMTG,              // Encode mode toggle
   CC_ECCW,              // Encoder counter clock wise
   CC_ECW,               // Encoder clock wise
+  CC_LINE,              // Select whole line
   CC_SRCN,              // Search: next result
   CC_SRCP,              // Search: previous result
   CC_RGBTG,             // RGB mostly off, used for indicators, toggle

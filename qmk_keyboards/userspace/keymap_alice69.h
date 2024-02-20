@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [COLEMAK] = LAYOUT_69_auto(     // the host is set to QWERTY
         KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          CC_EMTG,
-        KC_TAB,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_PGUP,
+        KC_TAB,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC,  KC_RBRC,  K_LEAD,           KC_PGUP,
         L_EXTEND,KC_A,     KC_R,     KC_S,    KC_T,    KC_G,              KC_M,    KC_N,    KC_E,    KC_I,     KC_O,     KC_QUOT,  KC_ENT,           KC_PGDN,
         OSM_LSFT,          KC_X,     KC_C,    KC_D,    KC_V,    KC_Z,     K_TMUX,  KC_K,    KC_H,    KC_COMM,  KC_DOT,   KC_SLSH,  OSM_RSFT,KC_UP,
         OSM_LCTL,KC_LWIN,  KC_LALT,           KC_LSFT,          L_NAV,    L_EXTEND,         KC_SPC,            CMP_RALT,           KC_LEFT, KC_DOWN, KC_RGHT),
@@ -39,15 +39,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           KC_MUTE,
         A(KC_TAB),KC_ESC,  C(KC_W),  C(KC_F), XXXXXXX, XXXXXXX, KC_HOME,  KC_PGUP, KC_UP,   KC_PGDN, KC_DEL,   XXXXXXX,  XXXXXXX,  CC_ELOCK,         KC_DEL,
         XXXXXXX, OSM_LALT, KC_ACL0,  OSM_LSFT,OSM_LCTL,KC_LWIN,           KC_END,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_BSPC,  KC_GRV,   S(KC_ENT),        KC_INS,
-        _______,           C(KC_X),  C(KC_C), XXXXXXX, C(KC_V), C(KC_Z),  _______, KC_TAB,  KS_AHOM, XXXXXXX,  XXXXXXX,  KS_DPW,   CW_TOGG, KC_MS_U,
+        _______,           C(KC_X),  C(KC_C), C(KC_S), C(KC_V), C(KC_Z),  _______, KC_TAB,  KS_AHOM, CC_LINE,  XXXXXXX,  KS_DPW,   CW_TOGG, KC_MS_U,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            KC_MS_L, KC_MS_D, KC_MS_R),
 
     [NAV] = LAYOUT_69_auto(
-        KC_NO,   A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  A(KC_7), A(KC_8), A(KC_9), A(KC_0),  DM_PLY1,  DM_PLY1,  _______,          _______,
-        _______, _______,  CG(KC_W), CG(KC_F),CA(KC_L),CG(KC_B),CG(KC_O), _______, _______, KC_MS_U, KC_MS_D,  KC_MS_L,  KC_MS_R,  KC_MPLY,          KC_HOME,
-        TG(NUMPAD),CG(KC_A),CG(KC_Y),CG(KC_S),CG(KC_T),_______,           _______, G(KC_F1),G(KC_F2),G(KC_F3), G(KC_F4), _______,  _______,          KC_END,
-        _______,           _______,  CS(KC_C),_______, CS(KC_V),CG(KC_Z), _______, CC_SRCP, CC_SRCN, CA(KC_PGUP),CA(KC_PGDN), _______,  KC_CAPS, _______,
-        _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
+        KC_NO,   A(KC_1),  A(KC_2),  A(KC_3), A(KC_4), A(KC_5), A(KC_6),  XXXXXXX, KC_MS_U, XXXXXXX,  XXXXXXX,  DM_PLY1,  DM_PLY2,  _______,          _______,
+        XXXXXXX, CG(KC_O), CG(KC_W), CG(KC_F),CA(KC_L),CG(KC_B),XXXXXXX,  KC_MS_L, KC_MS_D, KC_MS_R,  XXXXXXX,  XXXXXXX,  KC_MPLY,  _______,          KC_HOME,
+        TG(NUMPAD),CG(KC_A),CG(KC_Y),CG(KC_S),CG(KC_T),XXXXXXX,           XXXXXXX, G(KC_F1),G(KC_F2), G(KC_F3), G(KC_F4), XXXXXXX,  _______,          KC_END,
+        _______,           XXXXXXX,  CS(KC_C),XXXXXXX, CS(KC_V),CG(KC_Z), _______, CC_SRCP, CC_SRCN,  K_TAB_L,  K_TAB_R,  XXXXXXX,  KC_CAPS, A(KC_UP),
+        _______, _______,  _______,           _______,          _______,  _______,          A(KC_TAB),          _______,          A(KC_LEFT), A(KC_DOWN), A(KC_RIGHT)),
         // App shortcuts with CG(x): W:web F:files L:codelite Y:skype S:slack A:signal T:term B:buildterm O:transmission
         // Shortcuts managed by run-or-raise Gnome extension.
 

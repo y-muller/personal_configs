@@ -70,6 +70,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 #endif
 
+        case CC_LINE:
+            // select whole line
+            if (record->event.pressed) {
+                tap_code( KC_HOME );
+                tap_code( KC_HOME );
+                tap_code16( S(KC_DOWN) );
+            }
+            return false;
+
         case CC_SRCN:
             // navigate through search results - next
             // with F3 and Shift-F3 or with F8 and Ctrl-F8 if Shift is pressed
@@ -127,7 +136,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     rgb_matrix_sethsv_noeeprom(HSV_OFF);
                 }
             }
-            return true;
+            return false;
 
         case CC_RGBRT:
             // set RGB to defaults
@@ -135,7 +144,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgb_matrix_mode_noeeprom(RGB_MATRIX_RAINBOW_MOVING_CHEVRON);
                 rgb_matrix_sethsv_noeeprom(255,255,255);
             }
-            return true;
+            return false;
 
         case CC_DISP: // handle the display switch key on Thinhpad (F7)
             if (record->event.pressed) {

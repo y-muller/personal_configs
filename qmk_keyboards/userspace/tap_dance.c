@@ -60,16 +60,23 @@ td_state_t cur_dance(tap_dance_state_t *state) {
 
 
 void td_leader_each(tap_dance_state_t *state, void *user_data) {
-    if (state->count > 1) {
-        printf("%d\n", state->count);
+    if (state->count == 1) {
+        uint8_t mod = get_mods();
+        uint8_t osm = get_oneshot_mods() ;
+        if (mod & MOD_MASK_SHIFT || osm & MOD_MASK_SHIFT ) {
+            tap_code16( S(KC_BSLS) );
+            reset_tap_dance(state);
+        } else if (mod & MOD_BIT(KC_RALT) || osm & MOD_BIT(KC_RALT) ) {
+            tap_code( KC_BSLS );
+            reset_tap_dance(state);
+        }
+    } else if (state->count > 1) {
         tap_code( KC_BSLS );
     }
 }
 
 void td_leader_finished(tap_dance_state_t *state, void *user_data) {
-    print("finished\n");
     if (state->count == 1) {
-        print("leader\n");
         leader_start();
     }
 }

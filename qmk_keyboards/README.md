@@ -15,7 +15,9 @@ Tap the `Compose` (COMP) key once for the normal Linux compose behaviour or hold
 
 The alternate characters are configured in [XKB](../xkb/README.md).
 
-Tapping the Tmux key sends `Ctrl-A` and holding it sends `Ctrl-A` before each key press until released. A double tap on the same key triggers the start of a [leader key](LeaderKey.md) sequence.
+Tapping the Tmux key sends `Ctrl-A` and holding it sends `Ctrl-A` before each key press until released.
+
+There are two ways to start a [leader key](LeaderKey.md) sequence. A double tap on the Tmux key or a tap on the backslash. The backslash is still available on the same key with a double tap or with `AltGr`. This is still a bit experimental.
 
 #### Extend layer
 Accessible with the EXTEND or EXT keys. Press LAYER LOCK to lock to this layer and again to exit it.
@@ -27,11 +29,13 @@ Encoder controls the volume.
 The arrow keys move the mouse cursor, or act as the scrollwheel with `Shift`. The mouse buttons are activated with `Alt`. 
 
 #### Nav layer
-Accessive with the NAV key. 
+Accessible with the NAV key. 
 
 ![nav](../.img/layout_alice69_nav.png)
 
 Encoder controls the screen brightness and external monitor brightness with Shift.
+
+`Space` alternates between the two previous windows.
 
 Find next and previous work in several editors (F3 and Shift-F3). With Shift, switches to "Find in files" mode (F8 and Control-F8).   
 Tab switching is with Control-Alt-PgUp/Dn and works is several editors and can be configured in gnome-terminal and others.  

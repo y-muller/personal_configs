@@ -7,7 +7,7 @@ xkb_symbols "intl" {
     key <AE04> { [ 4,            dollar,      sterling,        currency ] };
     key <AE05> { [ 5,            percent,     EuroSign,        permille ] };
     key <AE06> { [ 6,            asciicircum, dead_circumflex, dead_circumflex ] };
-    key <AE07> { [ 7,            ampersand,   dead_cedilla,    dead_macron ] };
+    key <AE07> { [ 7,            ampersand,   dead_grave,      dead_macron ] };
     key <AE08> { [ 8,            asterisk,    dead_belowdot,   dead_ogonek ] };
     key <AE09> { [ 9,            parenleft,   leftsinglequotemark, dead_breve ] };
     key <AE10> { [ 0,            parenright,  rightsinglequotemark, dead_abovering ] };
@@ -25,7 +25,7 @@ xkb_symbols "intl" {
     key <AD10> { [ p,            P,           Greek_pi,        Greek_alpha ] };
     key <AD11> { [ bracketleft,  braceleft,   guillemotleft,   leftdoublequotemark ] };
     key <AD12> { [ bracketright, braceright,  guillemotright,  rightdoublequotemark ] };
-    key <BKSL> { [ backslash,    bar,         dead_grave,      brokenbar ] };
+    key <BKSL> { [ backslash,    bar,         backslash,       brokenbar ] };
 
     key <AC01> { [ a,            A,           agrave,          Agrave ] };
     key <AC02> { [ s,            S,           ssharp,          section ] };
