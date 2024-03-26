@@ -8,6 +8,7 @@
     #undef CAPS_LOCK_INDEX
 #endif
 
+// Add a delay to solve issues with modifiers in macros
 #define TAP_CODE_DELAY 5
 
 #define ONESHOT_TIMEOUT 2000
@@ -24,9 +25,6 @@
 // Mouse mode Combined: accelerated + speed button
 #define MK_COMBINED
 #define MOUSEKEY_MAX_SPEED 6
-
-// encoder is handled in encoder_update_user
-#undef ENCODER_MAP_ENABLE
 
 // userspace config
 #define BASE_LAYER_TOP 1 // This board uses two base layers Mac=AZERTY, Win=COLEMAK
