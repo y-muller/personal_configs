@@ -2,7 +2,7 @@
 #if defined(DYNAMIC_KEYMAP_LAYER_COUNT)
     #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6
 
 #if defined(CAPS_LOCK_LED_INDEX)
     #undef CAPS_LOCK_LED_INDEX
@@ -21,6 +21,8 @@
 #define LEADER_TIMEOUT 450
 #define LEADER_PER_KEY_TIMING
 #define LEADER_NO_TIMEOUT
+
+#define UNICODE_SELECTED_MODES UNICODE_MODE_LINUX
 
 // Mouse mode Combined: accelerated + speed button
 #define MK_COMBINED

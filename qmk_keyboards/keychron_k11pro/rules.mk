@@ -12,6 +12,8 @@ MOUSEKEY_ENABLE = yes
 
 DYNAMIC_MACRO_ENABLE = yes
 
+UNICODE_ENABLE = yes
+
 # Debug only
 CONSOLE_ENABLE = yes
 

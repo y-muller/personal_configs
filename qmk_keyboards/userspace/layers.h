@@ -7,9 +7,11 @@ enum layers{
     AZERTY,
 #endif
     COLEMAK,
+    COLEMAKH,
     NUMPAD,
     EXTEND,
     NAV,
+    MACRO,
     SYSTEM,
 #ifdef AZERTY_LAYER_ENABLE
     AZ_SYM,

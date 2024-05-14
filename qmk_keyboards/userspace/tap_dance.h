@@ -6,6 +6,7 @@ typedef enum {
     TD_NONE,
     TD_UNKNOWN,
     TD_SINGLE_TAP,
+    TD_INTERRUPTED,
     TD_SINGLE_HOLD,
     TD_DOUBLE_TAP,
     TD_DOUBLE_HOLD,
@@ -22,7 +23,12 @@ typedef struct {
 // Tap dance enums
 enum {
     TD_BOOT,
+    TD_EECLR,
     TD_LEAD,
+    TD_BSLS,
+    TD_RSFT_LEAD,
+    TD_CAPS,
+    TD_ALTGR,
     TD_TMUX
 };
 

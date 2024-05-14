@@ -1,4 +1,7 @@
 #include QMK_KEYBOARD_H
+
+#ifdef LEADER_ENABLE
+
 #include "custom_keys.h"
 #include "tap_dance.h"
 #include "private.h"
@@ -62,14 +65,16 @@ void leader_end_user(void) {
         tap_code16( S(KC_ENT) );
         tap_code( KC_UP );
 
-    } else if (leader_sequence_one_key(KC_I)) {
+// C++
+    } else if (leader_sequence_two_keys(KC_C, KC_I)) {
         // #include ❚
         send_string( "#include " );
 
-    } else if (leader_sequence_one_key(KC_D)) {
+    } else if (leader_sequence_two_keys(KC_C, KC_D)) {
         // #define ❚
         send_string( "#define " );
 
+// Wrap selection
     } else if (leader_sequence_two_keys(KC_SPC, KC_QUOT)) {
         // 'selection'❚
         wrap_selection_string( "'", "'" );
@@ -110,11 +115,12 @@ void leader_end_user(void) {
         // <b>selection</b>❚
         wrap_selection_string( "<b>", "</b>" );
 
+// Work
     } else if (leader_sequence_two_keys(KC_X, KC_C)) {
         // company name
         send_string( PRIV_COMPANY_NAME );
 
-    } else if (leader_sequence_two_keys(KC_C, KC_X)) {
+    } else if (leader_sequence_two_keys(KC_X, KC_X)) {
         // company email
         send_string( PRIV_COMPANY_EMAIL );
 
@@ -122,18 +128,20 @@ void leader_end_user(void) {
         // company domain
         send_string( PRIV_COMPANY_DOMAIN );
 
+// Personal
     } else if (leader_sequence_two_keys(KC_Y, KC_Y)) {
         // email
         send_string( PRIV_EMAIL );
 
-    } else if (leader_sequence_two_keys(KC_D, KC_D)) {
+    } else if (leader_sequence_two_keys(KC_Y, KC_D)) {
         // domain name 1
         send_string( PRIV_DOMAIN_1 );
 
-    } else if (leader_sequence_two_keys(KC_M, KC_M)) {
+    } else if (leader_sequence_two_keys(KC_Y, KC_M)) {
         // domain name 2
         send_string( PRIV_DOMAIN_2 );
 
     }
 }
 
+#endif

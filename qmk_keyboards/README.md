@@ -5,7 +5,7 @@ To get help, pressing `LShift-Help` shows a the layout for the current layer on 
 
 #### Main layer
 
-![main](../.img/layout_alice69_main.png)
+![main](../img/layout_alice69_main.png)
 
 Encoder moves the cursor word by word in most contexts and Control reverts to moving character by character. Press the encoder to toggle to the alternate mode where it acts as the mouse scrollwheel.
 
@@ -22,7 +22,7 @@ There are two ways to start a [leader key](LeaderKey.md) sequence. A double tap 
 #### Extend layer
 Accessible with the EXTEND or EXT keys. Press LAYER LOCK to lock to this layer and again to exit it.
 
-![extend](../.img/layout_alice69_extend.png)
+![extend](../img/layout_alice69_extend.png)
 
 Encoder controls the volume.
 
@@ -31,7 +31,7 @@ The arrow keys move the mouse cursor, or act as the scrollwheel with `Shift`. Th
 #### Nav layer
 Accessible with the NAV key. 
 
-![nav](../.img/layout_alice69_nav.png)
+![nav](../img/layout_alice69_nav.png)
 
 Encoder controls the screen brightness and external monitor brightness with Shift.
 
@@ -47,7 +47,7 @@ The mouse keys are duplicated on this layer, mostly to quickly move the cursor o
 #### System layer
 Accessible by activating both the Extend and Nav layers at the same time.
 
-![system](../.img/layout_alice69_system.png)
+![system](../img/layout_alice69_system.png)
 
 Encoder control the brightness of the RGB effects or with `Shift` the brightness of the indicators. The encoder button toggles the RGB effects while keeping the indicators.
 

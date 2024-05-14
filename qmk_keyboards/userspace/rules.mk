@@ -5,12 +5,20 @@ SRC += overrides.c
 
 SRC += tri_layer.c
 
-SRC += encoder.c
+#ifdef ENCODER_ENABLE
+  SRC += encoder.c
+#endif
 
 SRC += tap_dance.c
 
-SRC += leader_key.c
+#ifdef LEADER_ENABLE
+  SRC += leader_key.c
+#endif
 
-ifdef ALICE69_RGB_ENABLE
-  SRC += rgb_alice69.c
-endif
+#ifdef RGB_MATRIX_ENABLE
+  SRC += rgb.c
+#endif
+
+#ifdef ACHORDION_ENABLE
+  SRC += features/achordion.c
+#endif

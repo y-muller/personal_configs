@@ -235,5 +235,24 @@ const uint8_t LED_LIST_NUMPAD_SYM[] = {
     LED_SCLN,   // PLUS
 };
 
+const uint8_t LED_LIST_RGB_SETTINGS[] = {
+    LED_CAPS,
+    LED_A,
+    LED_R,
+    LED_S,
+    LED_T,
+    LED_G,
+    LED_LSFT,
+    LED_Z,
+    LED_X,
+    LED_C,
+    LED_D,
+    LED_V,
+};
+
+const uint8_t _LED_BOOT = LED_DEL;
+const uint8_t _LED_DEBUG = LED_HOME;
+const uint8_t _LED_RSTP = LED_BSPC;
+
 #endif
 #endif

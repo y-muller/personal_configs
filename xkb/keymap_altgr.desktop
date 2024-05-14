@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=X11 AltGr keymap
+Terminal=false
+Exec=/home/yann/bin/keymap_altgr.sh
+Icon=/usr/share/icons/gnome/48x48/apps/key_bindings.png
+X-GNOME-Autostart-enabled=true
+

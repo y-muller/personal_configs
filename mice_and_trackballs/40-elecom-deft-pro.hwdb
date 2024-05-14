@@ -1,0 +1,13 @@
+# 40-elecom-deft-pro.hwdb
+# Elecom Deft Pro trackball
+evdev:input:b0005v056Ep0133*
+# 90001 L
+# 90002 R
+# 90003 Wheel press - middle button
+# 90004 Prev
+# 90005 Fwd
+# 90006 Fn1 -> middle button 
+ KEYBOARD_KEY_90006=btn_middle
+# 90007 Fn2 -> shift
+ KEYBOARD_KEY_90007=key_leftshift
+# 90008 Fn3

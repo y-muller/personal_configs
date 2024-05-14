@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="personal configs" Version="11000" InternalType="">
   <VirtualDirectory Name="docs">
+    <File Name="qmk_keyboards/ORTHO47.md"/>
     <File Name="qmk_keyboards/LeaderKey.md"/>
     <File Name="qmk_keyboards/README.md"/>
     <File Name="README.md"/>
@@ -12,7 +13,22 @@
   </VirtualDirectory>
   <VirtualDirectory Name="tmux"/>
   <VirtualDirectory Name="QMK keyboards">
+    <VirtualDirectory Name="KPrepublic CSTC40">
+      <File Name="qmk_keyboards/kprepublic_cstc40/config.h"/>
+      <File Name="qmk_keyboards/kprepublic_cstc40/rules.mk"/>
+      <File Name="qmk_keyboards/kprepublic_cstc40/keymap.c"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="userspace">
+      <VirtualDirectory Name="features">
+        <File Name="qmk_keyboards/userspace/features/achordion.h"/>
+        <File Name="qmk_keyboards/userspace/features/achordion.c"/>
+      </VirtualDirectory>
+      <File Name="qmk_keyboards/userspace/rgb_map_ortho47.h"/>
+      <File Name="qmk_keyboards/userspace/rgb.c"/>
+      <File Name="qmk_keyboards/userspace/combos.h"/>
+      <File Name="qmk_keyboards/userspace/layers_ortho47.h"/>
+      <File Name="qmk_keyboards/userspace/keymap_ortho47.h"/>
+      <File Name="qmk_keyboards/userspace/unicode_symbols.h"/>
       <File Name="qmk_keyboards/userspace/private.h"/>
       <File Name="qmk_keyboards/userspace/leader_key.c"/>
       <File Name="qmk_keyboards/userspace/tap_dance.h"/>
@@ -27,7 +43,6 @@
       <File Name="qmk_keyboards/userspace/overrides.c"/>
       <File Name="qmk_keyboards/userspace/layers.h"/>
       <File Name="qmk_keyboards/userspace/rgb_map_alice69.h"/>
-      <File Name="qmk_keyboards/userspace/rgb_alice69.c"/>
       <File Name="qmk_keyboards/userspace/y-muller.h"/>
       <File Name="qmk_keyboards/userspace/y-muller.c"/>
       <File Name="qmk_keyboards/userspace/rules.mk"/>
