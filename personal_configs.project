@@ -19,6 +19,8 @@
       <File Name="qmk_keyboards/kprepublic_cstc40/keymap.c"/>
     </VirtualDirectory>
     <VirtualDirectory Name="userspace">
+      <File Name="qmk_keyboards/userspace/keymap_v8.h"/>
+      <File Name="qmk_keyboards/userspace/layers_alice69.h"/>
       <VirtualDirectory Name="features">
         <File Name="qmk_keyboards/userspace/features/achordion.h"/>
         <File Name="qmk_keyboards/userspace/features/achordion.c"/>
@@ -41,7 +43,6 @@
       <File Name="qmk_keyboards/userspace/keymap_alice69.h"/>
       <File Name="qmk_keyboards/userspace/tri_layer.c"/>
       <File Name="qmk_keyboards/userspace/overrides.c"/>
-      <File Name="qmk_keyboards/userspace/layers.h"/>
       <File Name="qmk_keyboards/userspace/rgb_map_alice69.h"/>
       <File Name="qmk_keyboards/userspace/y-muller.h"/>
       <File Name="qmk_keyboards/userspace/y-muller.c"/>

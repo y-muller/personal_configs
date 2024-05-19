@@ -3,7 +3,7 @@
 #ifdef AZERTY_LAYER_ENABLE
 #include "keymap_french.h"
 #endif
-#include "layers.h"
+#include "layers_alice69.h"
 
 // Key overrides - mouse scroll wheel on Shift, mouse buttons on Control
 const key_override_t left_scrollwheel_override   = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_L, KC_WH_L, (1<<EXTEND | 1<<NAV));

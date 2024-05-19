@@ -6,7 +6,7 @@
 #include "layers_ortho47.h"
 #else
 #include "rgb_map_alice69.h"
-#include "layers.h"
+#include "layers_alice69.h"
 #endif
 
 extern bool alt_encoder_mode;
@@ -96,7 +96,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         }
     }
     #ifdef ORTHO_FEATURES
-    else if (get_highest_layer(layer_state) == MOUSE) {
+    else if (get_highest_layer(layer_state) == MEDIA) {
         for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_UNEI); i++) {
             indicator_set_color(LED_LIST_UNEI[i], HSV_ORANGE);
         }
@@ -150,7 +150,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         indicator_set_color(LED_H, HSV_RED);  // Suspend
         #else
         indicator_set_color(LED_MINS, HSV_GREEN); // Dyn Macros
-        indicator_set_color(LED_EQUL, HSV_GREEN);
+        indicator_set_color(LED_EQL, HSV_GREEN);
         indicator_set_color(LED_BSPC, HSV_SPRINGGREEN);
         #endif
     }

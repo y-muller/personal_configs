@@ -4,9 +4,11 @@
 
 #include QMK_KEYBOARD_H
 
+#ifdef AZERTY_LAYER_ENABLE
 #include "keymap_french.h"
+#endif
 
-#include "layers.h"
+#include "layers_alice69.h"
 #include "custom_keys.h"
 #include "bluetooth_keys.h"
 #include "tap_dance.h"
@@ -33,17 +35,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [COLEMAK] = LAYOUT_69_auto(     // the host is set to QWERTY
     KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  LP_EQL,   KC_BSPC,          CC_EMTG,
-    TAB_MS,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  LP_LBRC,  KC_RBRC,  BSLS_MC,          KC_PGUP,
+    KC_TAB,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  LP_LBRC,  KC_RBRC,  BSLS_MC,          KC_PGUP,
     L_EXTEND,KC_A,     KC_R,     KC_S,    KC_T,    KC_G,              KC_M,    KC_N,    KC_E,    KC_I,     KC_O,     KC_QUOT,  KC_ENT,           KC_PGDN,
     OSM_LSFT,          KC_X,     KC_C,    KC_D,    KC_V,    KC_Z,     K_TMUX,  KC_K,    KC_H,    KC_COMM,  KC_DOT,   LP_SLSH,  RS_LEAD, KC_UP,
-    OSM_LCTL,KC_LWIN,  KC_LALT,           KC_LSFT,          L_NAV,    L_EXTEND,         KC_SPC,            K_ALTGR,            KC_LEFT, KC_DOWN, KC_RGHT),
+    OSM_LCTL,KC_LWIN,  KC_LALT,           KC_LSFT,          L_NAV,    L_EXTEND,         KC_SPC,            K_SYMB,             KC_LEFT, KC_DOWN, KC_RGHT),
 
 [COLEMAKH] = LAYOUT_69_auto(     // the host is set to QWERTY
 //    KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          CC_EMTG,
 //    KC_TAB,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC,  KC_RBRC,  BSLS_MC,          KC_PGUP,
 //    L_EXTEND,HRM_A,    HRM_R,    HRM_S,   HRM_T,   KC_G,              KC_M,    HRM_N,   HRM_E,   HRM_I,    HRM_O,    KC_QUOT,  KC_ENT,           KC_PGDN,
 //    OSM_LSFT,          KC_X,     KC_C,    KC_D,    KC_V,    KC_Z,     K_TMUX,  KC_K,    KC_H,    KC_COMM,  KC_DOT,   LP_SLSH,  RS_LEAD, KC_UP,
-//    OSM_LCTL,KC_LWIN,  KC_LALT,           KC_LSFT,          L_NAV,    L_EXTEND,         KC_SPC,            K_ALTGR,            KC_LEFT, KC_DOWN, KC_RGHT),
+//    OSM_LCTL,KC_LWIN,  KC_LALT,           KC_LSFT,          L_NAV,    L_EXTEND,         KC_SPC,            K_SYMB,             KC_LEFT, KC_DOWN, KC_RGHT),
     _______,  _______,  _______,  _______, _______,  _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          _______,
     _______,  _______,  _______,  _______, _______,  _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          _______,
     _______,  HRM_A,    HRM_R,    HRM_S,   HRM_T,    KC_G,              KC_M,    HRM_N,   HRM_E,   HRM_I,    HRM_O,    _______,  _______,          _______,
@@ -67,6 +69,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
   // App shortcuts with CG(x): W:web F:files L:codelite Y:skype S:slack A:signal T:term B:buildterm O:transmission
   // Shortcuts managed by run-or-raise Gnome extension.
+
+[SYMBOLS] = LAYOUT_69_auto(
+  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,           _______,
+  KC_GRV,   LP_PIPE,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  LP_AMPR,  KC_ASTR,  KC_QUES,  C_PLSPLS, _______,  _______,  _______,           _______,
+  KC_TILD,  LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_QUOT,            KC_BSLS,  KC_MINS,  KC_PLUS,  LP_SLSL,  KC_SCLN,  _______,  _______,           _______,
+  _______,            KC_LT,    LP_LBRC,  KC_RBRC,  KC_GT,    KC_DQUO,  _______,  LP_EXLM,  KC_UNDS,  LP_EQL,   LP_EQEQ,  LP_COLN,  _______, _______,
+  _______,  _______,  _______,            _______,            _______,  _______,            _______,            _______,            _______, _______,  _______),
 
 [NUMPAD] = LAYOUT_69_auto(
     TG(NUMPAD),_______, _______,  _______, _______,  _______, _______,  KC_P7,   KC_P8,   KC_P9,   _______,  _______,  _______,  _______,          _______,

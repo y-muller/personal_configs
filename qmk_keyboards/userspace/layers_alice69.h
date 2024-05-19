@@ -11,6 +11,7 @@ enum layers{
     NUMPAD,
     EXTEND,
     NAV,
+    SYMBOLS,
     MACRO,
     SYSTEM,
 #ifdef AZERTY_LAYER_ENABLE

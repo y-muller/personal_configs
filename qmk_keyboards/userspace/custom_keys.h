@@ -31,9 +31,9 @@
 // Backslash is MACRO layer on hold
 #define BSLS_MC LT(MACRO, KC_BSLS)
 
-// Tab is MOUSE layer on hold
+// Tab is MEDIA layer on hold
 #ifdef ORTHO_FEATURES
-#define TAB_MS LT(MOUSE, KC_TAB)
+#define TAB_MS LT(MEDIA, KC_TAB)
 #endif
 
 // Shortcut for Crtl+Gui, Ctrl+Shift, Ctrl+Alt
@@ -58,11 +58,20 @@
 #define HRM_E LSFT_T(KC_E)
 #define HRM_I LALT_T(KC_I)
 #define HRM_O LGUI_T(KC_O)
+// French Home Row Mods
+#define HRM_FA LGUI_T(FR_A)
+#define HRM_FR LALT_T(FR_R)
+#define HRM_FS LSFT_T(FR_S)
+#define HRM_FT LCTL_T(FR_T)
+#define HRM_FN LCTL_T(FR_N)
+#define HRM_FE LSFT_T(FR_E)
+#define HRM_FI LALT_T(FR_I)
+#define HRM_FO LGUI_T(FR_O)
 
 // Layout change keys
 #define DF_CLMK  DF(COLEMAK)
 #define DF_CLMKH DF(COLEMAKH)
-#define DF_QWERT DF(QWERTY)
+#define DF_FRNCH DF(FRENCH)
 #define TG_CURSR TG(CURSOR)
 
 // Tabs left and right
@@ -78,8 +87,7 @@
 #define K_TMUX TD(TD_TMUX)
 
 // AltGr / Compose
-//#define K_ALTGR TD(TD_ALTGR)
-#define K_ALTGR LT(SYMBOLS,KC_SPC)
+#define K_SYMB TD(TD_ALTGR)
 
 #define K_CAPS TD(TD_CAPS)
 
@@ -114,9 +122,10 @@ enum my_keycodes {
   CC_DISP = SAFE_RANGE,
   C_CLMK1,              // Colemak layout 1
   C_CLMK2,              // Colemak layout 2 with Home Row Mods
+  C_FRENCH,             // French layout for AZERTY host
   C_OSLLCK,             // Lock the current layer
   C_NUMLK,              // Lock Numbers layer
-  C_MSTG,               // Mouse layer toggle
+  C_MEDIA,              // Media layer toggle
   CC_EMTG,              // Encode mode toggle
   CC_ECCW,              // Encoder counter clock wise
   CC_ECW,               // Encoder clock wise
