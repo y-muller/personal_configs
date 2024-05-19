@@ -4,19 +4,13 @@
 #include QMK_KEYBOARD_H
 
 #include "tap_dance.h"
-#if defined( ORTHO_FEATURES )
+#ifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
-#elif defined( ALICE69_FEATURES )
-#include "layers_alice69.h"
 #else
 #include "layers_alice69.h"
 #endif
 
 bool tmux_lock = false;
-
-#ifdef AZERTY_LAYER_ENABLE
-extern bool french_layer_active;
-#endif
 
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
@@ -72,6 +66,128 @@ td_state_t cur_dance(tap_dance_state_t *state) {
     } else return TD_UNKNOWN;
 }
 
+#if 0
+void td_leader_each(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        uint8_t mod = get_mods();
+        uint8_t osm = get_oneshot_mods() ;
+        if (mod & MOD_MASK_SHIFT || osm & MOD_MASK_SHIFT ) {
+            tap_code16( S(KC_BSLS) );
+            reset_tap_dance(state);
+        } else if (mod & MOD_BIT(KC_RALT) || osm & MOD_BIT(KC_RALT) ) {
+            tap_code( KC_BSLS );
+            reset_tap_dance(state);
+        }
+    } else if (state->count > 1) {
+        tap_code( KC_BSLS );
+    }
+}
+
+void td_leader_finished(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        leader_start();
+    }
+}
+#endif
+
+#if 0
+// Create an instance of 'td_tap_t' for the 'bsls' tap dance.
+static td_tap_t bsls_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void td_bsls_each(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        uint8_t mod = get_mods();
+        uint8_t osm = get_oneshot_mods() ;
+        if (mod & MOD_MASK_SHIFT || osm & MOD_MASK_SHIFT ) {
+            tap_code16( S(KC_BSLS) );
+            reset_tap_dance(state);
+        } else if (mod & MOD_BIT(KC_RALT) || osm & MOD_BIT(KC_RALT) ) {
+            tap_code( KC_BSLS );
+            reset_tap_dance(state);
+        }
+    } else if (state->count > 1) {
+        tap_code( KC_BSLS );
+    }
+}
+
+void td_bsls_finished(tap_dance_state_t *state, void *user_data) {
+    bsls_tap_state.state = cur_dance(state);
+    switch (bsls_tap_state.state) {
+        case TD_SINGLE_TAP:
+            leader_start();
+            break;
+        case TD_SINGLE_HOLD:
+            // layer on
+            print("layer on\n");
+            break;
+        default: break;
+    }
+}
+
+void td_bsls_reset(tap_dance_state_t *state, void *user_data) {
+    switch (bsls_tap_state.state) {
+        case TD_SINGLE_HOLD:
+            // remove layer ?
+            print("layer off\n");
+            break;
+        default: break;
+    }
+    bsls_tap_state.state = TD_NONE;
+}
+#endif
+
+#ifdef LEADER_ENABLE
+// Create an instance of 'td_tap_t' for the 'rsft_lead' tap dance.
+static td_tap_t rsft_lead_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void td_rsft_lead_each(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        uint8_t mod = get_mods();
+        uint8_t osm = get_oneshot_mods() ;
+        if (mod & MOD_MASK_SHIFT || osm & MOD_MASK_SHIFT ) {
+            print("shift + rshift\n");
+            reset_tap_dance(state);
+        } else if (mod & MOD_BIT(KC_LCTL) || osm & MOD_BIT(KC_LCTL) ) {
+            print("ctl + rshift\n");
+            reset_tap_dance(state);
+        }
+    } else if (state->count > 1) {
+        print("rshift tap\n");
+    }
+}
+
+void td_rsft_lead_finished(tap_dance_state_t *state, void *user_data) {
+    rsft_lead_tap_state.state = cur_dance(state);
+    switch (rsft_lead_tap_state.state) {
+        case TD_SINGLE_TAP:
+            leader_start();
+            break;
+        case TD_SINGLE_HOLD:
+            add_mods(MOD_BIT(KC_RSFT));
+            //print("rshift on\n");
+            break;
+        default: break;
+    }
+}
+
+void td_rsft_lead_reset(tap_dance_state_t *state, void *user_data) {
+    switch (rsft_lead_tap_state.state) {
+        case TD_SINGLE_HOLD:
+            del_mods(MOD_BIT(KC_RSFT));
+            //print("rshift off\n");
+            break;
+        default: break;
+    }
+    rsft_lead_tap_state.state = TD_NONE;
+}
+#endif
+
 // Create an instance of 'td_tap_t' for the 'altgr' tap dance.
 static td_tap_t altgr_tap_state = {
     .is_press_action = true,
@@ -82,33 +198,14 @@ void td_altgr_finished(tap_dance_state_t *state, void *user_data) {
     altgr_tap_state.state = cur_dance(state);
     switch (altgr_tap_state.state) {
         case TD_SINGLE_TAP:
-            #ifdef AZERTY_LAYER_ENABLE
-            printf( "FR layer %d\n", french_layer_active );
-            if( french_layer_active ) {
-                print("FR oneshot chars\n");
-                set_oneshot_layer(FR_CHARS, ONESHOT_START);
-            } else {
-                set_oneshot_mods(MOD_BIT(KC_RALT));
-            }
-            #else
             set_oneshot_mods(MOD_BIT(KC_RALT));
-            #endif
             break;
         case TD_SINGLE_HOLD:
-            #ifdef ORTHO_FEATURES
-                #ifdef AZERTY_LAYER_ENABLE
-                if( french_layer_active ) {
-                    print("FR symbols\n");
-                    layer_on(FR_SYMS);
-                } else {
-                    layer_on(SYMBOLS);
-                }
-                #else
-                    layer_on(SYMBOLS);
-                #endif
-            #else
-            add_mods(MOD_BIT(KC_RALT));
-            #endif
+//            #ifdef ORTHO_FEATURES
+            layer_on(SYMBOLS);
+//            #else
+//            add_mods(MOD_BIT(KC_RALT));
+//            #endif
             break;
         case TD_DOUBLE_TAP:
             tap_code(KC_RWIN);
@@ -119,27 +216,12 @@ void td_altgr_finished(tap_dance_state_t *state, void *user_data) {
 
 void td_altgr_reset(tap_dance_state_t *state, void *user_data) {
     switch (altgr_tap_state.state) {
-        case TD_SINGLE_TAP:
-            #ifdef AZERTY_LAYER_ENABLE
-            if( french_layer_active ) {
-                clear_oneshot_layer_state(ONESHOT_PRESSED);
-            }
-            #endif
-            break;
         case TD_SINGLE_HOLD:
-            #ifdef ORTHO_FEATURES
-                #ifdef AZERTY_LAYER_ENABLE
-                if( french_layer_active ) {
-                    layer_off(FR_SYMS);
-                } else {
-                    layer_off(SYMBOLS);
-                }
-                #else
-                   layer_off(SYMBOLS);
-                #endif
-            #else
-            del_mods(MOD_BIT(KC_RALT));
-            #endif
+//            #ifdef ORTHO_FEATURES
+            layer_off(SYMBOLS);
+//            #else
+//            del_mods(MOD_BIT(KC_RALT));
+//            #endif
             break;
         default: break;
     }
@@ -217,7 +299,7 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_HOLD:
             uint8_t mod_shift = get_mods() & MOD_MASK_SHIFT;
             uint8_t osm_shift = get_oneshot_mods() & MOD_MASK_SHIFT;
-            //printf("  shift:%d   osm shift:%d\n", mod_shift, osm_shift);
+            printf("  shift:%d   osm shift:%d\n", mod_shift, osm_shift);
             if (mod_shift || osm_shift ) {
                 //
                 // Send keycode for run-or-raise to display layout help
@@ -228,36 +310,36 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
                 #endif
                 switch (get_highest_layer(layer_state)) {
                     case 0:
-                        printf("main help\n");
+                        printf("main\n");
                         tap_code( KC_INT1 );
                         break;
                     case EXTEND:
-                        printf("extend help\n");
+                        printf("extend\n");
                         tap_code( KC_INT2 );
                         break;
                     case NAV:
-                        printf("nav help\n");
+                        printf("nav\n");
                         tap_code( KC_INT3 );
                         break;
                     case SYSTEM:
-                        printf("system help\n");
+                        printf("system\n");
                         tap_code( KC_INT4 );
                         break;
 #ifdef ORTHO_FEATURES
                     case SYMBOLS:
-                        printf("symbols help\n");
+                        printf("symbols\n");
                         tap_code( KC_INT5 );
                         break;
                     case NUMBERS:
 #else
                     case NUMPAD:
 #endif
-                        printf("numbers help\n");
+                        printf("numbers\n");
                         tap_code( KC_INT6 );
                         break;
 #ifdef ORTHO_FEATURES
-                    case MEDIA:
-                        printf("media help\n");
+                    case MOUSE:
+                        printf("mouse\n");
                         tap_code( KC_LNG1 );
                         break;
 #endif
@@ -335,6 +417,11 @@ void td_clear_eeprom(tap_dance_state_t *state, void *user_data) {
 tap_dance_action_t tap_dance_actions[] = {
     [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
     [TD_EECLR] = ACTION_TAP_DANCE_FN(td_clear_eeprom),
+//    [TD_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(td_leader_each, td_leader_finished, NULL),
+//    [TD_BSLS] = ACTION_TAP_DANCE_FN_ADVANCED(td_bsls_each, td_bsls_finished, td_bsls_reset),
+#ifdef LEADER_ENABLE
+    [TD_RSFT_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(/*td_rsft_lead_each*/ NULL, td_rsft_lead_finished, td_rsft_lead_reset),
+#endif
     [TD_ALTGR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_altgr_finished, td_altgr_reset),
     [TD_CAPS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_caps_finished, td_caps_reset),
     [TD_TMUX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tmux_finished, td_tmux_reset)

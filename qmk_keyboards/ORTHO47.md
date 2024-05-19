@@ -46,8 +46,8 @@ Tab switching is with Control-Alt-PgUp/Dn and works is several editors and can b
 Dynamic macros 1 and 2 are recorded in the System layer.  
 Application shortcuts work with the [run-or-raise](../run-or-raise/README.md) Gnome extension.  
 
-#### Mouse and browsing layer
-![mouse](../img/layout_ortho47_mouse.png)
+#### Media and browsing layer
+![media](../img/layout_ortho47_media.png)
 This layer is dedicated to browsing and other non-typing activities. It is accessed by holding the `TAB` key or activated by the
 combo `TAB` + `Q`.
 

@@ -9,6 +9,10 @@
 
 #include "combos.h"
 
+#ifdef AZERTY_LAYER_ENABLE
+#include "keymap_french.h"
+#endif
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -27,14 +31,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TAB_MS,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
     L_EXTEND, KC_A,     KC_R,     KC_S,     KC_T,     KC_G,    KC_M,     KC_N,     KC_E,     KC_I,    KC_O,     KC_ENT,
     ESC_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     KC_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-    K_TMUX,   KC_LALT,  KC_LGUI,  L_NAV,    KC_LSFT,       K_ALTGR,      K_SPC,    L_NUM,    L_EXTEND,XXXXXXX,  K_CAPS   
+    K_TMUX,   KC_LALT,  KC_LGUI,  L_NAV,    KC_LSFT,       K_SYMB,       K_SPC,    L_NUM,    L_EXTEND,XXXXXXX,  K_CAPS
 ),
 
 /* Colemak Home Row Mods
  * ,-----------------------------------------------------------------------------------.
  * | Tab  |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Extend|Meta/A|Alt/R |Sft/S |Ctrl/T|   G  |   M  |   N  |   E  |   I  |   O  |Enter |
+ * |Extend|Meta/A|Alt/R |Sft/S |Ctrl/T|   G  |   M  |Ctrl/N|Sft/E |Alt/I |Meta/O|Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |Esc/Ct|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -45,8 +49,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TAB_MS,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
     L_EXTEND, HRM_A,    HRM_R,    HRM_S,    HRM_T,    KC_G,    KC_M,     HRM_N,    HRM_E,    HRM_I,   HRM_O,    KC_ENT,
     ESC_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     KC_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-    K_TMUX,   KC_LALT,  KC_LGUI,  L_NAV,    KC_LSFT,       K_ALTGR,      K_SPC,    L_NUM,    L_EXTEND, XXXXXXX,  K_CAPS   
+    K_TMUX,   KC_LALT,  KC_LGUI,  L_NAV,    KC_LSFT,       K_SYMB,       K_SPC,    L_NUM,    L_EXTEND, XXXXXXX,  K_CAPS
 ),
+
+#ifdef AZERTY_LAYER_ENABLE
+/* AZERTY compatibility with Home Row Mods
+ * ,-----------------------------------------------------------------------------------.
+ * | Tab  |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |Extend|Meta/A|Alt/R |Sft/S |Ctrl/T|   G  |   M  |Ctrl/N|Sft/E |Alt/I |Meta/O|Enter |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |Esc/Ct|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |  '   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Tmux | Alt  |Super | Nav  |Shift |   Symbols   |Space |Extend|      |      |Caps/W|
+ * `-----------------------------------------------------------------------------------'
+ */
+[FRENCH] = LAYOUT_planck_mit(
+    TAB_MS,   FR_Q,     FR_W,     FR_F,     FR_P,     FR_B,    FR_J,     FR_L,     FR_U,     FR_Y,    KC_SCLN,  KC_BSPC,
+    L_EXTEND, HRM_FA,   HRM_FR,   HRM_FS,   HRM_FT,   FR_G,    FR_M,     HRM_FN,   HRM_FE,   HRM_FI,  HRM_FO,   KC_ENT,
+    ESC_CTL,  FR_Z,     FR_X,     FR_C,     FR_D,     FR_V,    FR_K,     FR_H,     FR_COMM,  LP_DOT,  LP_SLSH,  FR_QUOT,
+    K_TMUX,   KC_LALT,  KC_LGUI,  L_NAV,    KC_LSFT,       K_SYMB,       K_SPC,    L_NUM,    L_EXTEND, XXXXXXX,  K_CAPS
+),
+#endif
 
 /* cursor keys only
   * ,-----------------------------------------------------------------------------------.
@@ -66,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  KC_LEFT,  KC_DOWN,  KC_RIGHT
 ),
 
-/* Mouse
+/*  Media
  * ,-----------------------------------------------------------------------------------.
  * |LLock | Mute | Vol- | Vol+ | Play |  F5  |      |      | M.Up |      | Home | End  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -77,10 +101,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      | Slow Mouse  |Space |Scroll| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
-[MOUSE] = LAYOUT_planck_mit(
+[MEDIA] = LAYOUT_planck_mit(
     C_OSLLCK, KC_MUTE,  KC_VOLD,  KC_VOLU,  XXXXXXX,  KC_F5,    C_OSLLCK, XXXXXXX,  KC_MS_U,  XXXXXXX,  KC_HOME,  KC_END,
     _______,  XXXXXXX,  KC_BRID,  KC_BRIU,  XXXXXXX,  XXXXXXX,  C(KC_PLUS),KC_MS_L, KC_MS_D,  KC_MS_R,  XXXXXXX,  KC_PGUP,
-    _______,  KC_MPLY,  KC_MSTP,  KC_MPRV,  KC_MNXT,  XXXXXXX,  C(KC_MINS),KC_BTN1, KC_BTN3,  KC_BTN3,  KC_UP,    KC_PGDN,
+    _______,  KC_MPRV,  KC_MSTP,  KC_MPLY,  KC_MNXT,  XXXXXXX,  C(KC_MINS),KC_BTN1, KC_BTN3,  KC_BTN3,  KC_UP,    KC_PGDN,
     _______,  _______,  _______,  _______,  _______,        KC_ACL0,      KC_SPC,   KC_LSFT,  KC_LEFT,  KC_DOWN,  KC_RIGHT
 ),
 
@@ -99,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     A(KC_TAB),KC_ESC,   C(KC_W),  C(KC_F),  XXXXXXX,  XXXXXXX,  KC_HOME,   KC_PGUP,  KC_UP,    KC_PGDN,  KS_DPW,   KC_DEL,
     _______,  KC_LWIN,  OSM_LALT, OSM_LSFT, OSM_LCTL, XXXXXXX,  KC_END,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_BSPC,  S(KC_ENT),
     C_OSLLCK, C(KC_Z),  C(KC_X),  C(KC_C),  C(KC_S),  C(KC_V),  S(KC_TAB), KC_TAB,   KS_AHOM,  CC_LINE,  KC_DEL,   XXXXXXX,
-    _______,  _______,  _______,  _______,  _______,       _______,        KC_SPC,   _______,  _______,  KC_INS,   K_CAPS   
+    _______,  _______,  _______,  _______,  _______,       _______,        KC_SPC,   _______,  _______,  KC_INS,   K_CAPS
 ),
 
 /* Nav
@@ -118,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     A(KC_TAB),CG(KC_O), CG(KC_W), CG(KC_F), CG(KC_L), CG(KC_J), XXXXXXX,  A(KC_1),  A(KC_2),  A(KC_3),  A(KC_4),  DM_PLY1,
     _______,  CG(KC_A), CG(KC_Y), CG(KC_S), CG(KC_B), CG(KC_T), XXXXXXX,  G(KC_F1), G(KC_F2), G(KC_F3), G(KC_F4), XXXXXXX,
     C_OSLLCK, CG(KC_Z), XXXXXXX,  CS(KC_C), XXXXXXX,  CS(KC_V), CC_SRCP,  CC_SRCN,  K_TAB_L,  K_TAB_R,  C(KC_PGUP),  XXXXXXX,
-    _______,  _______,  _______,  _______,  _______,       _______,       KC_SPC,   _______,  A(KC_LEFT),C(KC_PGDN), A(KC_RIGHT)  
+    _______,  _______,  _______,  _______,  _______,       _______,       KC_SPC,   _______,  A(KC_LEFT),C(KC_PGDN), A(KC_RIGHT)
 ),
 
 /* Symbols
@@ -136,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_GRV,   LP_PIPE,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  LP_AMPR,  KC_ASTR,  KC_QUES,  C_PLSPLS, KC_BSPC,
     KC_TILD,  LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_QUOT,  KC_BSLS,  KC_MINS,  KC_PLUS,  LP_SLSL,  KC_SCLN,  KC_ENT,
     _______,  KC_LT,    LP_LBRC,  KC_RBRC,  KC_GT,    KC_DQUO,  LP_EXLM,  KC_UNDS,  LP_EQL,   LP_EQEQ,  LP_COLN,  KC_RWIN,
-    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______
 ),
 
 /* Numpad
@@ -154,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TILD,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC,
     _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_MINS,  KC_PLUS,  KC_SLSH,  KC_BSLS,  KC_ENT,
     C_OSLLCK, KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_ASTR,  LP_EQL,   KC_LPRN,  KC_RPRN,  KC_DOT,
-    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  KC_X   
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  KC_X
 ),
 
 /* System (Extend + Nav)
@@ -171,9 +195,65 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [SYSTEM] = LAYOUT_planck_mit(
     XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_F20,   KC_BRID,  KC_BRIU,  CC_DISP,  XXXXXXX,  C_CLMK1,  DM_RSTP,  DM_REC1,
     CC_RGBTG, RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  C_CLMK2,  XXXXXXX,  K_BOOT,
-    CC_RGBRT, RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  XXXXXXX,  KC_SLEP,  XXXXXXX,  TG_CURSR, XXXXXXX,  DB_TOGG,
-    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  K_EECLR   
-)
+    CC_RGBRT, RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  XXXXXXX,  KC_SLEP,  XXXXXXX,  C_FRENCH, TG_CURSR, DB_TOGG,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  K_EECLR
+),
+
+#ifdef AZERTY_LAYER_ENABLE
+/* French characters
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[FR_CHARS] = LAYOUT_planck_mit(
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  FR_AGRV,  _______,  FR_SECT,  _______,  FR_EGRV,  FR_MICR,  _______, FR_EACU,  _______,  _______,  _______,
+    _______,  _______,  _______,  FR_CCED,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______
+),
+
+/* French symbols
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[FR_SYMS] = LAYOUT_planck_mit(
+    FR_GRV,   FR_PIPE,  FR_AT,    FR_HASH,  FR_DLR,   FR_PERC,  FR_CIRC,  FR_AMPR,  FR_ASTR,  FR_QUES,  C_PLSPLS, KC_BSPC,
+    FR_TILD,  FR_LCBR,  FR_LPRN,  FR_RPRN,  FR_RCBR,  FR_QUOT,  FR_BSLS,  FR_MINS,  FR_PLUS,  _______,  FR_SCLN,  KC_ENT,
+    _______,  FR_LABK,  FR_LBRC,  FR_RBRC,  FR_RABK,  FR_DQUO,  FR_EXLM,  FR_UNDS,  FR_EQL,   _______,  LP_COLN,  KC_RWIN,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______
+),
+
+/* French numbers
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[FR_NUMS] = LAYOUT_planck_mit(
+    FR_TILD,  FR_1,     FR_2,     FR_3,     FR_4,     FR_5,     FR_6,     FR_7,     FR_8,     FR_9,     FR_0,     KC_BSPC,
+    _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    FR_MINS,  FR_PLUS,  FR_SLSH,  FR_BSLS,  KC_ENT,
+    C_OSLLCK, KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   FR_ASTR,  FR_EQL,   FR_LPRN,  FR_RPRN,  FR_DOT,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  FR_X
+),
+#endif
 
 /* Blank
  * ,-----------------------------------------------------------------------------------.
@@ -186,7 +266,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
- /*
+/*
 [BLANK] = LAYOUT_planck_mit(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,

@@ -2,7 +2,7 @@
 #if defined(DYNAMIC_KEYMAP_LAYER_COUNT)
     #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
-#define DYNAMIC_KEYMAP_LAYER_COUNT 10
+#define DYNAMIC_KEYMAP_LAYER_COUNT 14
 
 
 
@@ -15,9 +15,8 @@
 
 // Tap dance config
 #define TAPPING_TERM 200
-#define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
-#define QUICK_TAP_TERM_PER_KEY
+//#define QUICK_TAP_TERM_PER_KEY
 
 // Leader key config
 #define LEADER_TIMEOUT 450
@@ -32,8 +31,9 @@
 
 // userspace config
 #define ORTHO_FEATURES
-//#define ACHORDION_ENABLE
+#define ACHORDION_ENABLE
 #define BASE_LAYER_TOP 0 // This board only uses the first layer (no Mac/Win switch)
+//#define AZERTY_LAYER_ENABLE
 
 // disable RGB effects
 #undef ENABLE_RGB_MATRIX_ALPHAS_MODS

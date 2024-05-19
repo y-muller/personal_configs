@@ -1,12 +1,14 @@
 
-SRC += y-muller.c
+#ifndef V8_ENABLE
+  SRC += y-muller.c
+#endif
 
 SRC += overrides.c
 
 SRC += tri_layer.c
 
 #ifdef ENCODER_ENABLE
-  SRC += encoder.c
+  //SRC += encoder.c
 #endif
 
 SRC += tap_dance.c
@@ -19,6 +21,5 @@ SRC += tap_dance.c
   SRC += rgb.c
 #endif
 
-#ifdef ACHORDION_ENABLE
-  SRC += features/achordion.c
-#endif
+
+SRC += features/achordion.c

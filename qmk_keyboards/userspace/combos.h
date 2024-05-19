@@ -6,7 +6,7 @@
 
 #ifdef ORTHO_FEATURES
 const uint16_t PROGMEM rwin_combo[] = {KC_LALT, L_NAV, COMBO_END};
-const uint16_t PROGMEM mouse_combo[] = {TAB_MS, KC_Q, COMBO_END};
+const uint16_t PROGMEM media_combo[] = {TAB_MS, KC_Q, COMBO_END};
 const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_C, KC_D, COMBO_END};
 const uint16_t PROGMEM cut_combo[] = {KC_Z, KC_C, COMBO_END};
@@ -19,7 +19,7 @@ const uint16_t PROGMEM save_combo[] = {KC_W, KC_F, COMBO_END};          // Save 
 #ifdef ORTHO_FEATURES
 combo_t key_combos[] = {
     COMBO(rwin_combo, KC_LWIN),
-    COMBO(mouse_combo, C_MSTG),
+    COMBO(media_combo, C_MEDIA),
     COMBO(copy_combo, C(KC_C)),
     COMBO(paste_combo, C(KC_V)),
     COMBO(cut_combo, C(KC_Z)),

@@ -1,12 +1,14 @@
 
 #include QMK_KEYBOARD_H
 
+#ifdef AZERTY_LAYER_ENABLE
 #include "keymap_french.h"
+#endif
 
 #ifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
-#include "layers.h"
+#include "layers_alice69.h"
 #endif
 
 #ifdef ACHORDION_ENABLE
@@ -21,6 +23,9 @@ int prev_rgb_mode;
 
 bool alt_encoder_mode = false;
 bool macro_recording_mode = false;
+#ifdef AZERTY_LAYER_ENABLE
+bool french_layer_active = false;
+#endif
 
 extern bool tmux_lock;
 
@@ -42,7 +47,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TAB_MS:
             if (!record->tap.count && record->event.pressed) {
                 // Intercept hold function to enable OSM layer
-                set_oneshot_layer(MOUSE, ONESHOT_START);
+                set_oneshot_layer(MEDIA, ONESHOT_START);
                 return false;
             } else if (!record->tap.count && !record->event.pressed) {
                 // hold release ?
@@ -50,19 +55,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             return true;             // Return true for normal processing of tap keycode
-        case C_MSTG:
+        case C_MEDIA:
             if (record->event.pressed) {
-                layer_invert(MOUSE);
+                layer_invert(MEDIA);
             }
             return false;
 #endif
 
         case C_CLMK1:
             set_single_persistent_default_layer(COLEMAK);
+            #ifdef AZERTY_LAYER_ENABLE
+            layer_off( FRENCH );
+            french_layer_active = false;
+            #endif
             return false;
 
         case C_CLMK2:
             set_single_persistent_default_layer(COLEMAKH);
+            #ifdef AZERTY_LAYER_ENABLE
+            layer_off( FRENCH );
+            french_layer_active = false;
+            #endif
+            return false;
+
+        case C_FRENCH:
+            #ifdef AZERTY_LAYER_ENABLE
+            french_layer_active = true;
+            layer_on( FRENCH );
+            #endif
             return false;
 
         case C_OSLLCK:
@@ -234,15 +254,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false; // Skip all further processing of this key
 
-        case K_ALTGR:
-            if (!record->tap.count && record->event.pressed) {
-                 return true;
-            } else if (record->event.pressed) {
-                set_oneshot_mods(MOD_BIT(KC_RALT));
-                return false;
-            }
-            return true;
-
         case LP_PIPE:
             if (!record->tap.count && record->event.pressed) {
                  // Intercept hold function to send ' || '
@@ -413,7 +424,6 @@ bool achordion_chord(uint16_t tap_hold_keycode,
                      keyrecord_t* tap_hold_record,
                      uint16_t other_keycode,
                      keyrecord_t* other_record) {
-    printf("col: %d    row: %d\n", tap_hold_record->event.key.row, tap_hold_record->event.key.col);
   // Also allow same-hand holds when the other key is in the rows below the
   // alphas or first column.
   if (tap_hold_record->event.key.row == 3) { return true; }

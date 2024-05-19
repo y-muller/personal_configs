@@ -24,6 +24,9 @@ typedef struct {
 enum {
     TD_BOOT,
     TD_EECLR,
+    TD_LEAD,
+    TD_BSLS,
+    TD_RSFT_LEAD,
     TD_CAPS,
     TD_ALTGR,
     TD_TMUX
