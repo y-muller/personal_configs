@@ -14,38 +14,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Colemak 1
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
+ * |Esc/Md|   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |Extend|   A  |   R  |   S  |   T  |   G  |   M  |   N  |   E  |   I  |   O  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Esc/Ct|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |  '   |
+ * |Tab/Ct|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tmux | Alt  |Super | Nav  |Shift |   Symbols   |Space | Num  |Extend|      |Caps/W|
+ * | Tmux | Alt  | ⇪/Ext| Nav  |Shift |   Symbols   |Space |BS/Num| Left | ⇪/Ext|Right |
  * `-----------------------------------------------------------------------------------'
  */
 [COLEMAK] = LAYOUT_planck_mit(
-    TAB_MS,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
-    L_EXTEND, KC_A,     KC_R,     KC_S,     KC_T,     KC_G,    KC_M,     KC_N,     KC_E,     KC_I,    KC_O,     KC_ENT,
-    ESC_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     KC_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-    K_TMUX,   KC_LALT,  KC_LGUI,  L_NAV,    KC_LSFT,       K_ALTGR,      K_SPC,    L_NUM,    L_EXTEND,XXXXXXX,  K_CAPS   
+    ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
+    TAB_EXT,  KC_A,     KC_R,     KC_S,     KC_T,     KC_G,    KC_M,     KC_N,     KC_E,     KC_I,    KC_O,     KC_ENT,
+    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
+    K_TMUX,   KC_LALT,  CAPS_EXT, L_NAV,    KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_NUM, KC_LEFT, CAPS_EXT, KC_RIGHT   
 ),
 
 /* Colemak Home Row Mods
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
+ * |Esc/Md|   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Extend|Meta/A|Alt/R |Sft/S |Ctrl/T|   G  |   M  |   N  |   E  |   I  |   O  |Enter |
+ * |Extend|Ext/A |Alt/R |Sft/S |Ctrl/T|   G  |   M  |Ctrl/N|Sft/E |Alt/I |Ext/O |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Esc/Ct|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |  '   |
+ * |Tab/Ct|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tmux | Alt  |Super | Nav  |Shift |   Symbols   |Space |Extend|      |      |Caps/W|
+ * | Tmux | Alt  | ⇪/Ext| Nav  |Shift |   Symbols   |Space |Extend| Left | ⇪/Ext|Right |
  * `-----------------------------------------------------------------------------------'
  */
 [COLEMAKH] = LAYOUT_planck_mit(
-    TAB_MS,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
-    L_EXTEND, HRM_A,    HRM_R,    HRM_S,    HRM_T,    KC_G,    KC_M,     HRM_N,    HRM_E,    HRM_I,   HRM_O,    KC_ENT,
-    ESC_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     KC_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-    K_TMUX,   KC_LALT,  KC_LGUI,  L_NAV,    KC_LSFT,       K_ALTGR,      K_SPC,    L_NUM,    L_EXTEND, XXXXXXX,  K_CAPS   
+    ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
+    TAB_EXT,  HRM_A,    HRM_R,    HRM_S,    HRM_T,    KC_G,    KC_M,     HRM_N,    HRM_E,    HRM_I,   HRM_O,    KC_ENT,
+    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
+    K_TMUX,   KC_LALT,  CAPS_EXT, K_NAV,    KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_NUM, KC_LEFT, CAPS_EXT, KC_RIGHT   
 ),
 
 /* cursor keys only
@@ -66,66 +66,66 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  KC_LEFT,  KC_DOWN,  KC_RIGHT
 ),
 
-/* Mouse
+/* Media
  * ,-----------------------------------------------------------------------------------.
- * |LLock | Mute | Vol- | Vol+ | Play |  F5  |      |      | M.Up |      | Home | End  |
+ * |LLock | Mute | Vol- | Vol+ | Mic  |  F5  |      |L Btn | M.Up |R Btn | Home | End  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      | Bri- | Bri+ | Stop |      |Zoom+ |M.Left|M.Down|M.Rght|      | PgUp |
+ * |      |      | Bri- | Bri+ | Stop | Disp |Zoom+ |M.Left|M.Down|M.Rght|      | PgUp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      | Prev | Next |      |Zoom- |L Btn |M Btn |R Btn |  Up  | PgDn |
+ * |      | Play | Stop | Prev | Next |      |Zoom- |M Btn |      |      |  Up  | PgDn |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      | Slow Mouse  |Space |Scroll| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
-[MOUSE] = LAYOUT_planck_mit(
-    C_OSLLCK, KC_MUTE,  KC_VOLD,  KC_VOLU,  XXXXXXX,  KC_F5,    C_OSLLCK, XXXXXXX,  KC_MS_U,  XXXXXXX,  KC_HOME,  KC_END,
-    _______,  XXXXXXX,  KC_BRID,  KC_BRIU,  XXXXXXX,  XXXXXXX,  C(KC_PLUS),KC_MS_L, KC_MS_D,  KC_MS_R,  XXXXXXX,  KC_PGUP,
-    _______,  KC_MPLY,  KC_MSTP,  KC_MPRV,  KC_MNXT,  XXXXXXX,  C(KC_MINS),KC_BTN1, KC_BTN3,  KC_BTN3,  KC_UP,    KC_PGDN,
-    _______,  _______,  _______,  _______,  _______,        KC_ACL0,      KC_SPC,   KC_LSFT,  KC_LEFT,  KC_DOWN,  KC_RIGHT
+[MEDIA] = LAYOUT_planck_mit(
+    KC_ESC,   KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_F20,   KC_F5,    C_LLOCK,   KC_BTN1, KC_MS_U,  KC_BTN2,  KC_HOME,  KC_END,
+    _______,  _______,  KC_BRID,  KC_BRIU,  CC_DISP,  XXXXXXX,  C(KC_PLUS),KC_MS_L, KC_MS_D,  KC_MS_R,  XXXXXXX,  KC_PGUP,
+    _______,  KC_MPLY,  KC_MSTP,  KC_MPRV,  KC_MNXT,  XXXXXXX,  C(KC_MINS),KC_BTN3, XXXXXXX,  XXXXXXX,  KC_UP,    KC_PGDN,
+    C_LLOCK,  _______,  _______,  _______,  _______,        KC_ACL0,      KC_SPC,   KC_LSFT,  KC_LEFT,  KC_DOWN,  KC_RIGHT
 ),
 
 /* Extend
  * ,-----------------------------------------------------------------------------------.
- * | A-Tab|      | C(W) | C(F) |      |      | Home | PgUp |  Up  | PgDn | DPW  | Del  |
+ * | A-Tab|      | C(W) | C(F) |      |Insert| Home | PgUp |  Up  | PgDn | DPW  | Del  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Super| Alt  |Shift | Ctrl |SlowM | End  | Left | Down |Right | BkSpc|S-Ent |
+ * |      |      | Alt  |Shift | Ctrl |Super | End  | Left | Down |Right | BkSpc|S-Ent |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | LLock| C(Z) | C(X) | C(C) | C(S) | C(V) |S-Tab | Tab  |A-Home|SelLn | Del  |      |
+ * | LLock| Undo | Cut  | Copy |Paste | Redo |S-Tab | Tab  |A-Home|SelLn | Del  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |Insert|CapsWd|
  * `-----------------------------------------------------------------------------------'
  */
 [EXTEND] = LAYOUT_planck_mit(
-    A(KC_TAB),KC_ESC,   C(KC_W),  C(KC_F),  XXXXXXX,  XXXXXXX,  KC_HOME,   KC_PGUP,  KC_UP,    KC_PGDN,  KS_DPW,   KC_DEL,
-    _______,  KC_LWIN,  OSM_LALT, OSM_LSFT, OSM_LCTL, XXXXXXX,  KC_END,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_BSPC,  S(KC_ENT),
-    C_OSLLCK, C(KC_Z),  C(KC_X),  C(KC_C),  C(KC_S),  C(KC_V),  S(KC_TAB), KC_TAB,   KS_AHOM,  CC_LINE,  KC_DEL,   XXXXXXX,
+    _______,  KC_ESC,   C(KC_W),  C(KC_F),  XXXXXXX,  KC_INS,   KC_HOME,   KC_PGUP,  KC_UP,    KC_PGDN,  KS_DPW,   KC_DEL,
+    A(KC_TAB),XXXXXXX,  OSM_LALT, OSM_LSFT, OSM_LCTL, C_OSWIN,  KC_END,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_BSPC,  S(KC_ENT),
+    C_LLOCK,  C(KC_Z),  C(KC_X),  C(KC_C),  C(KC_V),  C(KC_Y),  S(KC_TAB), KC_TAB,   KS_AHOM,  CC_LINE,  KC_DEL,   XXXXXXX,
     _______,  _______,  _______,  _______,  _______,       _______,        KC_SPC,   _______,  _______,  KC_INS,   K_CAPS   
 ),
 
 /* Nav
  *  <-- App shortcuts                     -->
  * ,-----------------------------------------------------------------------------------.
- * |A-Tab |Trsms |Web   |Files |CodeLt|Joplin|      | A-1  | A-2  | A-3  | A-4  |Macro |
+ * |      |Trsms |Web   |Files |CodeLt|Joplin|      | A-1  | A-2  | A-3  | A-4  |Macro |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |Signal|Skype |Slack |Builds|Term  |      | Wsp1 | Wsp2 | Wsp3 | Wsp4 |      |
+ * |A-Tab |Signal|Skype |Slack |Builds|Term  |      | Wsp1 | Wsp2 | Wsp3 | Wsp4 |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |LLock |Zim   |      |TCopy |      |TPaste|Srch- |Srch+ | Tab- | Tab+ | C-Up |      |
+ * |LLock |Zim   |      |TCopy |TPaste|      |Srch- |Srch+ | Tab- | Tab+ | C-Up |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |A-Left|C-Down|A-Rght|
  * `-----------------------------------------------------------------------------------'
  */
 [NAV] = LAYOUT_planck_mit(
-    A(KC_TAB),CG(KC_O), CG(KC_W), CG(KC_F), CG(KC_L), CG(KC_J), XXXXXXX,  A(KC_1),  A(KC_2),  A(KC_3),  A(KC_4),  DM_PLY1,
-    _______,  CG(KC_A), CG(KC_Y), CG(KC_S), CG(KC_B), CG(KC_T), XXXXXXX,  G(KC_F1), G(KC_F2), G(KC_F3), G(KC_F4), XXXXXXX,
-    C_OSLLCK, CG(KC_Z), XXXXXXX,  CS(KC_C), XXXXXXX,  CS(KC_V), CC_SRCP,  CC_SRCN,  K_TAB_L,  K_TAB_R,  C(KC_PGUP),  XXXXXXX,
+    _______,  CG(KC_O), CG(KC_W), CG(KC_F), CG(KC_L), CG(KC_J), DM_PLY1,  A(KC_1),  A(KC_2),  A(KC_3),  A(KC_4),  XXXXXXX,
+    A(KC_TAB),CG(KC_A), CG(KC_Y), CG(KC_S), CG(KC_B), CG(KC_T), XXXXXXX,  G(KC_F1), G(KC_F2), G(KC_F3), G(KC_F4), XXXXXXX,
+    _______,  CG(KC_Z), XXXXXXX,  CS(KC_C), CS(KC_V), XXXXXXX,  CC_SRCP,  CC_SRCN,  K_TAB_L,  K_TAB_R,  C(KC_PGUP),  XXXXXXX,
     _______,  _______,  _______,  _______,  _______,       _______,       KC_SPC,   _______,  A(KC_LEFT),C(KC_PGDN), A(KC_RIGHT)  
 ),
 
 /* Symbols
  * ,-----------------------------------------------------------------------------------.
- * |   `  |   |  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   ?  |  ++  | Bksp |                                                                           
+ * |      |   |  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   ?  |  ++  | Bksp |                                                                           
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   ~  |   {  |   (  |   )  |   }  |   '  |   \  |   -  |   +  |   /  |   ;  | Ent  |
+ * |Tab/Md|   {  |   (  |   )  |   }  |   '  |   \  |   -  |   +  |   /  |   ;  |Ent/Md|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |   <  |   [  |   ]  |   >  |   "  |   !  |   _  |   =  |  ==  |   :  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -133,47 +133,84 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [SYMBOLS] = LAYOUT_planck_mit(
-    KC_GRV,   LP_PIPE,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  LP_AMPR,  KC_ASTR,  KC_QUES,  C_PLSPLS, KC_BSPC,
-    KC_TILD,  LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_QUOT,  KC_BSLS,  KC_MINS,  KC_PLUS,  LP_SLSL,  KC_SCLN,  KC_ENT,
+    _______,  LP_PIPE,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  LP_AMPR,  KC_ASTR,  KC_QUES,  C_PLSPLS, KC_BSPC,
+    TAB_LMOD, LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_QUOT,  KC_BSLS,  KC_MINS,  KC_PLUS,  LP_SLSL,  KC_SCLN,  ENT_RMOD,
     _______,  KC_LT,    LP_LBRC,  KC_RBRC,  KC_GT,    KC_DQUO,  LP_EXLM,  KC_UNDS,  LP_EQL,   LP_EQEQ,  LP_COLN,  KC_RWIN,
     _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
 ),
 
 /* Numpad
  * ,-----------------------------------------------------------------------------------.
- * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+ * |   x  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   +  |   /  |   \  | Ent  |
+ * |Tab/Md|   *  |   /  |   +  |   -  |   <  |   \  |   4  |   5  |   6  |   0  |Ent/Md|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   *  |   =  |   (  |   )  |   .  |
+ * |LLock |   (  |   [  |   ]  |   )  |   >  |   %  |   1  |   2  |   3  |   .  |  =   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |  x   |
+ * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[NUMBERS] = LAYOUT_planck_mit(
-    KC_TILD,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC,
-    _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_MINS,  KC_PLUS,  KC_SLSH,  KC_BSLS,  KC_ENT,
-    C_OSLLCK, KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_ASTR,  LP_EQL,   KC_LPRN,  KC_RPRN,  KC_DOT,
-    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  KC_X   
+[NUMPAD] = LAYOUT_planck_mit(
+    KC_X,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC,
+    TAB_LMOD, KC_ASTR,  KC_SLSH,  KC_PLUS,  KC_MINS,  KC_LT,    KC_BSLS,  KC_4,     KC_5,     KC_6,     KC_0,     ENT_RMOD,
+    C_LLOCK,  KC_LPRN,  KC_LBRC,  KC_RBRC,  KC_RPRN,  KC_GT,    KC_PERC,  KC_1,     KC_2,     KC_3,     KC_DOT,   KC_EQL,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
 ),
 
 /* System (Extend + Nav)
  * ,-----------------------------------------------------------------------------------.
- * |      | Mute | Vol- | Vol+ |MicMut| Bri- | Bri+ | Disp |      |Colmk1|EndMRc|MacRc1|
+ * |Colmk1|Colmk1|Cursor|      |      |      |MacRc1|  F7  |  F8  |  F9  |  F12 |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | RGB  |RGBMod|Brght+| Hue+ | Sat+ | Spd+ |      |      |      |Colmk2|      | Boot |
+ * | RGB  |Mode+ |Brght+| Hue+ | Sat+ | Spd+ |EndMRc|  F4  |  F5  |  F6  |  F11 | Boot |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |RGBrst|      |Brght-| Hue- | Sat- | Spd- |      |Suspnd|      |Cursor|      |Debug |
+ * |RGBrst|Mode- |Brght-| Hue- | Sat- | Spd- |Suspnd|  F1  |  F2  |  F3  |  F10 |Debug |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |EE Clr|
  * `-----------------------------------------------------------------------------------'
  */
 [SYSTEM] = LAYOUT_planck_mit(
-    XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_F20,   KC_BRID,  KC_BRIU,  CC_DISP,  XXXXXXX,  C_CLMK1,  DM_RSTP,  DM_REC1,
-    CC_RGBTG, RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  C_CLMK2,  XXXXXXX,  K_BOOT,
-    CC_RGBRT, RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  XXXXXXX,  KC_SLEP,  XXXXXXX,  TG_CURSR, XXXXXXX,  DB_TOGG,
-    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  K_EECLR   
-)
+    C_CLMK1,  C_CLMK2,  TG_CURSR, XXXXXXX,  XXXXXXX,  XXXXXXX,  DM_REC1,  KC_F7,    KC_F8,   KC_F9,     KC_F12,   K_EECLR,
+    CC_RGBTG, RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  DM_RSTP,  KC_F4,    KC_F5,   KC_F6,     KC_F11,   K_BOOT,
+    CC_RGBRT, RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  KC_SLEP,  KC_F1,    KC_F2,   KC_F3,     KC_F10,   DB_TOGG,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
+),
+
+/* Left side Mods
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | Supr | Alt  | Sft  | Ctrl |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[LMODS] = LAYOUT_planck_mit(
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  C_OSWIN,  OSM_LALT, OSM_LSFT, OSM_LCTL,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______
+),
+
+/* Right side Mods
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      | Ctrl | Sft  | Alt  | Supr |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[RMODS] = LAYOUT_planck_mit(
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  OSM_LCTL, OSM_LSFT, OSM_LALT, C_OSWIN,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______
+),
+
 
 /* Blank
  * ,-----------------------------------------------------------------------------------.

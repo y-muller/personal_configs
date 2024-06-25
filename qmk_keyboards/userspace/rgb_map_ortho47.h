@@ -123,19 +123,19 @@ const uint8_t LED_LIST_NUMBERS[] = {
     LED_SCLN
 };
 
-const uint8_t LED_LIST_NUM_FUNC[] = {
-    LED_A,
-    LED_R,
-    LED_S,
-    LED_T,
-    LED_G,
-    LED_M,
-    LED_X,
-    LED_C,
-    LED_D,
-    LED_V,
-    LED_Z,
-    LED_K
+const uint8_t LED_LIST_FUNC[] = {
+    LED_L,
+    LED_U,
+    LED_Y,
+    LED_N,
+    LED_E,
+    LED_I,
+    LED_H,
+    LED_COMM,
+    LED_DOT,
+    LED_SLSH,
+    LED_O,
+    LED_SCLN
 };
 
 const uint8_t LED_LIST_LETTERS[] = {
@@ -187,14 +187,14 @@ const uint8_t LED_LIST_NUMPAD[] = {
     LED_H,
     LED_COMM,
     LED_DOT,
-    LED_ENT
+    LED_O
 };
 
 const uint8_t LED_LIST_NUMPAD_SYM[] = {
-    LED_O,      // MULT.
-//    LED_MINS,   // MINUS
-    LED_SLSH,   // DIV.
-    LED_SCLN,   // PLUS
+    LED_A,   // MULT.
+    LED_R,   // DIV.
+    LED_S,   // PLUS
+    LED_T,   // MINUS
 };
 
 const uint8_t LED_LIST_RGB_SETTINGS[] = {

@@ -1,0 +1,28 @@
+CONVERT_TO=promicro_rp2040
+
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = yes
+
+
+TRI_LAYER_ENABLE = no
+
+MOUSEKEY_ENABLE = yes
+
+DYNAMIC_MACRO_ENABLE = yes
+
+TAP_DANCE_ENABLE = yes
+
+KEY_OVERRIDE_ENABLE = yes
+
+COMBO_ENABLE = yes
+
+CAPS_WORD_ENABLE = yes
+
+LEADER_ENABLE = yes
+
+# Debug only
+CONSOLE_ENABLE = yes
+
+# userspace
+OVERRIDES_ENABLE = yes
+

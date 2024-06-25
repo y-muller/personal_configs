@@ -1,23 +1,33 @@
 
 #include QMK_KEYBOARD_H
 
+#include "y-muller.h"
+
 #include "keymap_french.h"
 
-#ifdef ORTHO_FEATURES
+#ifdef CORNE_FEATURES
+#include "layers_corne.h"
+#elifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
-#include "layers.h"
+#include "layers_alice69.h"
 #endif
 
 #ifdef ACHORDION_ENABLE
 #include "features/achordion.h"
 #endif
 
+#ifdef LAYERLOCK_ENABLE
+#include "features/layer_lock.h"
+#endif
+
 #include "custom_keys.h"
 #include "tap_dance.h"
 
+#ifdef RGB_MATRIX_ENABLE
 HSV prev_hsv;
 int prev_rgb_mode;
+#endif
 
 bool alt_encoder_mode = false;
 bool macro_recording_mode = false;
@@ -30,29 +40,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_achordion(keycode, record)) { return false; }
 #endif
 
-    if (tmux_lock) {
-        // While TMUX is locked on, send C(A) before all other keys
-        if (record->event.pressed) {
-            tap_code16( C(KC_A) );
-        }
-    }
+#ifdef LAYERLOCK_ENABLE
+    if (!process_layer_lock(keycode, record, C_LLOCK)) { return false; }
+#endif
+
+    process_tmux_mode(keycode, record);
 
     switch (keycode) {
 #ifdef ORTHO_FEATURES
-        case TAB_MS:
+        case ESC_MD:
             if (!record->tap.count && record->event.pressed) {
                 // Intercept hold function to enable OSM layer
-                set_oneshot_layer(MOUSE, ONESHOT_START);
+                set_oneshot_layer(MEDIA, ONESHOT_START);
                 return false;
             } else if (!record->tap.count && !record->event.pressed) {
-                // hold release ?
+                // hold release
                 clear_oneshot_layer_state(ONESHOT_PRESSED);
                 return false;
             }
             return true;             // Return true for normal processing of tap keycode
-        case C_MSTG:
+        case C_MEDIA:
             if (record->event.pressed) {
-                layer_invert(MOUSE);
+#ifdef LAYERLOCK_ENABLE
+                layer_lock_invert(MEDIA);
+#else
+                layer_invert(MEDIA);
+#endif
             }
             return false;
 #endif
@@ -81,17 +94,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 if (is_oneshot_layer_active()) {
                     reset_oneshot_layer();
-#ifdef ORTHO_FEATURES
-                    layer_on(NUMBERS);
-#else
                     layer_on(NUMPAD);
-#endif
                 } else {
-#ifdef ORTHO_FEATURES
-                    layer_off(NUMBERS);
-#else
                     layer_off(NUMPAD);
-#endif
                 }
             }
             return false;
@@ -199,6 +204,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+#ifdef RGB_MATRIX_ENABLE
         case CC_RGBTG:
             // toggle RGB between indicators only and a previous value
             if (record->event.pressed) {
@@ -225,6 +231,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgb_matrix_sethsv_noeeprom(255,255,255);
             }
             return false;
+#endif
 
         case CC_DISP: // handle the display switch key on Thinhpad (F7)
             if (record->event.pressed) {
@@ -234,7 +241,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false; // Skip all further processing of this key
 
-        case K_ALTGR:
+        case C_TMUX: // 
+            if (record->event.pressed) {
+                tmux_lock = true;
+            } else {
+                tmux_lock = false;
+            }
+            return false; // Skip all further processing of this key
+
+        case C_HELP:
+            if (record->event.pressed) {
+                show_layout_help();
+            } else {
+                close_layout_help();
+            }
+            return false;
+
+        case HRM_ASTR:
+            if (!record->tap.count && record->event.pressed) {
+                 return true;
+            } else if (record->event.pressed) {
+                tap_code16( KC_ASTR );
+                return false;
+            }
+            return true;
+
+        case K_SYMBS:
             if (!record->tap.count && record->event.pressed) {
                  return true;
             } else if (record->event.pressed) {
@@ -242,6 +274,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             return true;
+
+        case C_OSWIN:
+            if (record->event.pressed) {
+                add_oneshot_mods(MOD_BIT(KC_LWIN));
+                return false;
+            }
+            return true;
+
+        case C_VIMCMD:
+            // ESC colon
+            if (record->event.pressed) {
+                tap_code16( KC_ESC );
+                tap_code16( KC_COLN );
+            }
+            return false;
 
         case LP_PIPE:
             if (!record->tap.count && record->event.pressed) {
@@ -349,7 +396,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  // Intercept hold function to send '()' cursor in middle
                 tap_code16(KC_LPRN);
                 tap_code16(KC_RPRN);
-                //tap_code(KC_LEFT);
+                tap_code(KC_LEFT);
             } else if (record->event.pressed) {
                 tap_code16(KC_LPRN);
             }
@@ -360,7 +407,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  // Intercept hold function to send '[]' cursor in middle
                 tap_code(KC_LBRC);
                 tap_code(KC_RBRC);
-                //tap_code(KC_LEFT);
+                tap_code(KC_LEFT);
                 return false;
             }
             return true;             // Return true for normal processing of tap keycode
@@ -370,7 +417,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  // Intercept hold function to send '{}' cursor in middle
                 tap_code16(KC_LCBR);
                 tap_code16(KC_RCBR);
-                //tap_code(KC_LEFT);
+                tap_code(KC_LEFT);
             } else if (record->event.pressed) {
                 tap_code16(KC_LCBR);
             }
@@ -387,12 +434,70 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case LP_COMM:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function to send '' one-shot shift or '```'
+                mod_state = get_mods();
+                uint8_t osm_state = get_oneshot_mods();
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    SEND_STRING( "```" );
+                    set_mods(mod_state);
+                } else {
+                    tap_code16( KC_COMM );
+                }
+                return false;
+            } else if (record->event.pressed) {
+                mod_state = get_mods();
+                uint8_t osm_state = get_oneshot_mods();
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code16( KC_GRV );
+                    set_mods(mod_state);
+                    return false;
+                }
+            }
+            return true;             // Return true for normal processing of tap keycode
+
         case LP_DOT:
             if (!record->tap.count && record->event.pressed) {
-                 // Intercept hold function to send '. ' one-shot shift
-                tap_code( KC_DOT );
-                tap_code( KC_SPACE );
-                set_oneshot_mods(MOD_BIT(KC_LSFT));
+                 // Intercept hold function to send '. ' one-shot shift or '~/workspace/'
+                mod_state = get_mods();
+                uint8_t osm_state = get_oneshot_mods();
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    SEND_STRING( "~/workspace/" );
+                    set_mods(mod_state);
+                } else {
+                    tap_code( KC_DOT );
+                    tap_code( KC_SPACE );
+                    set_oneshot_mods(MOD_BIT(KC_LSFT));
+                }
+                return false;
+            } else if (record->event.pressed) {
+                mod_state = get_mods();
+                uint8_t osm_state = get_oneshot_mods();
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code16( KC_TILD );
+                    set_mods(mod_state);
+                    return false;
+                }
+            }
+            return true;             // Return true for normal processing of tap keycode
+
+        case LP_SPC:
+            if (!record->tap.count && record->event.pressed) {
+                // Intercept hold function to enable Tmux mode
+                tmux_lock = true;
+                return false;
+            } else if (!record->tap.count && !record->event.pressed) {
+                // hold release
+                tmux_lock = false;
                 return false;
             }
             return true;             // Return true for normal processing of tap keycode
@@ -413,16 +518,46 @@ bool achordion_chord(uint16_t tap_hold_keycode,
                      keyrecord_t* tap_hold_record,
                      uint16_t other_keycode,
                      keyrecord_t* other_record) {
-    printf("col: %d    row: %d\n", tap_hold_record->event.key.row, tap_hold_record->event.key.col);
-  // Also allow same-hand holds when the other key is in the rows below the
-  // alphas or first column.
-  if (tap_hold_record->event.key.row == 3) { return true; }
-  if (tap_hold_record->event.key.col == 0) { return true; }
+    printf("row: %d    col: %d\n", tap_hold_record->event.key.row, tap_hold_record->event.key.col);
+    // Also allow same-hand holds when the other key is in the rows below the
+    // alphas or first column.
+    if (tap_hold_record->event.key.row == 3) { return true; }
+    if (tap_hold_record->event.key.col == 0) { return true; }
+    if (tap_hold_record->event.key.row == 1 && (tap_hold_record->event.key.col == 1 || tap_hold_record->event.key.col == 10)) { return true; }
 
   // Otherwise, follow the opposite hands rule.
   return achordion_opposite_hands(tap_hold_record, other_record);
 }
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+    switch (tap_hold_keycode) {
+        case K_SYMBS:
+        case BSPC_NUM:
+        case LP_SPC:
+            return 0;  // Bypass Achordion for these keys.
+    }
+    return 800;  // Otherwise use a timeout of 800 ms.
+}
 #endif
+
+void process_tmux_mode(uint16_t keycode, keyrecord_t *record) {
+    if (tmux_lock) {
+        // Ignore the following keys
+        switch (keycode) {
+            case K_SYMBS:
+            case BSPC_NUM:
+            case K_EXT:
+            case KC_LSFT:
+            case CAPS_NAV:
+            case GUI_CTL:
+                return;
+        }
+        // While TMUX is locked on, send C(A) before all other keys
+        if (record->event.pressed) {
+            tap_code16( C(KC_A) );
+        }
+    }
+}
 
 void dynamic_macro_record_start_user(int8_t direction) {
     macro_recording_mode = true;
@@ -451,6 +586,62 @@ bool caps_word_press_user(uint16_t keycode) {
         default:
             return false;  // Deactivate Caps Word.
     }
+}
+
+void show_layout_help(void) {
+    #ifdef CORNE_FEATURES
+    #elifdef ORTHO_FEATURES
+    add_mods(MOD_BIT(KC_LCTL));
+    #endif
+    switch (get_highest_layer(layer_state)) {
+        case 0:
+            uint8_t osm_ralt = get_oneshot_mods() & MOD_BIT(KC_RALT);
+            if ( osm_ralt ) {
+                printf("help: altgr\n");
+                clear_oneshot_mods();
+                tap_code16( A(KC_INT1) );
+            } else {
+                printf("help: main\n");
+                tap_code( KC_INT1 );
+            }
+            break;
+        case EXTEND:
+            printf("help: extend\n");
+            tap_code( KC_INT2 );
+            break;
+        case NAV:
+            printf("help: nav\n");
+            tap_code( KC_INT3 );
+            break;
+        case SYSTEM:
+            printf("help: system\n");
+            tap_code( KC_INT4 );
+            break;
+#ifdef ORTHO_FEATURES
+        case SYMBOLS:
+            printf("help: symbols\n");
+            tap_code( KC_INT5 );
+            break;
+#endif
+        case NUMPAD:
+            printf("help: numpad\n");
+            tap_code( KC_INT6 );
+            break;
+#ifdef ORTHO_FEATURES
+        case MEDIA:
+            printf("help: media\n");
+            tap_code( KC_LNG1 );
+            break;
+#endif
+    }
+    #ifdef ORTHO_FEATURES
+    unregister_mods(MOD_BIT(KC_LCTL));
+    #endif
+}
+
+void close_layout_help(void) {
+    printf("close help\n");
+    tap_code( KC_LNG9 );
 }
 
 void keyboard_post_init_user(void) {

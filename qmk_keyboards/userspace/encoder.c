@@ -2,7 +2,7 @@
 #ifndef ENCODER_MAP_ENABLE
 
 #include QMK_KEYBOARD_H
-#include "layers.h"
+#include "layers_alice69.h"
 
 // for RGB saturation control
 #include "process_rgb.h"

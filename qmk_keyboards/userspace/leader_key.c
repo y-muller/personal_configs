@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-#ifdef LEADER_ENABLE
+//#ifdef LEADER_ENABLE
 
 #include "custom_keys.h"
 #include "tap_dance.h"
@@ -22,6 +22,7 @@ void wrap_selection_string( char* opening, char* closing ) {
     tap_code16( C(KC_X) );
     send_string( opening );
     tap_code16( C(KC_V) );
+    wait_ms( 5 );
     send_string( closing );
 }
 
@@ -52,11 +53,11 @@ void leader_end_user(void) {
         // [^❚]
         insert_tags( "[^", "]" );
 
-    } else if (leader_sequence_one_key(KC_ESC)) {
+    } else if (leader_sequence_one_key(KC_COMM)) {
         // `❚`
         insert_tags( "`", "`" );
 
-    } else if (leader_sequence_two_keys(KC_ESC, KC_ESC)) {
+    } else if (leader_sequence_two_keys(KC_COMM, KC_COMM)) {
         // ```
         // ❚
         // ```
@@ -69,6 +70,11 @@ void leader_end_user(void) {
     } else if (leader_sequence_two_keys(KC_C, KC_I)) {
         // #include ❚
         send_string( "#include " );
+
+    } else if (leader_sequence_three_keys(KC_C, KC_I, KC_I)) {
+        // #include "❚"
+        send_string( "#include \"\"" );
+        tap_code( KC_LEFT ); 
 
     } else if (leader_sequence_two_keys(KC_C, KC_D)) {
         // #define ❚
@@ -83,31 +89,31 @@ void leader_end_user(void) {
         // "selection"❚
         wrap_selection_string( "\"", "\"" );
 
-    } else if (leader_sequence_two_keys(KC_SPC, KC_LBRC)) {
+    } else if (leader_sequence_two_keys(KC_SPC, KC_X)) {
         // [selection]❚
         wrap_selection_string( "[", "]" );
 
-    } else if (leader_sequence_three_keys(KC_SPC, KC_LBRC, KC_LBRC)) {
+    } else if (leader_sequence_two_keys(KC_SPC, KC_A)) {
         // {selection}❚
         wrap_selection_string( "{", "}" );
 
-    } else if (leader_sequence_two_keys(KC_SPC, KC_RBRC)) {
+    } else if (leader_sequence_two_keys(KC_SPC, KC_C)) {
         // [[selection]]❚
         wrap_selection_string( "[[", "]]" );
 
-    } else if (leader_sequence_three_keys(KC_SPC, KC_RBRC, KC_RBRC)) {
+    } else if (leader_sequence_two_keys(KC_SPC, KC_T)) {
         // {{selection}}❚
         wrap_selection_string( "{{", "}}" );
 
-    } else if (leader_sequence_two_keys(KC_SPC, KC_9)) {
+    } else if (leader_sequence_two_keys(KC_SPC, KC_R)) {
         // (selection)❚
         wrap_selection_string( "(", ")" );
 
-    } else if (leader_sequence_two_keys(KC_SPC, KC_0)) {
+    } else if (leader_sequence_two_keys(KC_SPC, KC_S)) {
         // ((selection))❚
         wrap_selection_string( "((", "))" );
 
-    } else if (leader_sequence_two_keys(KC_SPC, KC_8)) {
+    } else if (leader_sequence_two_keys(KC_SPC, KC_U)) {
         // *selection*❚
         wrap_selection_string( "*", "*" );
 
@@ -144,4 +150,4 @@ void leader_end_user(void) {
     }
 }
 
-#endif
+//#endif

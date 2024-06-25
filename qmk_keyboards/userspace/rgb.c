@@ -1,12 +1,15 @@
 
 #include QMK_KEYBOARD_H
 
-#ifdef ORTHO_FEATURES
+#ifdef CORNE_FEATURES
+#include "layers_corne.h"
+// ...
+#elifdef ORTHO_FEATURES
 #include "rgb_map_ortho47.h"
 #include "layers_ortho47.h"
 #else
 #include "rgb_map_alice69.h"
-#include "layers.h"
+#include "layers_alice69.h"
 #endif
 
 extern bool alt_encoder_mode;
@@ -81,10 +84,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         indicator_set_color(LED_Y, HSV_ORANGE);
         indicator_set_color(LED_J, HSV_ORANGE);
         indicator_set_color(LED_M, HSV_ORANGE);
-        indicator_set_color(LED_A, HSV_CYAN);   // Mods on home row
-        indicator_set_color(LED_R, HSV_CYAN);
+        indicator_set_color(LED_R, HSV_CYAN);  // Mods on home row
         indicator_set_color(LED_S, HSV_CYAN);
         indicator_set_color(LED_T, HSV_CYAN);
+        indicator_set_color(LED_G, HSV_CYAN); 
         indicator_set_color(LED_SCLN, HSV_RED); // Delete
         indicator_set_color(LED_O, HSV_RED);    // Backspace
         indicator_set_color(LED_SLSH, HSV_RED); // Delete previous word
@@ -96,7 +99,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         }
     }
     #ifdef ORTHO_FEATURES
-    else if (get_highest_layer(layer_state) == MOUSE) {
+    else if (get_highest_layer(layer_state) == MEDIA) {
         for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_UNEI); i++) {
             indicator_set_color(LED_LIST_UNEI[i], HSV_ORANGE);
         }
@@ -112,16 +115,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         indicator_set_color(LED_TAB, HSV_WHITE);  // LLock
     }
     #endif
-    #ifdef ORTHO_FEATURES
-    else if (get_highest_layer(layer_state) == NUMBERS) {
-        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMBERS); i++) {
-            indicator_set_color(LED_LIST_NUMBERS[i], HSV_CYAN);
-        }
-        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUM_FUNC); i++) {
-            indicator_set_color(LED_LIST_NUM_FUNC[i], HSV_YELLOW);
-        }
-    }
-    #else
     else if (get_highest_layer(layer_state) == NUMPAD) {
         for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMPAD); i++) {
             indicator_set_color(LED_LIST_NUMPAD[i], HSV_BLUE);
@@ -133,7 +126,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             indicator_set_color(LED_Z, HSV_RED);
         }
     }
-    #endif
     else if (get_highest_layer(layer_state) == SYSTEM) {
         indicator_set_color(_LED_BOOT, HSV_RED);
         indicator_set_color(_LED_DEBUG, HSV_ORANGE);
@@ -142,12 +134,15 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             indicator_set_color(LED_LIST_RGB_SETTINGS[i], HSV_GOLDENROD);
         }
         #ifdef ORTHO_FEATURES
-        indicator_set_color(LED_Y, HSV_TURQUOISE); // Base maps
-        indicator_set_color(LED_I, HSV_TURQUOISE);
-        indicator_set_color(LED_DOT, HSV_TURQUOISE);
-        indicator_set_color(LED_SCLN, HSV_SPRINGGREEN); // Dyn Macro
-        indicator_set_color(LED_BSPC, HSV_GREEN);
-        indicator_set_color(LED_H, HSV_RED);  // Suspend
+        indicator_set_color(LED_TAB, HSV_TURQUOISE); // Base maps
+        indicator_set_color(LED_Q, HSV_TURQUOISE);
+        indicator_set_color(LED_W, HSV_TURQUOISE);
+        indicator_set_color(LED_J, HSV_SPRINGGREEN); // Dyn Macro
+        indicator_set_color(LED_M, HSV_GREEN);
+        indicator_set_color(LED_K, HSV_RED);  // Suspend
+        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_FUNC); i++) {
+            indicator_set_color(LED_LIST_FUNC[i], HSV_YELLOW);
+        }
         #else
         indicator_set_color(LED_MINS, HSV_GREEN); // Dyn Macros
         indicator_set_color(LED_EQUL, HSV_GREEN);

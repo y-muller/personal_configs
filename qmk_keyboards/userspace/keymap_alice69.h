@@ -6,7 +6,7 @@
 
 #include "keymap_french.h"
 
-#include "layers.h"
+#include "layers_alice69.h"
 #include "custom_keys.h"
 #include "bluetooth_keys.h"
 #include "tap_dance.h"
@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [COLEMAK] = LAYOUT_69_auto(     // the host is set to QWERTY
     KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  LP_EQL,   KC_BSPC,          CC_EMTG,
-    TAB_MS,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  LP_LBRC,  KC_RBRC,  BSLS_MC,          KC_PGUP,
+    ESC_MD,  KC_Q,     KC_W,     KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,    KC_Y,    KC_SCLN,  LP_LBRC,  KC_RBRC,  BSLS_MC,          KC_PGUP,
     L_EXTEND,KC_A,     KC_R,     KC_S,    KC_T,    KC_G,              KC_M,    KC_N,    KC_E,    KC_I,     KC_O,     KC_QUOT,  KC_ENT,           KC_PGDN,
     OSM_LSFT,          KC_X,     KC_C,    KC_D,    KC_V,    KC_Z,     K_TMUX,  KC_K,    KC_H,    KC_COMM,  KC_DOT,   LP_SLSH,  RS_LEAD, KC_UP,
     OSM_LCTL,KC_LWIN,  KC_LALT,           KC_LSFT,          L_NAV,    L_EXTEND,         KC_SPC,            K_ALTGR,            KC_LEFT, KC_DOWN, KC_RGHT),

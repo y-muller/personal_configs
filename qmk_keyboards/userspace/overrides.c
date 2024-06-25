@@ -3,7 +3,7 @@
 #ifdef AZERTY_LAYER_ENABLE
 #include "keymap_french.h"
 #endif
-#include "layers.h"
+#include "custom_keys.h"
 
 // Key overrides - mouse scroll wheel on Shift, mouse buttons on Control
 const key_override_t left_scrollwheel_override   = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_L, KC_WH_L, (1<<EXTEND | 1<<NAV));
@@ -15,8 +15,11 @@ const key_override_t right_mousebutton_override  = ko_make_with_layers(MOD_MASK_
 const key_override_t middle_mousebutton_override = ko_make_with_layers(MOD_MASK_ALT,   KC_MS_D, KC_BTN3, (1<<EXTEND | 1<<NAV));
 
 // tilde in its usual place with Shift+Esc, backtick with AltGr+Esc 
-const key_override_t tilde_override    = ko_make_with_layers(MOD_MASK_SHIFT,   KC_ESC,  KC_TILDE, (1 << COLEMAK));
-const key_override_t backtick_override = ko_make_with_layers(MOD_BIT(KC_RIGHT_ALT),   KC_ESC,  KC_GRV, (1 << COLEMAK));
+const key_override_t tilde_override    = ko_make_with_layers(MOD_MASK_SHIFT,   KC_ESC,  KC_TILDE, (1 << COLEMAK | 1 << COLEMAKH));
+const key_override_t backtick_override = ko_make_with_layers(MOD_BIT(KC_RIGHT_ALT),   KC_ESC,  KC_GRV, (1 << COLEMAK | 1 << COLEMAKH));
+// tilde and backtick on shifted comma and dot
+//const key_override_t tilde_dot_override    = ko_make_with_layers(MOD_MASK_SHIFT, LP_DOT,   KC_TILDE, (1 << COLEMAK | 1 << COLEMAKH));
+//const key_override_t backtick_comma_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM,  KC_GRV, (1 << COLEMAK | 1 << COLEMAKH));
 
 #ifdef AZERTY_LAYER_ENABLE
 // AZERTY number row and other symbols overrides
@@ -51,6 +54,8 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &middle_mousebutton_override,
     &tilde_override,
     &backtick_override,
+    //&tilde_dot_override,
+    //&backtick_comma_override,
 #ifdef AZERTY_LAYER_ENABLE
     &fr1_override,
     &fr2_override,

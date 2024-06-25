@@ -16,9 +16,11 @@ SRC += tap_dance.c
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-  SRC += rgb.c
+  //SRC += rgb.c
 #endif
 
 #ifdef ACHORDION_ENABLE
   SRC += features/achordion.c
 #endif
+
+SRC += features/layer_lock.c

@@ -20,7 +20,7 @@
 
 #include "keymap_french.h"
 
-#include "layers.h"
+#include "layers_alice69.h"
 
 
 // clang-format off

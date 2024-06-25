@@ -4,10 +4,16 @@
 #include QMK_KEYBOARD_H
 
 #include "tap_dance.h"
-#ifdef ORTHO_FEATURES
+#ifdef CORNE_FEATURES
+#include "layers_corne.h"
+#elifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
-#include "layers.h"
+#include "layers_alice69.h"
+#endif
+
+#ifdef LAYERLOCK_ENABLE
+#include "features/layer_lock.h"
 #endif
 
 bool tmux_lock = false;
@@ -248,11 +254,7 @@ void td_caps_finished(tap_dance_state_t *state, void *user_data) {
             }
             break;
         case TD_SINGLE_HOLD:
-#ifdef ORTHO_FEATURES
-            layer_on(NUMBERS);
-#else
-            layer_on(NUMPAD);
-#endif
+            layer_on(NAV);
             break;
         case TD_DOUBLE_TAP:
             tap_code(KC_CAPS);
@@ -264,10 +266,12 @@ void td_caps_finished(tap_dance_state_t *state, void *user_data) {
 void td_caps_reset(tap_dance_state_t *state, void *user_data) {
     switch (caps_tap_state.state) {
         case TD_SINGLE_HOLD:
-#ifdef ORTHO_FEATURES
-            layer_off(NUMBERS);
+#ifdef LAYERLOCK_ENABLE
+            if(!is_layer_locked(NAV)) {
+                layer_off(NAV);
+            }
 #else
-            layer_off(NUMPAD);
+            layer_off(NAV);
 #endif
             break;
         default: break;
@@ -275,6 +279,7 @@ void td_caps_reset(tap_dance_state_t *state, void *user_data) {
     caps_tap_state.state = TD_NONE;
 }
 
+//#ifndef CORNE_FEATURES
 // Create an instance of 'td_tap_t' for the 'tmux' tap dance.
 static td_tap_t ext_tap_state = {
     .is_press_action = true,
@@ -291,10 +296,14 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
             if (!leader_sequence_active())
 #endif
             {
+#ifdef CORNE_FEATURES
+                tap_code( KC_SPC );
+#else
                 register_code( KC_LCTL );
                 tap_code( KC_A );
                 unregister_code( KC_LCTL );
-            }
+#endif 
+           }
             break;
         case TD_SINGLE_HOLD:
             uint8_t mod_shift = get_mods() & MOD_MASK_SHIFT;
@@ -330,16 +339,14 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
                         printf("symbols\n");
                         tap_code( KC_INT5 );
                         break;
-                    case NUMBERS:
-#else
-                    case NUMPAD:
 #endif
-                        printf("numbers\n");
+                    case NUMPAD:
+                        printf("numpad\n");
                         tap_code( KC_INT6 );
                         break;
 #ifdef ORTHO_FEATURES
-                    case MOUSE:
-                        printf("mouse\n");
+                    case MEDIA:
+                        printf("media\n");
                         tap_code( KC_LNG1 );
                         break;
 #endif
@@ -399,6 +406,7 @@ void td_tmux_reset(tap_dance_state_t *state, void *user_data) {
     }
     ext_tap_state.state = TD_NONE;
 }
+//#endif // CORNE_FEATURES
 
 void td_bootloader(tap_dance_state_t *state, void *user_data) {
     if (state->count == 2) {

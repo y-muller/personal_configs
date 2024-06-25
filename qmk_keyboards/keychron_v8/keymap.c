@@ -16,7 +16,7 @@
 
 #include QMK_KEYBOARD_H
 
-#include "layers.h"
+#include "layers_alice69.h"
 
 // clang-format off
 #include "keymap_alice69.h"

@@ -2,23 +2,32 @@
 #ifndef _CUSTOM_KEYS_H_
 #define _CUSTOM_KEYS_H_
 
+#ifdef CORNE_FEATURES
+#include "layers_corne.h"
+#elifdef ORTHO_FEATURES
+#include "layers_ortho47.h"
+#else
+#include "layers_alice69.h"
+#endif
 
 
-// KC_CAPS becomes Esc/Ctrl
-#define ESC_CTL LCTL_T(KC_ESC)
-//#define ESC_CTL KC_NO     // disabled while I get used to the layout
-// or EXTEND
-//#define L_EXTEND LT(0, KC_NO)
+#define TAB_EXT LT(EXTEND, KC_TAB)
+#define TAB_LMOD LT(LMODS, KC_TAB)
+#define ENT_RMOD LT(RMODS, KC_TAB)
+
+#define TAB_CTL LCTL_T(KC_TAB)
+#define GUI_CTL LCTL_T(KC_LWIN)
+
 #define L_EXTEND OSL(EXTEND)
 #define L_NAV OSL(NAV)
 //#define L_EXTEND MO(EXTEND)
 //#define L_NAV MO(NAV)
-#ifdef ORTHO_FEATURES
-#define L_NUM OSL(NUMBERS)
-#else
 #define L_NUM OSL(NUMPAD)
-#endif
 #define L_AZSYM OSL(AZ_SYM)
+
+// Layers as dual use
+#define K_EXT LT(EXTEND, KC_ENT)
+#define BSPC_NUM LT(NUMPAD, KC_BSPC)
 
 // KC_RALT becomes Compose/RAlt with Compose set to RWin in Gnome
 //#define CMP_RALT RALT_T(KC_RWIN)
@@ -31,9 +40,9 @@
 // Backslash is MACRO layer on hold
 #define BSLS_MC LT(MACRO, KC_BSLS)
 
-// Tab is MOUSE layer on hold
+// ESC is MEDIA layer on hold
 #ifdef ORTHO_FEATURES
-#define TAB_MS LT(MOUSE, KC_TAB)
+#define ESC_MD LT(MEDIA, KC_ESC)
 #endif
 
 // Shortcut for Crtl+Gui, Ctrl+Shift, Ctrl+Alt
@@ -50,14 +59,21 @@
 #define OSM_RALT OSM(MOD_RALT)
 
 // Home Row Mods
-#define HRM_A LGUI_T(KC_A)
+//    Colemak
+//#define HRM_A LGUI_T(KC_A)
+#define HRM_A LT(EXTEND, KC_A)
 #define HRM_R LALT_T(KC_R)
 #define HRM_S LSFT_T(KC_S)
 #define HRM_T LCTL_T(KC_T)
 #define HRM_N LCTL_T(KC_N)
 #define HRM_E LSFT_T(KC_E)
 #define HRM_I LALT_T(KC_I)
-#define HRM_O LGUI_T(KC_O)
+//#define HRM_O LGUI_T(KC_O)
+#define HRM_O LT(EXTEND, KC_O)
+//    Numpad
+#define HRM_ASTR LT(EXTEND, KC_ASTR)
+//    Media
+
 
 // Layout change keys
 #define DF_CLMK  DF(COLEMAK)
@@ -78,9 +94,10 @@
 #define K_TMUX TD(TD_TMUX)
 
 // AltGr / Compose
-//#define K_ALTGR TD(TD_ALTGR)
-#define K_ALTGR LT(SYMBOLS,KC_SPC)
+//#define K_SYMBS TD(TD_ALTGR)
+#define K_SYMBS LT(SYMBOLS,KC_SPC)
 
+#define CAPS_NAV TD(TD_CAPS)
 #define K_CAPS TD(TD_CAPS)
 
 #define K_SPC KC_SPC
@@ -108,15 +125,19 @@
 #define LP_LBRC LT(0,KC_LBRC) // tap: '[', long: '[]'
 #define LP_LCBR LT(1,KC_LCBR) // tap: '{', long: '{}' - same keys as LBRC so change the layer
 #define LP_RPRN LT(0,KC_RPRN) // tap: ')', long: ');↵'
-#define LP_DOT  LT(0,KC_DOT)  // tap: '.', long: '. ' one-shot shift
+#define LP_COMM LT(0,KC_COMM) // tap: ',', long: '', shift: '`', shift long: '```'
+#define LP_DOT  LT(0,KC_DOT)  // tap: '.', long: '. ' one-shot shift, shift: '~', shift long: '~/workspace/'
+// space / Tmux
+#define LP_SPC LT(0,KC_SPC)   // tap: ' ', long: tmux
 
 enum my_keycodes {
   CC_DISP = SAFE_RANGE,
   C_CLMK1,              // Colemak layout 1
   C_CLMK2,              // Colemak layout 2 with Home Row Mods
-  C_OSLLCK,             // Lock the current layer
+  C_LLOCK,              // Lock the current layer
+  C_OSLLCK,             // Lock the current one-shot layer
   C_NUMLK,              // Lock Numbers layer
-  C_MSTG,               // Mouse layer toggle
+  C_MEDIA,              // Media layer toggle
   CC_EMTG,              // Encode mode toggle
   CC_ECCW,              // Encoder counter clock wise
   CC_ECW,               // Encoder clock wise
@@ -127,8 +148,11 @@ enum my_keycodes {
   CC_RGBTG,             // RGB mostly off, used for indicators, toggle
   CC_RGBRT,             // RGB reset (not eeprom)
   CC_ANYK,              // For the extra B
+  C_OSWIN,              // One shot LWIN  (Super)
   C_PLSPLS,             // Symbol key for ++
-  CC_HELP,
+  C_VIMCMD,             // vim: ESC colon
+  C_TMUX,
+  C_HELP,
   CC_TEST
 };
 

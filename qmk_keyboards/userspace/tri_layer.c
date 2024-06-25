@@ -1,17 +1,22 @@
 
 #include QMK_KEYBOARD_H
 
-#ifdef ORTHO_FEATURES
+#ifdef CORNE_FEATURES
+#include "layers_corne.h"
+#elifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
-#include "layers.h"
+#include "layers_alice69.h"
 #endif
 
 bool trilayer_system_state = false;
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    #ifdef ORTHO_FEATURES
-    int first_layer = NUMBERS;
+    #ifdef CORNE_FEATURES
+    int first_layer = EXTEND;
+    int second_layer = SYMBOLS;
+    #elifdef ORTHO_FEATURES
+    int first_layer = NUMPAD;
     int second_layer = NAV;
     #else
     int first_layer = EXTEND;
