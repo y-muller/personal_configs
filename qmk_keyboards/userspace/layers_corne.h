@@ -3,15 +3,14 @@
 #define _LAYERS_ORTHO47_H_
 
 enum layers{
+    //SWAP_HANDS,
     COLEMAKH, // with Home Row Mods
     COLEMAK,
-    CURSOR,
     MEDIA,
     NUMPAD,
+    SYMBOLS,
     EXTEND,
     NAV,
-    SYMBOLS,
-    MACRO,
     SYSTEM,
     LMODS,
     RMODS,

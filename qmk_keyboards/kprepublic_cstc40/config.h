@@ -32,8 +32,9 @@
 
 // userspace config
 #define ORTHO_FEATURES
-#define CORNE_FEATURES
-//#define ACHORDION_ENABLE
+//#define CORNE_FEATURES
+#define ACHORDION_ENABLE
+#define LAYERLOCK_ENABLE
 #define BASE_LAYER_TOP 0 // This board only uses the first layer (no Mac/Win switch)
 
 // disable RGB effects

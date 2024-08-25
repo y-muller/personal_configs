@@ -1,15 +1,15 @@
 
-#if defined( TAP_DANCE_ENABLE )
-
 #include QMK_KEYBOARD_H
 
 #include "tap_dance.h"
 #ifdef CORNE_FEATURES
 #include "layers_corne.h"
-#elifdef ORTHO_FEATURES
+#else
+#ifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
 #include "layers_alice69.h"
+#endif
 #endif
 
 #ifdef LAYERLOCK_ENABLE
@@ -254,7 +254,7 @@ void td_caps_finished(tap_dance_state_t *state, void *user_data) {
             }
             break;
         case TD_SINGLE_HOLD:
-            layer_on(NAV);
+            layer_on(EXTEND);
             break;
         case TD_DOUBLE_TAP:
             tap_code(KC_CAPS);
@@ -267,11 +267,11 @@ void td_caps_reset(tap_dance_state_t *state, void *user_data) {
     switch (caps_tap_state.state) {
         case TD_SINGLE_HOLD:
 #ifdef LAYERLOCK_ENABLE
-            if(!is_layer_locked(NAV)) {
-                layer_off(NAV);
+            if(!is_layer_locked(EXTEND)) {
+                layer_off(EXTEND);
             }
 #else
-            layer_off(NAV);
+            layer_off(EXTEND);
 #endif
             break;
         default: break;
@@ -289,6 +289,8 @@ static td_tap_t ext_tap_state = {
 bool help_is_shown = false;
 
 void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
+    uint8_t mod_shift;
+    uint8_t osm_shift;
     ext_tap_state.state = cur_dance(state);
     switch (ext_tap_state.state) {
         case TD_SINGLE_TAP:
@@ -306,8 +308,8 @@ void td_tmux_finished(tap_dance_state_t *state, void *user_data) {
            }
             break;
         case TD_SINGLE_HOLD:
-            uint8_t mod_shift = get_mods() & MOD_MASK_SHIFT;
-            uint8_t osm_shift = get_oneshot_mods() & MOD_MASK_SHIFT;
+            mod_shift = get_mods() & MOD_MASK_SHIFT;
+            osm_shift = get_oneshot_mods() & MOD_MASK_SHIFT;
             printf("  shift:%d   osm shift:%d\n", mod_shift, osm_shift);
             if (mod_shift || osm_shift ) {
                 //
@@ -422,17 +424,16 @@ void td_clear_eeprom(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
-    [TD_EECLR] = ACTION_TAP_DANCE_FN(td_clear_eeprom),
-//    [TD_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(td_leader_each, td_leader_finished, NULL),
-//    [TD_BSLS] = ACTION_TAP_DANCE_FN_ADVANCED(td_bsls_each, td_bsls_finished, td_bsls_reset),
-#ifdef LEADER_ENABLE
-    [TD_RSFT_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(/*td_rsft_lead_each*/ NULL, td_rsft_lead_finished, td_rsft_lead_reset),
-#endif
-    [TD_ALTGR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_altgr_finished, td_altgr_reset),
-    [TD_CAPS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_caps_finished, td_caps_reset),
-    [TD_TMUX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tmux_finished, td_tmux_reset)
-};
+//tap_dance_action_t tap_dance_actions[] = {
+//    [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
+//    [TD_EECLR] = ACTION_TAP_DANCE_FN(td_clear_eeprom),
+////    [TD_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(td_leader_each, td_leader_finished, NULL),
+////    [TD_BSLS] = ACTION_TAP_DANCE_FN_ADVANCED(td_bsls_each, td_bsls_finished, td_bsls_reset),
+//#ifdef LEADER_ENABLE
+//    [TD_RSFT_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(/*td_rsft_lead_each*/ NULL, td_rsft_lead_finished, td_rsft_lead_reset),
+//#endif
+//    [TD_ALTGR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_altgr_finished, td_altgr_reset),
+//    [TD_CAPS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_caps_finished, td_caps_reset),
+//    [TD_TMUX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tmux_finished, td_tmux_reset)
+//};
 
-#endif  // USER_CONFIG_ENABLE

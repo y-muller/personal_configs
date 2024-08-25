@@ -7,10 +7,12 @@
 
 #ifdef CORNE_FEATURES
 #include "layers_corne.h"
-#elifdef ORTHO_FEATURES
+#else
+#ifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
 #include "layers_alice69.h"
+#endif
 #endif
 
 #ifdef ACHORDION_ENABLE
@@ -27,6 +29,7 @@
 #ifdef RGB_MATRIX_ENABLE
 HSV prev_hsv;
 int prev_rgb_mode;
+extern uint8_t indicator_brightness;
 #endif
 
 bool alt_encoder_mode = false;
@@ -34,7 +37,6 @@ bool macro_recording_mode = false;
 
 extern bool tmux_lock;
 
-uint8_t mod_state;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ACHORDION_ENABLE
     if (!process_achordion(keycode, record)) { return false; }
@@ -45,6 +47,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
     process_tmux_mode(keycode, record);
+
+    uint8_t mod_state = get_mods();
+    uint8_t osm_state = get_oneshot_mods();
 
     switch (keycode) {
 #ifdef ORTHO_FEATURES
@@ -164,7 +169,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CC_SRCN:
             // navigate through search results - next
             // with F3 and Shift-F3 or with F8 and Ctrl-F8 if Shift is pressed
-            mod_state = get_mods();
             if (mod_state & MOD_MASK_SHIFT) {
                 if (record->event.pressed) {
                     del_mods(MOD_MASK_SHIFT);
@@ -185,7 +189,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CC_SRCP:
             // navigate through search results - previous
             // with F3 and Shift-F3 or with F8 and Ctrl-F8 if Shift is pressed
-            mod_state = get_mods();
             if (mod_state & MOD_MASK_SHIFT) {
                 if (record->event.pressed) {
                     del_mods(MOD_MASK_SHIFT);
@@ -227,11 +230,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CC_RGBRT:
             // set RGB to defaults
             if (record->event.pressed) {
-                rgb_matrix_mode_noeeprom(RGB_MATRIX_RAINBOW_MOVING_CHEVRON);
+                //rgb_matrix_mode_noeeprom(RGB_MATRIX_RAINBOW_MOVING_CHEVRON);
                 rgb_matrix_sethsv_noeeprom(255,255,255);
             }
             return false;
+
 #endif
+        case RGB_VAI:
+            if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                if (record->event.pressed) {
+                    indicator_brightness += 25;
+                }
+                return false;
+            }
+            return true;
+
+        case RGB_VAD:
+            if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                if (record->event.pressed) {
+                    indicator_brightness -= 25;
+                }
+                return false;
+            }
+            return true;
 
         case CC_DISP: // handle the display switch key on Thinhpad (F7)
             if (record->event.pressed) {
@@ -249,6 +270,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false; // Skip all further processing of this key
 
+        case C_SYST:
+            if (record->event.pressed) {
+                printf("system on\n");
+                layer_on(SYSTEM);
+            } else {
+                printf("system off\n");
+                layer_off(SYSTEM);
+            }
+            return false;
+
         case C_HELP:
             if (record->event.pressed) {
                 show_layout_help();
@@ -265,6 +296,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             return true;
+
+        case HRM_A:
+        case HRM_O:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function for one-shot Super
+                add_oneshot_mods(MOD_BIT(KC_LWIN));
+                return false;
+            } else if (!record->tap.count && !record->event.pressed) {
+                del_oneshot_mods(MOD_BIT(KC_LWIN));
+            }
+            return true;             // Return true for normal processing of tap keycode
 
         case K_SYMBS:
             if (!record->tap.count && record->event.pressed) {
@@ -290,6 +332,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case LPS_PIPE:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function to send '||', shift adds surrounding spaces
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code(KC_SPC);
+                    tap_code16(KC_PIPE);
+                    tap_code16(KC_PIPE);
+                    tap_code(KC_SPC);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_PIPE);
+                    tap_code16(KC_PIPE);
+                }
+            } else if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    // Send single '^'
+//                    del_mods(MOD_MASK_SHIFT);
+//                    clear_oneshot_mods();
+                    tap_code16(KC_QUES);
+//                    set_mods(mod_state);
+                } else {
+                    // Send single '&'
+                    tap_code16(KC_PIPE);
+                }
+            }
+            return false;
+
         case LP_PIPE:
             if (!record->tap.count && record->event.pressed) {
                  // Intercept hold function to send ' || '
@@ -299,6 +370,111 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_SPC);
             } else if (record->event.pressed) {
                 tap_code16(KC_PIPE);
+            }
+            return false;
+
+        case LP_ASTCN:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function to send ':', shift sends '::'
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    tap_code16(KC_COLN);
+                    tap_code16(KC_COLN);
+                } else {
+                    tap_code16(KC_COLN);
+                }
+            } else if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    tap_code16(KC_COLN);
+                    tap_code16(KC_COLN);
+                } else {
+                    tap_code16(KC_ASTR);
+                }
+            }
+            return false;
+
+        case LPS_AMP:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function to send '&&', shift adds surrounding spaces
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code(KC_SPC);
+                    tap_code16(KC_AMPR);
+                    tap_code16(KC_AMPR);
+                    tap_code(KC_SPC);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_AMPR);
+                    tap_code16(KC_AMPR);
+                }
+            } else if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    // Send ' & '
+//                    del_mods(MOD_MASK_SHIFT);
+//                    clear_oneshot_mods();
+                    tap_code(KC_SPC);
+                    tap_code16(KC_AMPR);
+                    tap_code(KC_SPC);
+//                    set_mods(mod_state);
+                } else {
+                    // Send single '&'
+                    tap_code16(KC_AMPR);
+                }
+            }
+            return false;
+
+        case LPS_LT:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function to send '<=', shift sends '"'
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code16(KC_DQUO);
+                    tap_code16(KC_DQUO);
+                    tap_code16(KC_LEFT);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_LT);
+                    tap_code16(KC_EQL);
+                }
+            } else if (record->event.pressed) {
+                if (osm_state & MOD_BIT(KC_RALT)) {
+                    print("alt lt\n");
+                    tap_code16(KC_GRV);
+                } else if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    tap_code16(KC_DQUO);
+                } else {
+                    tap_code16(KC_LT);
+                }
+            }
+            return false;
+
+        case LPS_GT:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function to send '>=', shift sends '''
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code16(KC_QUOT);
+                    tap_code16(KC_QUOT);
+                    tap_code16(KC_LEFT);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_GT);
+                    tap_code16(KC_EQL);
+                }
+            } else if (record->event.pressed) {
+                if (osm_state & MOD_BIT(KC_RALT)) {
+                    print("alt gt\n");
+                    tap_code16(KC_TILD);
+                } else if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code16(KC_QUOT);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_GT);
+                }
             }
             return false;
 
@@ -316,13 +492,61 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case LP_EXLM:
             if (!record->tap.count && record->event.pressed) {
-                 // Intercept hold function to send ' != '
-                tap_code(KC_SPC);
-                tap_code16(KC_EXLM);
-                tap_code16(KC_EQL);
-                tap_code(KC_SPC);
+                 // Intercept hold function to send '!=', shift adds surrounding spaces
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code(KC_SPC);
+                    tap_code16(KC_EXLM);
+                    tap_code16(KC_EQL);
+                    tap_code(KC_SPC);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_EXLM);
+                    tap_code16(KC_EQL);
+                }
             } else if (record->event.pressed) {
-                tap_code16(KC_EXLM);
+                // Send single '!', shift '\'
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code16(KC_BSLS);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_EXLM);
+                }
+            }
+            return false;
+
+        case LP_EQLS:
+            if (!record->tap.count && record->event.pressed) {
+                 // Intercept hold function to send '==', shift adds surrounding spaces
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code(KC_SPC);
+                    tap_code16(KC_EQL);
+                    tap_code16(KC_EQL);
+                    tap_code(KC_SPC);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_EQL);
+                    tap_code16(KC_EQL);
+                }
+            } else if (record->event.pressed) {
+                if (osm_state & MOD_BIT(KC_RALT)) {
+                    tap_code(KC_EQL);
+                } else if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    // Send single '=', shift adds surrounding spaces
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code(KC_SPC);
+                    tap_code16(KC_EQL);
+                    tap_code(KC_SPC);
+                    set_mods(mod_state);
+                } else {
+                    tap_code(KC_EQL);
+                }
             }
             return false;
 
@@ -352,8 +576,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case LP_SLSH:
             if (!record->tap.count && record->event.pressed) {
                  // Intercept hold function to send ~/ or ../
-                mod_state = get_mods();
-                uint8_t osm_state = get_oneshot_mods();
                 if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
                     del_mods(MOD_MASK_SHIFT);
                     clear_oneshot_mods();
@@ -371,14 +593,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case LP_SLSL:
             if (!record->tap.count && record->event.pressed) {
-                 // Intercept hold function to send '// '
-                tap_code16(KC_SLSH);
-                tap_code16(KC_SLSH);
-                tap_code(KC_SPC);
-                return false;
+                 // Intercept hold function to send '==', shift adds surrounding spaces
+                if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code(KC_BSLS);
+                    tap_code(KC_BSLS);
+                    set_mods(mod_state);
+                } else {
+                    tap_code16(KC_SLSH);
+                    tap_code16(KC_SLSH);
+                    tap_code(KC_SPC);
+                }
+            } else if (record->event.pressed) {
+                // Override AltGr to git the division character
+                if (osm_state & MOD_BIT(KC_RALT)) {
+                    tap_code16(KC_5);
+                // Send single '=', shift adds surrounding spaces
+                } else if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    clear_oneshot_mods();
+                    tap_code16(KC_BSLS);
+                    set_mods(mod_state);
+                } else {
+                    tap_code(KC_SLSH);
+                }
             }
-            return true;             // Return true for normal processing of tap keycode
-
+            return false;
 
         case LP_COLN:
             if (!record->tap.count && record->event.pressed) {
@@ -437,8 +678,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case LP_COMM:
             if (!record->tap.count && record->event.pressed) {
                  // Intercept hold function to send '' one-shot shift or '```'
-                mod_state = get_mods();
-                uint8_t osm_state = get_oneshot_mods();
                 if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
                     del_mods(MOD_MASK_SHIFT);
                     clear_oneshot_mods();
@@ -449,8 +688,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 return false;
             } else if (record->event.pressed) {
-                mod_state = get_mods();
-                uint8_t osm_state = get_oneshot_mods();
                 if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
                     del_mods(MOD_MASK_SHIFT);
                     clear_oneshot_mods();
@@ -464,8 +701,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case LP_DOT:
             if (!record->tap.count && record->event.pressed) {
                  // Intercept hold function to send '. ' one-shot shift or '~/workspace/'
-                mod_state = get_mods();
-                uint8_t osm_state = get_oneshot_mods();
                 if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
                     del_mods(MOD_MASK_SHIFT);
                     clear_oneshot_mods();
@@ -478,8 +713,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 return false;
             } else if (record->event.pressed) {
-                mod_state = get_mods();
-                uint8_t osm_state = get_oneshot_mods();
                 if (mod_state & MOD_MASK_SHIFT || osm_state & MOD_MASK_SHIFT) {
                     del_mods(MOD_MASK_SHIFT);
                     clear_oneshot_mods();
@@ -548,7 +781,7 @@ void process_tmux_mode(uint16_t keycode, keyrecord_t *record) {
             case BSPC_NUM:
             case K_EXT:
             case KC_LSFT:
-            case CAPS_NAV:
+            case CAPS_EXT:
             case GUI_CTL:
                 return;
         }
@@ -590,12 +823,16 @@ bool caps_word_press_user(uint16_t keycode) {
 
 void show_layout_help(void) {
     #ifdef CORNE_FEATURES
-    #elifdef ORTHO_FEATURES
+    printf("corne\n");
+    #else
+    #ifdef ORTHO_FEATURES
     add_mods(MOD_BIT(KC_LCTL));
     #endif
+    #endif
+    uint8_t osm_ralt;
     switch (get_highest_layer(layer_state)) {
         case 0:
-            uint8_t osm_ralt = get_oneshot_mods() & MOD_BIT(KC_RALT);
+            osm_ralt = get_oneshot_mods() & MOD_BIT(KC_RALT);
             if ( osm_ralt ) {
                 printf("help: altgr\n");
                 clear_oneshot_mods();
@@ -658,3 +895,16 @@ void keyboard_post_init_user(void) {
     }
 #endif  // BLUETOOTH_POST_INIT
 }
+
+//tap_dance_action_t tap_dance_actions[] = {
+//    [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
+//    [TD_EECLR] = ACTION_TAP_DANCE_FN(td_clear_eeprom),
+////    [TD_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(td_leader_each, td_leader_finished, NULL),
+////    [TD_BSLS] = ACTION_TAP_DANCE_FN_ADVANCED(td_bsls_each, td_bsls_finished, td_bsls_reset),
+//#ifdef LEADER_ENABLE
+//    [TD_RSFT_LEAD] = ACTION_TAP_DANCE_FN_ADVANCED(/*td_rsft_lead_each*/ NULL, td_rsft_lead_finished, td_rsft_lead_reset),
+//#endif
+//    [TD_ALTGR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_altgr_finished, td_altgr_reset),
+//    [TD_CAPS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_caps_finished, td_caps_reset),
+//    [TD_TMUX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tmux_finished, td_tmux_reset)
+//};

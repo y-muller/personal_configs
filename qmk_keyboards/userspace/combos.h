@@ -13,6 +13,13 @@ const uint16_t PROGMEM cut_combo[] = {KC_X, KC_D, COMBO_END};
 const uint16_t PROGMEM undo_combo[] = {KC_Z, KC_X, COMBO_END};
 const uint16_t PROGMEM save_combo[] = {KC_W, KC_F, COMBO_END};                  // Save (Write File)
 const uint16_t PROGMEM vimcmd_combo[] = {KC_L, KC_U, COMBO_END};                // vim command
+const uint16_t PROGMEM minus_combo[] = {KC_M, HRM_N, COMBO_END};                // Minus
+const uint16_t PROGMEM quote_combo[] = {KC_U, KC_Y, COMBO_END};                 // Quote
+
+#ifdef SYSTEM_LAYER_COMBO
+const uint16_t PROGMEM system_layer_combo[] = {CAPS_EXT, K_SYMBS, COMBO_END};   // System layer
+const uint16_t PROGMEM system_layer_combo2[] = {KC_ACL0, KC_HOME, COMBO_END};    // System layer from MEDIA
+#endif
 
 // Help combos for each layer, in same position
 // consider COMBO_ONLY_FROM_LAYER to avoid duplication
@@ -21,7 +28,7 @@ const uint16_t PROGMEM help_main_combo[] = {KC_D, KC_H, COMBO_END};             
 const uint16_t PROGMEM help_extend_combo[] = {C(KC_V), KC_TAB, COMBO_END};      // Help for EXTEND layer
 const uint16_t PROGMEM help_nav_combo[] = {CS(KC_V), CC_SRCN, COMBO_END};       // Help for NAV layer
 const uint16_t PROGMEM help_media_combo[] = {KC_MNXT, KC_BTN3, COMBO_END};      // Help for MEDIA layer
-const uint16_t PROGMEM help_symbols_combo[] = {KC_GT, KC_UNDS, COMBO_END};      // Help for SYMBOLS layer
+const uint16_t PROGMEM help_symbols_combo[] = {KC_3, KC_UNDS, COMBO_END};      // Help for SYMBOLS layer
 //const uint16_t PROGMEM help_numpad_combo[] = {KC_RPRN, KC_1, COMBO_END};        // Help for NUMPAD layer
 const uint16_t PROGMEM help_numpad_combo[] = { KC_3, LP_LPRN, COMBO_END};        // Help for NUMPAD layer
 const uint16_t PROGMEM help_system_combo[] = {RGB_SAD, KC_F1, COMBO_END};       // Help for SYSTEM layer
@@ -36,6 +43,12 @@ combo_t key_combos[] = {
     COMBO(undo_combo, C(KC_Z)),
     COMBO(save_combo, C(KC_S)),
     COMBO(vimcmd_combo, C_VIMCMD),
+    COMBO(minus_combo, KC_MINS),
+    COMBO(quote_combo, KC_QUOT),
+#ifdef SYSTEM_LAYER_COMBO
+    COMBO(system_layer_combo, C_SYST),
+    COMBO(system_layer_combo2, C_SYST),
+#endif
 //    COMBO(help_combo, C_HELP),
     COMBO(help_main_combo, C_HELP),
     COMBO(help_extend_combo, C_HELP),

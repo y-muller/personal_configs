@@ -1,15 +1,24 @@
 
 #include QMK_KEYBOARD_H
 
+#ifdef RGB_MATRIX_ENABLE
+
 #ifdef CORNE_FEATURES
-#include "layers_corne.h"
+#    include "layers_corne.h"
+#    ifdef CORNE_46KEYS
+#        include "rgb_map_corne46.h"
+#    else
+#        include "rgb_map_corne.h"
+#    endif
 // ...
-#elifdef ORTHO_FEATURES
-#include "rgb_map_ortho47.h"
-#include "layers_ortho47.h"
 #else
-#include "rgb_map_alice69.h"
-#include "layers_alice69.h"
+#    ifdef ORTHO_FEATURES
+#        include "rgb_map_ortho47.h"
+#        include "layers_ortho47.h"
+#    else
+#        include "rgb_map_alice69.h"
+#        include "layers_alice69.h"
+#    endif
 #endif
 
 extern bool alt_encoder_mode;
@@ -17,7 +26,7 @@ extern bool macro_recording_mode;
 extern bool tmux_lock;
 
 uint8_t one_shot_active_mods = 0;
-uint8_t indicator_brightness = 255;
+uint8_t indicator_brightness = 120;
 
 // lights up a key as indicator - input is in HSV
 // brightness is adjusted according to config and colour is converted to RGB
@@ -70,8 +79,13 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     #ifdef ENCODER_ENABLE
     if (get_highest_layer(layer_state) == 0) { // default layer
         if (alt_encoder_mode) {
+#           ifdef CORNE_FEATURES
+            indicator_set_color(LED_Q, HSV_ORANGE);
+            indicator_set_color(LED_W, HSV_ORANGE);
+#           else
             indicator_set_color(LED_DEL, HSV_ORANGE);
             indicator_set_color(LED_HOME, HSV_ORANGE);
+#           endif
         }
     } else
     #endif
@@ -84,10 +98,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         indicator_set_color(LED_Y, HSV_ORANGE);
         indicator_set_color(LED_J, HSV_ORANGE);
         indicator_set_color(LED_M, HSV_ORANGE);
-        indicator_set_color(LED_R, HSV_CYAN);  // Mods on home row
+        indicator_set_color(LED_A, HSV_CYAN);  // Mods on home row 
+        indicator_set_color(LED_R, HSV_CYAN);
         indicator_set_color(LED_S, HSV_CYAN);
         indicator_set_color(LED_T, HSV_CYAN);
-        indicator_set_color(LED_G, HSV_CYAN); 
         indicator_set_color(LED_SCLN, HSV_RED); // Delete
         indicator_set_color(LED_O, HSV_RED);    // Backspace
         indicator_set_color(LED_SLSH, HSV_RED); // Delete previous word
@@ -199,3 +213,4 @@ void oneshot_mods_changed_user(uint8_t mods) {
     one_shot_active_mods = mods;
 }
 
+#endif

@@ -26,8 +26,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [COLEMAK] = LAYOUT_planck_mit(
     ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
     TAB_EXT,  KC_A,     KC_R,     KC_S,     KC_T,     KC_G,    KC_M,     KC_N,     KC_E,     KC_I,    KC_O,     KC_ENT,
-    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-    K_TMUX,   KC_LALT,  CAPS_EXT, L_NAV,    KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_NUM, KC_LEFT, CAPS_EXT, KC_RIGHT   
+    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  ALT_QUOT,
+    K_TMUX,   KC_LALT,  K_EXT,    CAPS_NAV, KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_NUM, KC_LEFT, XXXXXXX,  KC_RIGHT   
 ),
 
 /* Colemak Home Row Mods
@@ -44,8 +44,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [COLEMAKH] = LAYOUT_planck_mit(
     ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
     TAB_EXT,  HRM_A,    HRM_R,    HRM_S,    HRM_T,    KC_G,    KC_M,     HRM_N,    HRM_E,    HRM_I,   HRM_O,    KC_ENT,
-    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-    K_TMUX,   KC_LALT,  CAPS_EXT, K_NAV,    KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_NUM, KC_LEFT, CAPS_EXT, KC_RIGHT   
+    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  ALT_QUOT,
+    K_TMUX,   KC_LALT,  K_EXT,    CAPS_NAV, KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_EXT, KC_LEFT, XXXXXXX,  KC_RIGHT   
 ),
 
 /* cursor keys only
@@ -132,11 +132,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
+//[SYMBOLS] = LAYOUT_planck_mit(
+//    _______,  LP_PIPE,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  LP_AMPR,  KC_ASTR,  KC_QUES,  C_PLSPLS, KC_BSPC,
+//    TAB_LMOD, LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_QUOT,  KC_BSLS,  KC_MINS,  KC_PLUS,  LP_SLSL,  KC_SCLN,  ENT_RMOD,
+//    _______,  KC_LT,    LP_LBRC,  KC_RBRC,  KC_GT,    KC_DQUO,  LP_EXLM,  KC_UNDS,  LP_EQL,   LP_EQEQ,  LP_COLN,  KC_RWIN,
+//    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
+//),
+// Missing: ^KC_CIRC, *KC_QUES, /C_PLSPLS, *KC_QUOT, *KC_DQUO, ^LP_EXLM, /LP_EQEQ, *LP_COLN, =KC_BSLS, LP_COLN
+// KC_CIRC to AltGr? (not great)
+// KC_QUES, KC_QUOT, KC_DQUO, LP_COLN on L0, 
+// LP_PIPE on SHIFT LP_EXLM, KC_CIRC on SHIFT KC_PERC, KC_BSLS on SHIFT LP_SLSL
+
+// todo:
+// - rename LP_*S to LPS_*
+// - LP_PLUS for ++ ?
 [SYMBOLS] = LAYOUT_planck_mit(
-    _______,  LP_PIPE,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  LP_AMPR,  KC_ASTR,  KC_QUES,  C_PLSPLS, KC_BSPC,
-    TAB_LMOD, LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_QUOT,  KC_BSLS,  KC_MINS,  KC_PLUS,  LP_SLSL,  KC_SCLN,  ENT_RMOD,
-    _______,  KC_LT,    LP_LBRC,  KC_RBRC,  KC_GT,    KC_DQUO,  LP_EXLM,  KC_UNDS,  LP_EQL,   LP_EQEQ,  LP_COLN,  KC_RWIN,
-    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
+    KC_X,     LPS_LT,   KC_7,     KC_8,     KC_9,     KC_AT,    KC_DLR,   LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_BSPC,
+    TAB_LMOD, LPS_GT,   KC_4,     KC_5,     KC_6,     KC_HASH,  LPS_AMP,  KC_MINS,  KC_PLUS,  LP_SLSL,  LP_ASTCN, ENT_RMOD,
+    C_LLOCK,  KC_DOT,   KC_1,     KC_2,     KC_3,     LP_EQLS,  LP_EXLM,  KC_UNDS,  LP_LBRC,  KC_RBRC,  LPS_PIPE, KC_RWIN,
+    _______,  _______,  _______,  KC_0,     _______,       _______,       _______,  _______,  _______,  _______,  _______   
 ),
 
 /* Numpad

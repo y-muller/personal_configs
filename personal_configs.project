@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="personal configs" Version="11000" InternalType="">
   <VirtualDirectory Name="docs">
+    <File Name="qmk_keyboards/CORNE42.md"/>
     <File Name="qmk_keyboards/ORTHO47.md"/>
     <File Name="qmk_keyboards/LeaderKey.md"/>
     <File Name="qmk_keyboards/README.md"/>
@@ -13,12 +14,28 @@
   </VirtualDirectory>
   <VirtualDirectory Name="tmux"/>
   <VirtualDirectory Name="QMK keyboards">
+    <VirtualDirectory Name="Corne46 rev4">
+      <File Name="qmk_keyboards/corne46/rules.mk"/>
+      <File Name="qmk_keyboards/corne46/keymap.c"/>
+      <File Name="qmk_keyboards/corne46/config.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Corne">
+      <File Name="qmk_keyboards/corne/keymap.c"/>
+      <File Name="qmk_keyboards/corne/rules.mk"/>
+      <File Name="qmk_keyboards/corne/config.h"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="KPrepublic CSTC40">
       <File Name="qmk_keyboards/kprepublic_cstc40/config.h"/>
       <File Name="qmk_keyboards/kprepublic_cstc40/rules.mk"/>
       <File Name="qmk_keyboards/kprepublic_cstc40/keymap.c"/>
     </VirtualDirectory>
     <VirtualDirectory Name="userspace">
+      <File Name="qmk_keyboards/userspace/rgb_map_corne.h"/>
+      <File Name="qmk_keyboards/userspace/rgb_map_corne46.h"/>
+      <File Name="qmk_keyboards/userspace/keymap_corne46.h"/>
+      <File Name="qmk_keyboards/userspace/layers_alice69.h"/>
+      <File Name="qmk_keyboards/userspace/layers_corne.h"/>
+      <File Name="qmk_keyboards/userspace/keymap_corne.h"/>
       <VirtualDirectory Name="features">
         <File Name="qmk_keyboards/userspace/features/achordion.h"/>
         <File Name="qmk_keyboards/userspace/features/achordion.c"/>
@@ -41,7 +58,6 @@
       <File Name="qmk_keyboards/userspace/keymap_alice69.h"/>
       <File Name="qmk_keyboards/userspace/tri_layer.c"/>
       <File Name="qmk_keyboards/userspace/overrides.c"/>
-      <File Name="qmk_keyboards/userspace/layers.h"/>
       <File Name="qmk_keyboards/userspace/rgb_map_alice69.h"/>
       <File Name="qmk_keyboards/userspace/y-muller.h"/>
       <File Name="qmk_keyboards/userspace/y-muller.c"/>

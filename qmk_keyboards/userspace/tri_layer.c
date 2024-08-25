@@ -3,10 +3,12 @@
 
 #ifdef CORNE_FEATURES
 #include "layers_corne.h"
-#elifdef ORTHO_FEATURES
+#else
+#ifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
 #include "layers_alice69.h"
+#endif
 #endif
 
 bool trilayer_system_state = false;
@@ -15,12 +17,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     #ifdef CORNE_FEATURES
     int first_layer = EXTEND;
     int second_layer = SYMBOLS;
-    #elifdef ORTHO_FEATURES
-    int first_layer = NUMPAD;
+    #else
+    #ifdef ORTHO_FEATURES
+    int first_layer = EXTEND;
     int second_layer = NAV;
     #else
     int first_layer = EXTEND;
     int second_layer = NAV;
+    #endif
     #endif
     bool first_layer_is_off = ((state & (1<<first_layer)) == 0);
     bool second_layer_is_off = ((state & (1<<second_layer)) == 0);

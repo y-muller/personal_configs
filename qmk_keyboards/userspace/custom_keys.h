@@ -4,19 +4,21 @@
 
 #ifdef CORNE_FEATURES
 #include "layers_corne.h"
-#elifdef ORTHO_FEATURES
+#else
+#ifdef ORTHO_FEATURES
 #include "layers_ortho47.h"
 #else
 #include "layers_alice69.h"
 #endif
-
+#endif
 
 #define TAB_EXT LT(EXTEND, KC_TAB)
 #define TAB_LMOD LT(LMODS, KC_TAB)
 #define ENT_RMOD LT(RMODS, KC_TAB)
 
-#define TAB_CTL LCTL_T(KC_TAB)
-#define GUI_CTL LCTL_T(KC_LWIN)
+#define TAB_CTL  LCTL_T(KC_TAB)
+#define GUI_CTL  LCTL_T(KC_LWIN)
+#define ALT_QUOT LALT_T(KC_QUOT)
 
 #define L_EXTEND OSL(EXTEND)
 #define L_NAV OSL(NAV)
@@ -27,7 +29,9 @@
 
 // Layers as dual use
 #define K_EXT LT(EXTEND, KC_ENT)
+#define K_NAV LT(NAV, QK_REP)       // Repeat on tap
 #define BSPC_NUM LT(NUMPAD, KC_BSPC)
+#define BSPC_EXT LT(EXTEND, KC_BSPC)
 
 // KC_RALT becomes Compose/RAlt with Compose set to RWin in Gnome
 //#define CMP_RALT RALT_T(KC_RWIN)
@@ -79,7 +83,9 @@
 #define DF_CLMK  DF(COLEMAK)
 #define DF_CLMKH DF(COLEMAKH)
 #define DF_QWERT DF(QWERTY)
+#ifdef CURSOR_LAYER
 #define TG_CURSR TG(CURSOR)
+#endif
 
 // Tabs left and right
 #define K_TAB_L CA(KC_PGUP)
@@ -97,7 +103,7 @@
 //#define K_SYMBS TD(TD_ALTGR)
 #define K_SYMBS LT(SYMBOLS,KC_SPC)
 
-#define CAPS_NAV TD(TD_CAPS)
+#define CAPS_EXT TD(TD_CAPS)
 #define K_CAPS TD(TD_CAPS)
 
 #define K_SPC KC_SPC
@@ -113,20 +119,27 @@
 #define K_EECLR TD(TD_EECLR)
 
 // long press keys
-#define LP_COLN LT(0,KC_COLN) // tap: ':', long: '::'
-#define LP_SLSH LT(0,KC_SLSH) // tap: '/', long: '~/'
-#define LP_SLSL LT(1,KC_SLSH) // tap: '/', long: '// '  - symbols layer
-#define LP_PIPE LT(0,KC_PIPE) // tap: '|', long: ' || '
-#define LP_EQL  LT(0,KC_EQL)  // tap: '=', long: ' = '
-#define LP_EQEQ LT(0,KC_PEQL) // tap: '==', long: ' == '
-#define LP_AMPR LT(0,KC_AMPR) // tap: '&', long: ' && '
-#define LP_EXLM LT(0,KC_EXLM) // tap: '!', long: ' !! '
-#define LP_LPRN LT(0,KC_LPRN) // tap: '(', long: '()'
-#define LP_LBRC LT(0,KC_LBRC) // tap: '[', long: '[]'
-#define LP_LCBR LT(1,KC_LCBR) // tap: '{', long: '{}' - same keys as LBRC so change the layer
-#define LP_RPRN LT(0,KC_RPRN) // tap: ')', long: ');↵'
-#define LP_COMM LT(0,KC_COMM) // tap: ',', long: '', shift: '`', shift long: '```'
-#define LP_DOT  LT(0,KC_DOT)  // tap: '.', long: '. ' one-shot shift, shift: '~', shift long: '~/workspace/'
+#define LP_COLN LT(0,KC_COLN)   // tap: ':', long: '::'
+#define LP_SLSH LT(0,KC_SLSH)   // tap: '/', long: '~/'
+#define LP_SLSL LT(1,KC_SLSH)   // tap: '/', long: '// '  - symbols layer
+#define LPS_PIPE LT(1,KC_PIPE)  // tap: '|',  shift '?', long: '||', shift long ' || '
+#define LP_PIPE LT(0,KC_PIPE)   // tap: '|', long: ' || '
+#define LP_EQLS LT(1,KC_EQL)    // tap: '=', long: '==', shift adds surrounding spaces
+#define LP_EQL  LT(0,KC_EQL)    // tap: '=', long: ' = '
+#define LP_EQEQ LT(0,KC_PEQL)   // tap: '==', long: ' == '
+#define LPS_AMP LT(1,KC_AMPR)   // tap: '&', shift '^', long: '&&', shift adds surrounding spaces
+#define LP_AMPR LT(0,KC_AMPR)   // tap: '&', long: ' && '
+#define LP_EXLM LT(0,KC_EXLM)   // tap: '!', long: ' !! '
+#define LP_LPRN LT(0,KC_LPRN)   // tap: '(', long: '()'
+#define LP_LBRC LT(0,KC_LBRC)   // tap: '[', long: '[]'
+#define LP_LCBR LT(1,KC_LCBR)   // tap: '{', long: '{}' - same keys as LBRC so change the layer
+#define LP_RPRN LT(0,KC_RPRN)   // tap: ')', long: ');↵'
+#define LP_COMM LT(0,KC_COMM)   // tap: ',', long: '', shift: '`', shift long: '```'
+#define LP_DOT  LT(0,KC_DOT)    // tap: '.', long: '. ' one-shot shift, shift: '~', shift long: '~/workspace/'
+#define LP_ASTCN LT(1,KC_ASTR)  // tap: '*', shift: ':', long shift: '::'
+#define LPS_LT LT(1,KC_LT)      // tap: '<',  shift '"', long: '<=', shift long '""'
+#define LPS_GT LT(1,KC_GT)      // tap: '>',  shift ''', long: '>=', shift long ''''
+
 // space / Tmux
 #define LP_SPC LT(0,KC_SPC)   // tap: ' ', long: tmux
 
@@ -141,6 +154,8 @@ enum my_keycodes {
   CC_EMTG,              // Encode mode toggle
   CC_ECCW,              // Encoder counter clock wise
   CC_ECW,               // Encoder clock wise
+  C_INDVAI,             // Indicators brightness +
+  C_INDVAD,             // Indicators brightness -
   CC_LINE,              // Select whole line
   CC_DOTSC,             // Dot-Space-Caps
   CC_SRCN,              // Search: next result
@@ -153,6 +168,7 @@ enum my_keycodes {
   C_VIMCMD,             // vim: ESC colon
   C_TMUX,
   C_HELP,
+  C_SYST,               // Enable the System layer
   CC_TEST
 };
 

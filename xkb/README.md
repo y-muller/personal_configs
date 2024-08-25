@@ -2,7 +2,7 @@
 
 #### Alternate symbols layout
 
-![altgr](../img/layout_alice69_altgr.png)
+![altgr](../img/layout_corne42_altgr.png)
 
 #### Installation
 

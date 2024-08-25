@@ -6,20 +6,29 @@
 #include "custom_keys.h"
 
 // Key overrides - mouse scroll wheel on Shift, mouse buttons on Control
-const key_override_t left_scrollwheel_override   = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_L, KC_WH_L, (1<<EXTEND | 1<<NAV));
-const key_override_t right_scrollwheel_override  = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_R, KC_WH_R, (1<<EXTEND | 1<<NAV));
-const key_override_t up_scrollwheel_override     = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_U, KC_WH_U, (1<<EXTEND | 1<<NAV));
-const key_override_t down_scrollwheel_override   = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_D, KC_WH_D, (1<<EXTEND | 1<<NAV));
+const key_override_t left_scrollwheel_override   = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_L, KC_WH_L, (1<<EXTEND | 1<<NAV | 1<<MEDIA));
+const key_override_t right_scrollwheel_override  = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_R, KC_WH_R, (1<<EXTEND | 1<<NAV | 1<<MEDIA));
+const key_override_t up_scrollwheel_override     = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_U, KC_WH_U, (1<<EXTEND | 1<<NAV | 1<<MEDIA));
+const key_override_t down_scrollwheel_override   = ko_make_with_layers(MOD_MASK_SHIFT, KC_MS_D, KC_WH_D, (1<<EXTEND | 1<<NAV | 1<<MEDIA));
 const key_override_t left_mousebutton_override   = ko_make_with_layers(MOD_MASK_ALT,   KC_MS_L, KC_BTN1, (1<<EXTEND | 1<<NAV));
 const key_override_t right_mousebutton_override  = ko_make_with_layers(MOD_MASK_ALT,   KC_MS_R, KC_BTN2, (1<<EXTEND | 1<<NAV));
 const key_override_t middle_mousebutton_override = ko_make_with_layers(MOD_MASK_ALT,   KC_MS_D, KC_BTN3, (1<<EXTEND | 1<<NAV));
 
 // tilde in its usual place with Shift+Esc, backtick with AltGr+Esc 
-const key_override_t tilde_override    = ko_make_with_layers(MOD_MASK_SHIFT,   KC_ESC,  KC_TILDE, (1 << COLEMAK | 1 << COLEMAKH));
-const key_override_t backtick_override = ko_make_with_layers(MOD_BIT(KC_RIGHT_ALT),   KC_ESC,  KC_GRV, (1 << COLEMAK | 1 << COLEMAKH));
+const key_override_t tilde_override    = ko_make_with_layers(MOD_MASK_SHIFT,          KC_ESC,  KC_TILDE, (1 << COLEMAK | 1 << COLEMAKH));
+const key_override_t backtick_override = ko_make_with_layers(MOD_BIT(KC_RIGHT_ALT),   KC_ESC,  KC_GRV,   (1 << COLEMAK | 1 << COLEMAKH));
 // tilde and backtick on shifted comma and dot
 //const key_override_t tilde_dot_override    = ko_make_with_layers(MOD_MASK_SHIFT, LP_DOT,   KC_TILDE, (1 << COLEMAK | 1 << COLEMAKH));
 //const key_override_t backtick_comma_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM,  KC_GRV, (1 << COLEMAK | 1 << COLEMAKH));
+
+// Overrides for the symbols/numbers layer
+const key_override_t at_override         = ko_make_with_layers(MOD_MASK_SHIFT,   KC_AT,    KC_CIRC, (1 << SYMBOLS));
+const key_override_t dollar_override     = ko_make_with_layers(MOD_MASK_SHIFT,   KC_DLR,   KC_PERC, (1 << SYMBOLS));
+const key_override_t dot_override        = ko_make_with_layers(MOD_MASK_SHIFT,   KC_DOT,   KC_COMM, (1 << SYMBOLS));
+
+// Indicators brightness
+const key_override_t ind_brightup_override        = ko_make_with_layers(MOD_MASK_SHIFT,   KC_F1,   KC_1, (1 << SYSTEM));
+const key_override_t ind_brightdn_override        = ko_make_with_layers(MOD_MASK_SHIFT,   KC_F2,   KC_2, (1 << SYSTEM));
 
 #ifdef AZERTY_LAYER_ENABLE
 // AZERTY number row and other symbols overrides
@@ -56,6 +65,12 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &backtick_override,
     //&tilde_dot_override,
     //&backtick_comma_override,
+    //&percent_override,
+    &at_override,
+    &dollar_override,
+    &dot_override,
+    &ind_brightup_override,
+    &ind_brightdn_override,
 #ifdef AZERTY_LAYER_ENABLE
     &fr1_override,
     &fr2_override,
