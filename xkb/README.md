@@ -33,3 +33,5 @@ Use `/usr/share/X11/xkb/symbols/us` as a source for the key names.
 
 Doesn't work very well!
 
+Edit the system file directly: `/usr/share/X11/xkb/symbols/us`.
+
