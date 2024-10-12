@@ -80,6 +80,10 @@ void leader_end_user(void) {
         // #define ❚
         send_string( "#define " );
 
+    } else if (leader_sequence_two_keys(KC_C, KC_S)) {
+        // std::string❚
+        send_string( "std::string" );
+
 // Wrap selection
     } else if (leader_sequence_two_keys(KC_SPC, KC_QUOT)) {
         // 'selection'❚

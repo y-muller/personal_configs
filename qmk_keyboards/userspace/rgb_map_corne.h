@@ -16,63 +16,80 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _RGB_MAP_ORTHO47_H_
-#define _RGB_MAP_ORTHO47_H_
+#ifndef _RGB_MAP_CORNE_H_
+#define _RGB_MAP_CORNE_H_
 
 #ifdef RGB_MATRIX_ENABLE
 
+/* 
+ * ,-----------------------------------------.                  ,-----------------------------------------.
+ * |  18  |  17  |  12  |  11  |  4   |  3   |                  |  26  |  27  |  34  |  35  |  40  |  41  |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |  19  |  16  |  13  |  10  |  5   |  2   |                  |  25  |  28  |  33  |  36  |  39  |  42  |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |  20  |  15  |  14  |  9   |  6   |  1   |                  |  24  |  29  |  32  |  37  |  38  |  43  |
+ * `------+------+------+------+------+------+----.        ,----+------+------+------+------+------+------'
+ *                           |  8   |  7   |  0   |        |  23  |  30  |  31  |
+ *                           `--------------------'        `--------------------'
+ */
+// 22, 23, 44, 45 removed from 46 key version, needs renaming.
+
 // RGB LED locations
 enum led_location_map {
-    LED_TAB,
-    LED_Q,
-    LED_W,
-    LED_F,
-    LED_P,
-    LED_B,
-    LED_J,
-    LED_L,
-    LED_U,
-    LED_Y,
-    LED_SCLN,
-    LED_BSPC,
-
-    LED_CAPS,
-    LED_A,
-    LED_R,
-    LED_S,
-    LED_T,
-    LED_G,
-    LED_M,
-    LED_N,
-    LED_E,
-    LED_I,
-    LED_O,
-    LED_ENT,
-
-    LED_LSFT,
-    LED_X,
-    LED_C,
-    LED_D,
+    LED_BR3,
     LED_V,
-    LED_Z,
-    LED_K,
-    LED_H,
-    LED_COMM,
-    LED_DOT,
-    LED_SLSH,
-    LED_QUOT,
+    LED_G,
+    LED_B,
+
+    LED_P,
+    LED_T,
+    LED_D,
+    LED_BR2,
 
     LED_BR1,
-    LED_BR2,
-    LED_BR3,
+    LED_C,
+    LED_S,
+    LED_F,
+
+    LED_W,
+    LED_R,
+    LED_X,
+
+    LED_Z,
+    LED_A,
+    LED_Q,
+
+    LED_ESC,
+    LED_TAB,
+    LED_LCTL,
+
+
     LED_BR4,
-    LED_SFT,
+    LED_K,
+    LED_M,
+    LED_J,
+
+    LED_L,
+    LED_N,
+    LED_H,
     LED_BR5,
-    LED_SPC,
+
     LED_BR6,
-    LED_BR7,
-    LED_BR8,
-    LED_BR9
+    LED_COMM,
+    LED_E,
+    LED_U,
+
+    LED_Y,
+    LED_I,
+    LED_DOT,
+
+    LED_SLSH,
+    LED_O,
+    LED_SCLN,
+
+    LED_BSPC,
+    LED_ENT,
+    LED_QUOT
 };
 
 const uint8_t LED_LIST_MODS[] = {
@@ -80,13 +97,8 @@ const uint8_t LED_LIST_MODS[] = {
     LED_BR2,
     LED_BR3,
     LED_BR4,
-    LED_SFT,
     LED_BR5,
-    LED_SPC,
-    LED_BR6,
-    LED_BR7,
-    LED_BR8,
-    LED_BR9
+    LED_BR6
 };
 
 const uint8_t LED_LIST_UNEI[] = {
@@ -104,10 +116,10 @@ const uint8_t LED_LIST_NEIO[] = {
 };
 
 const uint8_t LED_LIST_ARROWS[] = {
+    LED_O,
+    LED_DOT,
     LED_SLSH,
-    LED_BR7,
-    LED_BR8,
-    LED_BR9
+    LED_QUOT
 };
 
 const uint8_t LED_LIST_NUMBERS[] = {
@@ -124,18 +136,18 @@ const uint8_t LED_LIST_NUMBERS[] = {
 };
 
 const uint8_t LED_LIST_FUNC[] = {
-    LED_L,
-    LED_U,
-    LED_Y,
-    LED_N,
-    LED_E,
-    LED_I,
-    LED_H,
-    LED_COMM,
-    LED_DOT,
-    LED_SLSH,
-    LED_O,
-    LED_SCLN
+    LED_W,
+    LED_F,
+    LED_P,
+    LED_B,
+    LED_R,
+    LED_S,
+    LED_T,
+    LED_G,
+    LED_X,
+    LED_C,
+    LED_D,
+    LED_V,
 };
 
 const uint8_t LED_LIST_LETTERS[] = {
@@ -168,16 +180,6 @@ const uint8_t LED_LIST_LETTERS[] = {
 };
 
 const uint8_t LED_LIST_NUMPAD[] = {
-    /*LED_1,
-    LED_2,
-    LED_3,
-    LED_4,
-    LED_5,
-    LED_6,*/
-    //LED_EQL,
-//    LED_7,
-//    LED_8,
-//    LED_9,
     LED_L,
     LED_U,
     LED_Y,
@@ -198,18 +200,18 @@ const uint8_t LED_LIST_NUMPAD_SYM[] = {
 };
 
 const uint8_t LED_LIST_RGB_SETTINGS[] = {
-    LED_CAPS,
-    LED_A,
-    LED_R,
-    LED_S,
-    LED_T,
-    LED_G,
-    LED_LSFT,
-    LED_Z,
-    LED_X,
-    LED_C,
-    LED_D,
-    LED_V,
+    LED_L,
+    LED_U,
+    LED_Y,
+    LED_SCLN,
+    LED_N,
+    LED_E,
+    LED_I,
+    LED_O,
+    LED_H,
+    LED_COMM,
+    LED_DOT,
+    LED_SLSH,
 };
 
 const uint8_t _LED_BOOT = LED_ENT;

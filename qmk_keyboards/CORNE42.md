@@ -10,37 +10,36 @@ For the AltGr symbols tap the Symbols key before the help combo.
 
 ![main](../img/layout_corne42_main.png)
 
-Tap the symbols `SYMB` key once for a One-Shot of the `AltGr` symbols with a custom [XKB](../xkb/README.md) configuration.
-Holding the key accesses the Symbols layer described below. The normal Linux Compose key is available on the symbols layer.
-
 Holding the `TMUX` key sends `Ctrl-A` before each key press until released. A few keys are excluded from this behaviour.
 
-A [leader key](LeaderKey.md) sequence is started with the combo `H` + `,`.
+A [leader key](LeaderKey.md) sequence is started with the combo `H`+`,`.
 
-TODO: document the other combos: save (WF), copy (XC), paste (CD), cut (XD), undo (ZX), vim command mode (LU).
+Combos on this layer: save (`W`+`F`), copy (`X`+`C`), paste (`C`+`D`), cut (`X`+`D`), undo (`Z`+`X`), vim command mode (`L`+`U`),
+apostrophe (`U`+`E`), double quote (`Y`+`I`), semi-colon (`S`+`C`), colon (`T`+`D`).
 
-#### Symbols layer
+#### Symbols and numbers layer
 
-![nav](../img/layout_corne42_symbols.png)
+![symb](../img/layout_corne42_symbols.png)
 
 A long press on `(`, `[` or `{` open and close the parenthesis or bracket and move the cursor in the middle. A long press 
 on `!`, `&` or `=` outputs the symbol twice and surrounded by spaces. 
 
-#### Numbers layer
+The normal Linux `Compose` key is available on this layer.
 
-I'm currently trying the following two layouts. A numpad on the left with Mods on the right as a symetry to the Extend layer.
-Or a numpad on the right with a redundant number row. The number row has not been used much so it could make space 
-for more symbols.
+#### Alternate symbols layer
 
-![nav](../img/layout_corne42_numpad.png)
+![altgr](../img/layout_corne42_altgr.png)
 
-![nav](../img/layout_corne42_numpad_right.png)
-
+Tap the symbols `SYMB` key once for a One-Shot of the Operating System's `AltGr` symbols with a custom
+[XKB](../xkb/README.md) configuration. The symbols in red are on the Symbols layer: tap then hold the 
+`Symbols` key. This is a bit slow but it is used for rare symbols.
 
 #### Extend layer
 Accessible with the `EXT` keys. Press Layer lock key `LLOCK` to lock to this layer and again to exit it.
 
 ![extend](../img/layout_corne42_extend.png)
+
+While `Select` is pressed, the cursor keys select words (right and left) or lines (down and up).
 
 #### Nav layer
 Accessible with the `NAV` key. 
@@ -55,11 +54,10 @@ Application shortcuts work with the [run-or-raise](../run-or-raise/README.md) Gn
 
 #### Media and browsing layer
 ![media](../img/layout_corne42_media.png)
-This layer is dedicated to browsing and other non-typing activities. It is accessed by holding the `ESC` key or activated by the
+This layer is dedicated to browsing and other non-typing activities. It is accessed by holding the `ESC` or `Enter` keys or activated by the
 combo `ESC` + `Q`.
 
 #### System layer
-Accessible by activating both the `Extend` and `Symbols` layers at the same time.
 
 ![system](../img/layout_corne42_system.png)
 

@@ -23,6 +23,7 @@ typedef struct {
 enum {
     TD_BOOT,
     TD_EECLR,
+    TD_CBR,         // curly brackets open and close
     TD_LEAD,
     TD_BSLS,
     TD_RSFT_LEAD,
@@ -35,6 +36,9 @@ td_state_t cur_dance(tap_dance_state_t *state);
 
 void td_bootloader(tap_dance_state_t *state, void *user_data);
 void td_clear_eeprom(tap_dance_state_t *state, void *user_data);
+void td_curly_braces_each(tap_dance_state_t *state, void *user_data);
+void td_curly_braces_finished(tap_dance_state_t *state, void *user_data);
+void td_curly_braces_reset(tap_dance_state_t *state, void *user_data);
 void td_rsft_lead_finished(tap_dance_state_t *state, void *user_data);
 void td_rsft_lead_reset(tap_dance_state_t *state, void *user_data);
 void td_altgr_finished(tap_dance_state_t *state, void *user_data);

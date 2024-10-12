@@ -46,8 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #if defined(DYNAMIC_KEYMAP_LAYER_COUNT)
     #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
-#define DYNAMIC_KEYMAP_LAYER_COUNT 10
-
+#define DYNAMIC_KEYMAP_LAYER_COUNT 16
 
 #define SPLIT_LED_STATE_ENABLE
 
@@ -56,11 +55,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define ONESHOT_TIMEOUT 2000
 
-// Tap dance config
+// Tap dance, mod-tap config
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM_PER_KEY
+#define RETRO_TAPPING
+#define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_RIGHT_CTRL
 
 // Leader key config
 #define LEADER_TIMEOUT 450
@@ -81,10 +82,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ORTHO_FEATURES
 #define CORNE_FEATURES
 #define CORNE_46KEYS
+#define AZERTY_LAYER_ENABLE
 #define ACHORDION_ENABLE
+#define ACHORDION_STREAK
 #define LAYERLOCK_ENABLE
 #define BASE_LAYER_TOP 0 // This board only uses the first layer (no Mac/Win switch)
 #define SYSTEM_LAYER_COMBO
+
+#define SPLIT_TRANSACTION_IDS_USER                                                                                 \
+        RPC_ID_USER_RUNTIME_STATE_SYNC, RPC_ID_USER_KEYMAP_SYNC, RPC_ID_USER_CONFIG_SYNC, RPC_ID_USER_AUTOCORRECT_STR, \
+            RPC_ID_USER_DISPLAY_KEYLOG_STR, RPC_ID_USER_SUSPEND_STATE_SYNC
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING

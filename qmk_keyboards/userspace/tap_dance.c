@@ -3,20 +3,47 @@
 
 #include "tap_dance.h"
 #ifdef CORNE_FEATURES
-#include "layers_corne.h"
+#  include "layers_corne.h"
 #else
-#ifdef ORTHO_FEATURES
-#include "layers_ortho47.h"
-#else
-#include "layers_alice69.h"
-#endif
+#  ifdef ORTHO_FEATURES
+#    include "layers_ortho47.h"
+#  else
+#    include "layers_alice69.h"
+#  endif
 #endif
 
+#include "keymap_french.h"
+
 #ifdef LAYERLOCK_ENABLE
-#include "features/layer_lock.h"
+#  include "features/layer_lock.h"
 #endif
 
 bool tmux_lock = false;
+
+// TODO: fix duplication
+#ifdef AZERTY_LAYER_ENABLE
+#define TAP_CHECK_AZERTY( k1, k2 ) {\
+    if (get_highest_layer(default_layer_state) == AZERTY) { \
+        tap_code16(k2); \
+    } else { \
+        tap_code16(k1); \
+    } \
+}
+#define DELMODS_CHECK_AZERTY( m1, m2 ) {\
+    if (get_highest_layer(default_layer_state) == AZERTY) { \
+        if (m2!=0) { del_mods(m2); clear_oneshot_mods(); } \
+    } else { \
+        if (m1!=0) { del_mods(m1); clear_oneshot_mods(); } \
+    } \
+}
+#   else
+#define TAP_CHECK_AZERTY( k1, k2 ) {\
+    tap_code16(k1); \
+}
+#define DELMODS_CHECK_AZERTY( m1, m2 ) {\
+    del_mods(m1); clear_oneshot_mods(); \
+}
+#   endif
 
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
@@ -234,6 +261,49 @@ void td_altgr_reset(tap_dance_state_t *state, void *user_data) {
     altgr_tap_state.state = TD_NONE;
 }
 
+// Create an instance of 'td_tap_t' for the 'curly_braces' tap dance.
+static td_tap_t curly_braces_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void td_curly_braces_each(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        uint8_t mod = get_mods();
+        uint8_t osm = get_oneshot_mods() ;
+        if (mod & MOD_MASK_SHIFT || osm & MOD_MASK_SHIFT ) {
+            //tap_code16( KC_RCBR );
+            TAP_CHECK_AZERTY(KC_RCBR, FR_RCBR);
+            //reset_tap_dance(state);
+        } else {
+            TAP_CHECK_AZERTY(KC_LCBR, FR_LCBR);
+            //tap_code16( KC_LCBR );
+            //reset_tap_dance(state);
+        }
+    } else if (state->count > 1) {
+        //tap_code16( KC_RCBR );
+        TAP_CHECK_AZERTY(KC_RCBR, FR_RCBR);
+    }
+}
+
+void td_curly_braces_finished(tap_dance_state_t *state, void *user_data) {
+    curly_braces_tap_state.state = cur_dance(state);
+    switch (curly_braces_tap_state.state) {
+        case TD_SINGLE_TAP:
+            break;
+        case TD_SINGLE_HOLD:
+            TAP_CHECK_AZERTY(KC_RCBR, FR_RCBR);
+            //tap_code16( KC_RCBR );
+            tap_code16( KC_LEFT );
+            break;
+        default: break;
+    }
+}
+
+void td_curly_braces_reset(tap_dance_state_t *state, void *user_data) {
+    curly_braces_tap_state.state = TD_NONE;
+}
+
 // Create an instance of 'td_tap_t' for the 'caps' tap dance.
 static td_tap_t caps_tap_state = {
     .is_press_action = true,
@@ -279,7 +349,7 @@ void td_caps_reset(tap_dance_state_t *state, void *user_data) {
     caps_tap_state.state = TD_NONE;
 }
 
-//#ifndef CORNE_FEATURES
+#ifndef CORNE_FEATURES
 // Create an instance of 'td_tap_t' for the 'tmux' tap dance.
 static td_tap_t ext_tap_state = {
     .is_press_action = true,
@@ -408,7 +478,7 @@ void td_tmux_reset(tap_dance_state_t *state, void *user_data) {
     }
     ext_tap_state.state = TD_NONE;
 }
-//#endif // CORNE_FEATURES
+#endif // CORNE_FEATURES
 
 void td_bootloader(tap_dance_state_t *state, void *user_data) {
     if (state->count == 2) {
@@ -424,6 +494,7 @@ void td_clear_eeprom(tap_dance_state_t *state, void *user_data) {
     }
 }
 
+#ifndef OLD_REPO
 //tap_dance_action_t tap_dance_actions[] = {
 //    [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
 //    [TD_EECLR] = ACTION_TAP_DANCE_FN(td_clear_eeprom),
@@ -436,4 +507,4 @@ void td_clear_eeprom(tap_dance_state_t *state, void *user_data) {
 //    [TD_CAPS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_caps_finished, td_caps_reset),
 //    [TD_TMUX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tmux_finished, td_tmux_reset)
 //};
-
+#endif

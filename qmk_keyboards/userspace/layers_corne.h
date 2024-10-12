@@ -1,19 +1,28 @@
 
-#ifndef _LAYERS_ORTHO47_H_
-#define _LAYERS_ORTHO47_H_
+#pragma once
 
 enum layers{
-    //SWAP_HANDS,
     COLEMAKH, // with Home Row Mods
     COLEMAK,
+#ifdef SWAP_HANDS_ENABLE
+    ONEHAND,
+#endif
+#ifdef AZERTY_LAYER_ENABLE
+    AZERTY,
+#endif
     MEDIA,
-    NUMPAD,
     SYMBOLS,
+#ifdef AZERTY_LAYER_ENABLE
+    FR_SYMB,
+    FR_ALTGR,
+#endif
     EXTEND,
     NAV,
+#ifdef SWAP_HANDS_ENABLE
+    OH_SYMB,
+#endif
     SYSTEM,
     LMODS,
     RMODS,
+    LRMODS,
 };
-
-#endif

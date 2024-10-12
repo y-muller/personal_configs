@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include QMK_KEYBOARD_H
 #ifdef AZERTY_LAYER_ENABLE
 #include "keymap_french.h"
@@ -30,30 +32,40 @@ const key_override_t dot_override        = ko_make_with_layers(MOD_MASK_SHIFT,  
 const key_override_t ind_brightup_override        = ko_make_with_layers(MOD_MASK_SHIFT,   KC_F1,   KC_1, (1 << SYSTEM));
 const key_override_t ind_brightdn_override        = ko_make_with_layers(MOD_MASK_SHIFT,   KC_F2,   KC_2, (1 << SYSTEM));
 
+// External volume
+const key_override_t ext_volup_override        = ko_make_basic(MOD_MASK_SHIFT,   KC_VOLU,   S(G(KC_RBRC)));
+const key_override_t ext_voldn_override        = ko_make_basic(MOD_MASK_SHIFT,   KC_VOLD,   S(G(KC_LBRC)));
+
 #ifdef AZERTY_LAYER_ENABLE
 // AZERTY number row and other symbols overrides
-const key_override_t fr1_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_1,    FR_EXLM, (1 << AZERTY));
-const key_override_t fr2_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_2,    FR_AT, (1 << AZERTY));
-const key_override_t fr3_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_3,    FR_HASH, (1 << AZERTY));
-const key_override_t fr4_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_4,    FR_DLR, (1 << AZERTY));
-const key_override_t fr5_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_5,    FR_PERC, (1 << AZERTY));
-const key_override_t fr6_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_6,    FR_PND, (1 << AZERTY));
-const key_override_t fr7_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_7,    FR_AMPR, (1 << AZERTY));
-const key_override_t fr8_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_8,    FR_ASTR, (1 << AZERTY));
-const key_override_t fr9_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_9,    FR_LPRN, (1 << AZERTY));
-const key_override_t fr0_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_0,    FR_RPRN, (1 << AZERTY));
-const key_override_t fr_mins_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_MINS, FR_UNDS, (1 << AZERTY));
-const key_override_t fr_quot_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_QUOT, FR_DQUO, (1 << AZERTY));
-const key_override_t fr_scln_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_SCLN, FR_COLN, (1 << AZERTY));
-const key_override_t fr_comm_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_COMM, FR_LABK, (1 << AZERTY));
-const key_override_t fr_dot_override =  ko_make_with_layers(MOD_MASK_SHIFT, FR_DOT,  FR_RABK, (1 << AZERTY));
-const key_override_t fr_slsh_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_SLSH, FR_QUES, (1 << AZERTY));
-const key_override_t fr_lbrc_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_LBRC, FR_LCBR, (1 << AZERTY));
-const key_override_t fr_rbrc_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_RBRC, FR_RCBR, (1 << AZERTY));
-const key_override_t fr_bsls_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_BSLS, FR_PIPE, (1 << AZERTY));
+const key_override_t fr1_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_1,    FR_EXLM, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr2_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_2,    FR_AT,   (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr3_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_3,    FR_HASH, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr4_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_4,    FR_DLR,  (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr5_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_5,    FR_PERC, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr6_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_6,    FR_PND,  (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr7_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_7,    FR_AMPR, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr8_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_8,    FR_ASTR, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr9_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_9,    FR_LPRN, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr0_override     = ko_make_with_layers(MOD_MASK_SHIFT, FR_0,    FR_RPRN, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_mins_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_MINS, FR_UNDS, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_quot_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_QUOT, FR_DQUO, (1<<AZERTY));
+const key_override_t fr_scln_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_SCLN, FR_COLN, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_comm_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_COMM, FR_LABK, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_dot_override  = ko_make_with_layers(MOD_MASK_SHIFT, FR_DOT,  FR_RABK, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_slsh_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_SLSH, FR_QUES, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_lbrc_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_LBRC, FR_LCBR, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_rbrc_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_RBRC, FR_RCBR, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_bsls_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_BSLS, FR_PIPE, (1<<AZERTY | 1<<FR_SYMB));
+const key_override_t fr_pipe_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_PIPE, FR_QUES, (1<<FR_SYMB));
+const key_override_t fr_dlr_override  = ko_make_with_layers(MOD_MASK_SHIFT, FR_DLR, FR_PERC, (1<<FR_SYMB));
 #endif
 
+#ifdef OLD_REPO
 const key_override_t **key_overrides = (const key_override_t *[]){
+#else
+const key_override_t *key_overrides[] = {
+#endif
     &left_scrollwheel_override,
     &right_scrollwheel_override,
     &up_scrollwheel_override,
@@ -71,6 +83,8 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &dot_override,
     &ind_brightup_override,
     &ind_brightdn_override,
+    &ext_volup_override,
+    &ext_voldn_override,
 #ifdef AZERTY_LAYER_ENABLE
     &fr1_override,
     &fr2_override,
@@ -91,6 +105,8 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &fr_lbrc_override,
     &fr_rbrc_override,
     &fr_bsls_override,
+    &fr_pipe_override,
+    &fr_dlr_override,
 #endif
     NULL // Null terminate the array of overrides!
 };

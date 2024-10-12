@@ -21,9 +21,12 @@
 #    endif
 #endif
 
+#include "y-muller.h"
+
 extern bool alt_encoder_mode;
 extern bool macro_recording_mode;
 extern bool tmux_lock;
+extern user_runtime_config_t user_state;
 
 uint8_t one_shot_active_mods = 0;
 uint8_t indicator_brightness = 120;
@@ -55,7 +58,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             indicator_set_color(LED_LIST_MODS[i], HSV_WHITE);
         }
     }
-    else if (tmux_lock) {
+    else if (user_state.is_tmux) {
          for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
             indicator_set_color(i, HSV_ORANGE);
         }
@@ -98,10 +101,11 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         indicator_set_color(LED_Y, HSV_ORANGE);
         indicator_set_color(LED_J, HSV_ORANGE);
         indicator_set_color(LED_M, HSV_ORANGE);
-        indicator_set_color(LED_A, HSV_CYAN);  // Mods on home row 
+        indicator_set_color(LED_A, HSV_CYAN);   // Mods on home row 
         indicator_set_color(LED_R, HSV_CYAN);
         indicator_set_color(LED_S, HSV_CYAN);
         indicator_set_color(LED_T, HSV_CYAN);
+        indicator_set_color(LED_G, HSV_CYAN);   // Select mode
         indicator_set_color(LED_SCLN, HSV_RED); // Delete
         indicator_set_color(LED_O, HSV_RED);    // Backspace
         indicator_set_color(LED_SLSH, HSV_RED); // Delete previous word
@@ -129,24 +133,24 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         indicator_set_color(LED_TAB, HSV_WHITE);  // LLock
     }
     #endif
-    else if (get_highest_layer(layer_state) == NUMPAD) {
-        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMPAD); i++) {
-            indicator_set_color(LED_LIST_NUMPAD[i], HSV_BLUE);
-        }
-        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMPAD_SYM); i++) {
-            indicator_set_color(LED_LIST_NUMPAD_SYM[i], HSV_ORANGE);
-        }
-        if ( ! host_keyboard_led_state().num_lock) {
-            indicator_set_color(LED_Z, HSV_RED);
-        }
-    }
+//    else if (get_highest_layer(layer_state) == NUMPAD) {
+//        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMPAD); i++) {
+//            indicator_set_color(LED_LIST_NUMPAD[i], HSV_BLUE);
+//        }
+//        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_NUMPAD_SYM); i++) {
+//            indicator_set_color(LED_LIST_NUMPAD_SYM[i], HSV_ORANGE);
+//        }
+//        if ( ! host_keyboard_led_state().num_lock) {
+//            indicator_set_color(LED_Z, HSV_RED);
+//        }
+//    }
     else if (get_highest_layer(layer_state) == SYSTEM) {
         indicator_set_color(_LED_BOOT, HSV_RED);
         indicator_set_color(_LED_DEBUG, HSV_ORANGE);
         indicator_set_color(_LED_RSTP, HSV_YELLOW);
-        for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_RGB_SETTINGS); i++) {
-            indicator_set_color(LED_LIST_RGB_SETTINGS[i], HSV_GOLDENROD);
-        }
+        //for (uint8_t i = 0; i < ARRAY_SIZE(LED_LIST_RGB_SETTINGS); i++) {
+        //    indicator_set_color(LED_LIST_RGB_SETTINGS[i], HSV_GOLDENROD);
+        //}
         #ifdef ORTHO_FEATURES
         indicator_set_color(LED_TAB, HSV_TURQUOISE); // Base maps
         indicator_set_color(LED_Q, HSV_TURQUOISE);

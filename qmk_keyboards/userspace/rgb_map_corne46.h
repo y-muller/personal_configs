@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _RGB_MAP_ORTHO47_H_
-#define _RGB_MAP_ORTHO47_H_
+#ifndef _RGB_MAP_CORNE46_H_
+#define _RGB_MAP_CORNE46_H_
 
 #ifdef RGB_MATRIX_ENABLE
 
@@ -91,7 +91,10 @@ enum led_location_map {
 
     LED_BSPC,
     LED_ENT,
-    LED_QUOT
+    LED_QUOT,
+
+    LED_EX3,
+    LED_EX4
 };
 
 const uint8_t LED_LIST_MODS[] = {
@@ -138,18 +141,18 @@ const uint8_t LED_LIST_NUMBERS[] = {
 };
 
 const uint8_t LED_LIST_FUNC[] = {
-    LED_L,
-    LED_U,
-    LED_Y,
-    LED_N,
-    LED_E,
-    LED_I,
-    LED_H,
-    LED_COMM,
-    LED_DOT,
-    LED_SLSH,
-    LED_O,
-    LED_SCLN
+    LED_W,
+    LED_F,
+    LED_P,
+    LED_B,
+    LED_R,
+    LED_S,
+    LED_T,
+    LED_G,
+    LED_X,
+    LED_C,
+    LED_D,
+    LED_V,
 };
 
 const uint8_t LED_LIST_LETTERS[] = {
@@ -182,16 +185,6 @@ const uint8_t LED_LIST_LETTERS[] = {
 };
 
 const uint8_t LED_LIST_NUMPAD[] = {
-    /*LED_1,
-    LED_2,
-    LED_3,
-    LED_4,
-    LED_5,
-    LED_6,*/
-    //LED_EQL,
-//    LED_7,
-//    LED_8,
-//    LED_9,
     LED_L,
     LED_U,
     LED_Y,
@@ -212,18 +205,18 @@ const uint8_t LED_LIST_NUMPAD_SYM[] = {
 };
 
 const uint8_t LED_LIST_RGB_SETTINGS[] = {
-    LED_TAB,
-    LED_A,
-    LED_R,
-    LED_S,
-    LED_T,
-    LED_G,
-    LED_LCTL,
-    LED_Z,
-    LED_X,
-    LED_C,
-    LED_D,
-    LED_V,
+    LED_L,
+    LED_U,
+    LED_Y,
+    LED_SCLN,
+    LED_N,
+    LED_E,
+    LED_I,
+    LED_O,
+    LED_H,
+    LED_COMM,
+    LED_DOT,
+    LED_SLSH,
 };
 
 const uint8_t _LED_BOOT = LED_ENT;

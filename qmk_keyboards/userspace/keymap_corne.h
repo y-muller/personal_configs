@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,                    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
     TAB_EXT,  HRM_A,    HRM_R,    HRM_S,    HRM_T,    KC_G,                    KC_M,     HRM_N,    HRM_E,    HRM_I,   HRM_O,    KC_ENT,
     GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,                    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-                                    CAPS_NAV, KC_LSFT,  K_EXT,          K_SYMBS,  LP_SPC,   BSPC_NUM
+                                    K_NAV,    KC_LSFT,  CAPS_EXT,       K_SYMBS,  LP_SPC,   K_FUNC
 ),
 
 
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,                    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
     TAB_EXT,  KC_A,     KC_R,     KC_S,     KC_T,     KC_G,                    KC_M,     KC_N,     KC_E,     KC_I,    KC_O,     KC_ENT,
     GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,                    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
-                                    CAPS_NAV, KC_LSFT,  K_EXT,          K_SYMBS,  LP_SPC,   BSPC_NUM
+                                    K_NAV,    KC_LSFT,  CAPS_EXT,       K_SYMBS,  LP_SPC,   K_FUNC
 ),
 
 /* Media
@@ -158,9 +158,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                           `--------------------'    `--------------------'
  */
 [SYSTEM] = LAYOUT_split_3x6_3(
-    C_CLMK1,  C_CLMK2,  TG_CURSR, XXXXXXX,  XXXXXXX,  XXXXXXX,                 DM_REC1,  KC_F7,    KC_F8,   KC_F9,     KC_F12,  K_EECLR,
-    CC_RGBTG, RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,                 DM_RSTP,  KC_F4,    KC_F5,   KC_F6,     KC_F11,  K_BOOT,
-    CC_RGBRT, RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,                 KC_SLEP,  KC_F1,    KC_F2,   KC_F3,     KC_F10,  DB_TOGG,
+    C_CLMK1,  C_CLMK2,  KC_F7,    KC_F8,    KC_F9,    KC_F12,                  DM_REC1,  CC_RGBTG, RGB_MOD,  RGB_RMOD, CC_RGBRT, K_EECLR,
+    C_AZERT,  C_1HAND,  KC_F1,    KC_F2,    KC_F3,    KC_F11,                  DM_RSTP,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  K_BOOT,
+    XXXXXXX,  XXXXXXX,  KC_F4,    KC_F5,    KC_F6,    KC_F10,                  KC_SLEP,  RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  DB_TOGG,
                                     _______,  _______,  _______,        _______,  _______,  _______
 ),
 
@@ -201,6 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     _______,  _______,  _______,        _______,  _______,  _______
 ),
 
+#ifdef SWAP_HANDS_ENABLE
 /* Colemak Swap Hand
  * ,-----------------------------------------.              ,-----------------------------------------.
  * | Tab  |   Q  |   W  |   F  |   P  |   B  |              |   J  |   L  |   U  |   Y  |   ;  | Bksp |
@@ -218,7 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,                    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  KC_QUOT,
                                     CAPS_NAV, SH_T(KC_SPC), K_EXT,          K_SYMBS, SH_T(KC_SPC), BSPC_NUM
 ),
-
+#endif
 
 /* Blank
  * ,-----------------------------------------.              ,-----------------------------------------.

@@ -1,22 +1,3 @@
-/*
-This is the c configuration file for the keymap
-
-Copyright 2012 Jun Wako <wakojun@gmail.com>
-Copyright 2015 Jack Humbert
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
 
 #pragma once
 
@@ -35,6 +16,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 12
+
+#define SPLIT_LED_STATE_ENABLE
 
 // Add a delay to solve issues with modifiers in macros
 #define TAP_CODE_DELAY 5
@@ -69,6 +52,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LAYERLOCK_ENABLE
 #define BASE_LAYER_TOP 0 // This board only uses the first layer (no Mac/Win switch)
 
+#define SPLIT_TRANSACTION_IDS_USER                                                                                 \
+        RPC_ID_USER_RUNTIME_STATE_SYNC, RPC_ID_USER_KEYMAP_SYNC, RPC_ID_USER_CONFIG_SYNC, RPC_ID_USER_AUTOCORRECT_STR, \
+            RPC_ID_USER_DISPLAY_KEYLOG_STR, RPC_ID_USER_SUSPEND_STATE_SYNC
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
