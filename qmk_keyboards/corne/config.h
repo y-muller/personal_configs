@@ -18,17 +18,21 @@
 #define DYNAMIC_KEYMAP_LAYER_COUNT 12
 
 #define SPLIT_LED_STATE_ENABLE
+#define SPLIT_LAYER_STATE_ENABLE
 
 // Add a delay to solve issues with modifiers in macros
 #define TAP_CODE_DELAY 5
 
 #define ONESHOT_TIMEOUT 2000
 
-// Tap dance config
+// Tap dance, mod-tap config
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM_PER_KEY
+#define RETRO_TAPPING
+#define RETRO_TAPPING_PER_KEY
+#define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_RIGHT_CTRL
 
 // Leader key config
 #define LEADER_TIMEOUT 450
@@ -115,7 +119,7 @@
 #    define ENABLE_RGB_MATRIX_PIXEL_FRACTAL
 
 #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR
-#define RGB_MATRIX_DEFAULT_ON false
+#define RGB_MATRIX_DEFAULT_ON true
 
 #endif
 

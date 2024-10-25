@@ -1,0 +1,25 @@
+# Disable userspace
+USER_NAME := none
+
+# AVR optimisations
+LTO_ENABLE = yes
+MOUSEKEY_ENABLE = no
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+MAGIC_ENABLE = no
+MUSIC_ENABLE = no
+AVR_USE_MINIMAL_PRINTF = yes
+
+TAP_DANCE_ENABLE = yes
+
+#LEADER_ENABLE = yes
+
+#KEY_OVERRIDE_ENABLE = yes
+
+
+#COMBO_ENABLE = yes
+
+# Debug only
+#CONSOLE_ENABLE = yes

@@ -9,6 +9,9 @@
 
 #include "combos.h"
 
+#include "keymap_wrappers.h"
+
+#define LAYOUT_wrapper(...) LAYOUT_planck_mit(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -23,11 +26,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tmux | Alt  | ⇪/Ext| Nav  |Shift |   Symbols   |Space |BS/Num| Left | ⇪/Ext|Right |
  * `-----------------------------------------------------------------------------------'
  */
-[COLEMAK] = LAYOUT_planck_mit(
-    ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
-    TAB_EXT,  KC_A,     KC_R,     KC_S,     KC_T,     KC_G,    KC_M,     KC_N,     KC_E,     KC_I,    KC_O,     KC_ENT,
-    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  ALT_QUOT,
-    K_TMUX,   KC_LALT,  K_EXT,    CAPS_NAV, KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_NUM, KC_LEFT, XXXXXXX,  KC_RIGHT   
+[COLEMAK] = LAYOUT_wrapper(
+    ESC_MD,   _________________COLEMAK_L1________________,        _________________COLEMAK_R1________________,  KC_BSPC,
+    TAB_EXT,  _________________COLEMAK_L2________________,        _________________COLEMAK_R2________________,  ENT_MD,
+    GUI_CTL,  _________________COLEMAK_L3________________,        _________________COLEMAK_R3________________,  ALT_QUOT,
+    K_TMUX,   KC_LALT,  K_EXT,    K_NAV,    KC_LSFT,       K_SYMBS,      LP_SPC,   CAPS_EXT, KC_LEFT, K_FUNC,   KC_RIGHT
 ),
 
 /* Colemak Home Row Mods
@@ -41,11 +44,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tmux | Alt  | ⇪/Ext| Nav  |Shift |   Symbols   |Space |Extend| Left | ⇪/Ext|Right |
  * `-----------------------------------------------------------------------------------'
  */
-[COLEMAKH] = LAYOUT_planck_mit(
-    ESC_MD,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,    KC_J,     KC_L,     KC_U,     KC_Y,    KC_SCLN,  KC_BSPC,
-    TAB_EXT,  HRM_A,    HRM_R,    HRM_S,    HRM_T,    KC_G,    KC_M,     HRM_N,    HRM_E,    HRM_I,   HRM_O,    KC_ENT,
-    GUI_CTL,  KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,    KC_K,     KC_H,     LP_COMM,  LP_DOT,  LP_SLSH,  ALT_QUOT,
-    K_TMUX,   KC_LALT,  K_EXT,    CAPS_NAV, KC_LSFT,       K_SYMBS,      LP_SPC,   BSPC_EXT, KC_LEFT, XXXXXXX,  KC_RIGHT   
+[COLEMAKH] = LAYOUT_wrapper(
+    ESC_MD,   _________________COLEMAK_L1________________,        _________________COLEMAK_R1________________,  KC_BSPC,
+    TAB_EXT,  _______________COLEMAK_HRM_L2______________,        _______________COLEMAK_HRM_R2______________,  ENT_MD,
+    GUI_CTL,  _________________COLEMAK_L3________________,        _________________COLEMAK_R3________________,  ALT_QUOT,
+    K_TMUX,   KC_LALT,  K_EXT,    K_NAV,    KC_LSFT,       K_SYMBS,      LP_SPC,   CAPS_EXT, KC_LEFT, K_FUNC,   KC_RIGHT
 ),
 
 /* cursor keys only
@@ -59,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      | Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
-[CURSOR] = LAYOUT_planck_mit(
+[CURSOR] = LAYOUT_wrapper(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_UP,    _______,
@@ -77,10 +80,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      | Slow Mouse  |Space |Scroll| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
-[MEDIA] = LAYOUT_planck_mit(
-    KC_ESC,   KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_F20,   KC_F5,    C_LLOCK,   KC_BTN1, KC_MS_U,  KC_BTN2,  KC_HOME,  KC_END,
-    _______,  _______,  KC_BRID,  KC_BRIU,  CC_DISP,  XXXXXXX,  C(KC_PLUS),KC_MS_L, KC_MS_D,  KC_MS_R,  XXXXXXX,  KC_PGUP,
-    _______,  KC_MPLY,  KC_MSTP,  KC_MPRV,  KC_MNXT,  XXXXXXX,  C(KC_MINS),KC_BTN3, XXXXXXX,  XXXXXXX,  KC_UP,    KC_PGDN,
+[MEDIA] = LAYOUT_wrapper(
+    _______________MEDIA_L1____6COLNS__________________,        C_LLOCK,   KC_BTN1, KC_MS_U,  KC_BTN2,  KC_HOME,  KC_END,
+    _______________MEDIA_L2____6COLNS__________________,        C(KC_PLUS),KC_MS_L, KC_MS_D,  KC_MS_R,  XXXXXXX,  KC_PGUP,
+    _______________MEDIA_L3____6COLNS__________________,        C(KC_MINS),KC_BTN3, XXXXXXX,  XXXXXXX,  KC_UP,    KC_PGDN,
     C_LLOCK,  _______,  _______,  _______,  _______,        KC_ACL0,      KC_SPC,   KC_LSFT,  KC_LEFT,  KC_DOWN,  KC_RIGHT
 ),
 
@@ -95,11 +98,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |Insert|CapsWd|
  * `-----------------------------------------------------------------------------------'
  */
-[EXTEND] = LAYOUT_planck_mit(
-    _______,  KC_ESC,   C(KC_W),  C(KC_F),  XXXXXXX,  KC_INS,   KC_HOME,   KC_PGUP,  KC_UP,    KC_PGDN,  KS_DPW,   KC_DEL,
-    A(KC_TAB),XXXXXXX,  OSM_LALT, OSM_LSFT, OSM_LCTL, C_OSWIN,  KC_END,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_BSPC,  S(KC_ENT),
-    C_LLOCK,  C(KC_Z),  C(KC_X),  C(KC_C),  C(KC_V),  C(KC_Y),  S(KC_TAB), KC_TAB,   KS_AHOM,  CC_LINE,  KC_DEL,   XXXXXXX,
-    _______,  _______,  _______,  _______,  _______,       _______,        KC_SPC,   _______,  _______,  KC_INS,   K_CAPS   
+[EXTEND] = LAYOUT_wrapper(
+    ______________EXTEND_L1____6COLNS__________________,             ______________EXTEND_R3____6COLNS__________________,
+    ______________EXTEND_L2____6COLNS__________________,             ______________EXTEND_R2____6COLNS__________________,
+    ______________EXTEND_L3____6COLNS__________________,             ______________EXTEND_R3____6COLNS__________________,
+    _______,  _______,  _______,  _______,  _______,       _______,        KC_SPC,   _______,  _______,  _______, K_CAPS
 ),
 
 /* Nav
@@ -114,11 +117,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |A-Left|C-Down|A-Rght|
  * `-----------------------------------------------------------------------------------'
  */
-[NAV] = LAYOUT_planck_mit(
-    _______,  CG(KC_O), CG(KC_W), CG(KC_F), CG(KC_L), CG(KC_J), DM_PLY1,  A(KC_1),  A(KC_2),  A(KC_3),  A(KC_4),  XXXXXXX,
-    A(KC_TAB),CG(KC_A), CG(KC_Y), CG(KC_S), CG(KC_B), CG(KC_T), XXXXXXX,  G(KC_F1), G(KC_F2), G(KC_F3), G(KC_F4), XXXXXXX,
-    _______,  CG(KC_Z), XXXXXXX,  CS(KC_C), CS(KC_V), XXXXXXX,  CC_SRCP,  CC_SRCN,  K_TAB_L,  K_TAB_R,  C(KC_PGUP),  XXXXXXX,
-    _______,  _______,  _______,  _______,  _______,       _______,       KC_SPC,   _______,  A(KC_LEFT),C(KC_PGDN), A(KC_RIGHT)  
+[NAV] = LAYOUT_wrapper(
+    ________________NAV_L1____6COLNS___________________,              ________________NAV_R1____6COLNS___________________,
+    ________________NAV_L2____6COLNS___________________,              ________________NAV_R2____6COLNS___________________,
+    ________________NAV_L3____6COLNS___________________,              ________________NAV_R3____6COLNS___________________,
+    _______,  _______,  _______,  _______,  _______,       _______,       KC_SPC,   _______,  A(KC_LEFT),XXXXXXX, A(KC_RIGHT)
 ),
 
 /* Symbols
@@ -132,25 +135,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-//[SYMBOLS] = LAYOUT_planck_mit(
-//    _______,  LP_PIPE,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  LP_AMPR,  KC_ASTR,  KC_QUES,  C_PLSPLS, KC_BSPC,
-//    TAB_LMOD, LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_QUOT,  KC_BSLS,  KC_MINS,  KC_PLUS,  LP_SLSL,  KC_SCLN,  ENT_RMOD,
-//    _______,  KC_LT,    LP_LBRC,  KC_RBRC,  KC_GT,    KC_DQUO,  LP_EXLM,  KC_UNDS,  LP_EQL,   LP_EQEQ,  LP_COLN,  KC_RWIN,
-//    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
-//),
-// Missing: ^KC_CIRC, *KC_QUES, /C_PLSPLS, *KC_QUOT, *KC_DQUO, ^LP_EXLM, /LP_EQEQ, *LP_COLN, =KC_BSLS, LP_COLN
-// KC_CIRC to AltGr? (not great)
-// KC_QUES, KC_QUOT, KC_DQUO, LP_COLN on L0, 
-// LP_PIPE on SHIFT LP_EXLM, KC_CIRC on SHIFT KC_PERC, KC_BSLS on SHIFT LP_SLSL
-
-// todo:
-// - rename LP_*S to LPS_*
-// - LP_PLUS for ++ ?
-[SYMBOLS] = LAYOUT_planck_mit(
-    KC_X,     LPS_LT,   KC_7,     KC_8,     KC_9,     KC_AT,    KC_DLR,   LP_LCBR,  LP_LPRN,  LP_RPRN,  KC_RCBR,  KC_BSPC,
-    TAB_LMOD, LPS_GT,   KC_4,     KC_5,     KC_6,     KC_HASH,  LPS_AMP,  KC_MINS,  KC_PLUS,  LP_SLSL,  LP_ASTCN, ENT_RMOD,
-    C_LLOCK,  KC_DOT,   KC_1,     KC_2,     KC_3,     LP_EQLS,  LP_EXLM,  KC_UNDS,  LP_LBRC,  KC_RBRC,  LPS_PIPE, KC_RWIN,
-    _______,  _______,  _______,  KC_0,     _______,       _______,       _______,  _______,  _______,  _______,  _______   
+[SYMBOLS] = LAYOUT_wrapper(
+    KC_X,     _________________SYMBOLS_L1________________,          _________________SYMBOLS_R1________________,  KC_BSPC,
+    TAB_LMOD, _________________SYMBOLS_L2________________,          _________________SYMBOLS_R2________________,  ENT_RMOD,
+    C_LLOCK,  _________________SYMBOLS_L3________________,          _________________SYMBOLS_R3________________,  KC_RWIN,
+    _______,  _______,  _______,  SFT_0,    _______,       _______,       _______,  _______,  _______,  _______,  _______   
 ),
 
 /* Numpad
@@ -164,12 +153,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[NUMPAD] = LAYOUT_planck_mit(
-    KC_X,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC,
-    TAB_LMOD, KC_ASTR,  KC_SLSH,  KC_PLUS,  KC_MINS,  KC_LT,    KC_BSLS,  KC_4,     KC_5,     KC_6,     KC_0,     ENT_RMOD,
-    C_LLOCK,  KC_LPRN,  KC_LBRC,  KC_RBRC,  KC_RPRN,  KC_GT,    KC_PERC,  KC_1,     KC_2,     KC_3,     KC_DOT,   KC_EQL,
-    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
-),
+//[NUMPAD] = LAYOUT_planck_mit(
+//    KC_X,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC,
+//    TAB_LMOD, KC_ASTR,  KC_SLSH,  KC_PLUS,  KC_MINS,  KC_LT,    KC_BSLS,  KC_4,     KC_5,     KC_6,     KC_0,     ENT_RMOD,
+//    C_LLOCK,  KC_LPRN,  KC_LBRC,  KC_RBRC,  KC_RPRN,  KC_GT,    KC_PERC,  KC_1,     KC_2,     KC_3,     KC_DOT,   KC_EQL,
+//    _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
+//),
 
 /* System (Extend + Nav)
  * ,-----------------------------------------------------------------------------------.
@@ -182,10 +171,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |EE Clr|
  * `-----------------------------------------------------------------------------------'
  */
-[SYSTEM] = LAYOUT_planck_mit(
-    C_CLMK1,  C_CLMK2,  TG_CURSR, XXXXXXX,  XXXXXXX,  XXXXXXX,  DM_REC1,  KC_F7,    KC_F8,   KC_F9,     KC_F12,   K_EECLR,
-    CC_RGBTG, RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  DM_RSTP,  KC_F4,    KC_F5,   KC_F6,     KC_F11,   K_BOOT,
-    CC_RGBRT, RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  KC_SLEP,  KC_F1,    KC_F2,   KC_F3,     KC_F10,   DB_TOGG,
+[SYSTEM] = LAYOUT_wrapper(
+    // TG_CURSR missing
+    ______________SYSTEM_L1____6COLNS__________________,              ______________SYSTEM_R1____6COLNS__________________,
+    ______________SYSTEM_L2____6COLNS__________________,              ______________SYSTEM_R2____6COLNS__________________,
+    ______________SYSTEM_L3____6COLNS__________________,              ______________SYSTEM_R3____6COLNS__________________,
     _______,  _______,  _______,  _______,  _______,       _______,       _______,  _______,  _______,  _______,  _______   
 ),
 

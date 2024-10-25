@@ -18,6 +18,9 @@
 #define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM_PER_KEY
+#define RETRO_TAPPING
+#define RETRO_TAPPING_PER_KEY
+#define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_RIGHT_CTRL
 
 // Leader key config
 #define LEADER_TIMEOUT 450
@@ -34,6 +37,7 @@
 #define ORTHO_FEATURES
 //#define CORNE_FEATURES
 #define ACHORDION_ENABLE
+#define ACHORDION_STREAK
 #define LAYERLOCK_ENABLE
 #define BASE_LAYER_TOP 0 // This board only uses the first layer (no Mac/Win switch)
 

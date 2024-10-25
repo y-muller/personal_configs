@@ -58,7 +58,7 @@ const key_override_t fr_lbrc_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_L
 const key_override_t fr_rbrc_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_RBRC, FR_RCBR, (1<<AZERTY | 1<<FR_SYMB));
 const key_override_t fr_bsls_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_BSLS, FR_PIPE, (1<<AZERTY | 1<<FR_SYMB));
 const key_override_t fr_pipe_override = ko_make_with_layers(MOD_MASK_SHIFT, FR_PIPE, FR_QUES, (1<<FR_SYMB));
-const key_override_t fr_dlr_override  = ko_make_with_layers(MOD_MASK_SHIFT, FR_DLR, FR_PERC, (1<<FR_SYMB));
+const key_override_t fr_dlr_override  = ko_make_with_layers(MOD_MASK_SHIFT, FR_DLR,  FR_PERC, (1<<FR_SYMB));
 #endif
 
 #ifdef OLD_REPO

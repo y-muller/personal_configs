@@ -14,9 +14,12 @@ CAPS_WORD_ENABLE = yes
 
 LEADER_ENABLE = yes
 
+REPEAT_KEY_ENABLE = yes
+
 # Debug only
 CONSOLE_ENABLE = yes
 
 # userspace
+ACHORDION_ENABLE = yes
 OVERRIDES_ENABLE = yes
 

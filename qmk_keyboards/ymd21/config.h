@@ -1,0 +1,41 @@
+
+#if defined(DYNAMIC_KEYMAP_LAYER_COUNT)
+    #undef DYNAMIC_KEYMAP_LAYER_COUNT
+#endif
+#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+
+#if defined(CAPS_LOCK_LED_INDEX)
+    #undef CAPS_LOCK_LED_INDEX
+#endif
+
+// AVR optimisations
+#define NO_MUSIC_MODE
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define LAYER_STATE_8BIT
+
+// Add a delay to solve issues with modifiers in macros
+#define TAP_CODE_DELAY 5
+
+#define ONESHOT_TIMEOUT 2000
+
+// Tap dance config
+#define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD
+
+// Mouse mode Combined: accelerated + speed button
+//#define MK_COMBINED
+//#define MOUSEKEY_MAX_SPEED 6
+
+//#undef RGBLIGHT_ANIMATIONS
+//#undef RGBLIGHT_EFFECT_BREATHING
+#undef RGBLIGHT_EFFECT_RAINBOW_MOOD
+#undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#undef RGBLIGHT_EFFECT_SNAKE
+#undef RGBLIGHT_EFFECT_KNIGHT
+#undef RGBLIGHT_EFFECT_CHRISTMAS
+#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+#undef RGBLIGHT_EFFECT_RGB_TEST
+#undef RGBLIGHT_EFFECT_ALTERNATING
+#undef RGBLIGHT_EFFECT_TWINKLE

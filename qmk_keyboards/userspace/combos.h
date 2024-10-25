@@ -23,7 +23,7 @@ enum combos {
     DF_COLON,
     DF_SCOL,
     DF_EXCLAM,
-    DF_Q,
+    DF_QU,
     //DF_ENTER,
 
     // Symbols
@@ -76,7 +76,7 @@ const uint16_t PROGMEM colon_combo[] = {KC_T, KC_D, COMBO_END};                 
 const uint16_t PROGMEM semicolon_combo[] = {KC_S, KC_C, COMBO_END};             // Semi-colon
 const uint16_t PROGMEM exclam_combo[] = {KC_O, LP_SLSH, COMBO_END};             // Exclamation mark
 const uint16_t PROGMEM backspace_combo[] = {KC_M, KC_K, COMBO_END};             // Backspace
-const uint16_t PROGMEM q_combo[] = {KC_A, KC_Z, COMBO_END};                     // Backspace
+const uint16_t PROGMEM qu_combo[] = {KC_A, KC_Z, COMBO_END};                    // Qu
 //const uint16_t PROGMEM enter_combo[] = {KC_N, KC_L, COMBO_END};                 // Enter
 
 // Combos on Symbols layer
@@ -95,7 +95,7 @@ const uint16_t PROGMEM system_layer_combo2[] = {KC_ACL0, KC_HOME, COMBO_END};   
 //const uint16_t PROGMEM help_combo[] = {L_NAV, CAPS_EXT, COMBO_END};           // Help - work in most layers
 const uint16_t PROGMEM help_main_combo[] = {KC_D, KC_H, COMBO_END};             // Help for main layer
 const uint16_t PROGMEM help_extend_combo[] = {C(KC_V), KC_TAB, COMBO_END};      // Help for EXTEND layer
-const uint16_t PROGMEM help_nav_combo[] = {CS(KC_V), CC_SRCN, COMBO_END};       // Help for NAV layer
+const uint16_t PROGMEM help_nav_combo[] = {CS(KC_V), CC_SRCP, COMBO_END};       // Help for NAV layer
 const uint16_t PROGMEM help_media_combo[] = {KC_MNXT, KC_BTN3, COMBO_END};      // Help for MEDIA layer
 const uint16_t PROGMEM help_symbols_combo[] = {KC_6, KC_UNDS, COMBO_END};       // Help for SYMBOLS layer
 //const uint16_t PROGMEM help_numpad_combo[] = {KC_RPRN, KC_1, COMBO_END};      // Help for NUMPAD layer
@@ -120,9 +120,8 @@ combo_t key_combos[] = {
     [DF_COLON] = COMBO(colon_combo, C_COLN),                    // Needs language-aware handling
     [DF_SCOL] = COMBO(semicolon_combo, C_SCLN),                // Needs language-aware handling
     [DF_EXCLAM] = COMBO(exclam_combo, C_EXLM),                   // Needs language-aware handling
-    [DF_BACKSP] = COMBO(q_combo, KC_Q),
     [DF_BACKSP] = COMBO(backspace_combo, KC_BSPC),
-    [DF_Q] = COMBO(q_combo, KC_Q),
+    [DF_QU] = COMBO(qu_combo, C_QU),                          // Needs language-aware handling
     //[DF_ENTER] = COMBO(enter_combo, KC_ENT),
 
 // Symbols

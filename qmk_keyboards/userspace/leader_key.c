@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-//#ifdef LEADER_ENABLE
+#ifdef LEADER_ENABLE
 
 #include "custom_keys.h"
 #include "tap_dance.h"
@@ -41,15 +41,18 @@ void leader_end_user(void) {
         // <b>❚</b>
         insert_tags( "<b>", "</b>" );
 
-    } else if (leader_sequence_two_keys(KC_LSFT, KC_L)) {
+// Markdown
+    } else if (leader_sequence_two_keys(KC_M, KC_L)) {
+        // Link: [title](url)
         // [❚]()
         insert_tags( "[", "]()" );
 
-    } else if (leader_sequence_two_keys(KC_LSFT, KC_I)) {
+    } else if (leader_sequence_two_keys(KC_M, KC_I)) {
+        // Image: ![alt text](image)
         // ![❚]()
         insert_tags( "![", "]()" );
 
-    } else if (leader_sequence_two_keys(KC_LSFT, KC_F)) {
+    } else if (leader_sequence_two_keys(KC_M, KC_F)) {
         // [^❚]
         insert_tags( "[^", "]" );
 
@@ -57,7 +60,8 @@ void leader_end_user(void) {
         // `❚`
         insert_tags( "`", "`" );
 
-    } else if (leader_sequence_two_keys(KC_COMM, KC_COMM)) {
+    } else if (leader_sequence_two_keys(KC_M, KC_B)) {
+        // Code block
         // ```
         // ❚
         // ```
@@ -83,6 +87,11 @@ void leader_end_user(void) {
     } else if (leader_sequence_two_keys(KC_C, KC_S)) {
         // std::string❚
         send_string( "std::string" );
+
+    } else if (leader_sequence_two_keys(KC_C, KC_V)) {
+        // std::vector<❚>
+        send_string( "std::vector<>" );
+        tap_code( KC_LEFT );
 
 // Wrap selection
     } else if (leader_sequence_two_keys(KC_SPC, KC_QUOT)) {
@@ -154,4 +163,4 @@ void leader_end_user(void) {
     }
 }
 
-//#endif
+#endif

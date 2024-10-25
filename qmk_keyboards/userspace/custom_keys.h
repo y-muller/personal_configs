@@ -1,15 +1,17 @@
 
-#ifndef _CUSTOM_KEYS_H_
-#define _CUSTOM_KEYS_H_
+#pragma once
 
 #ifdef CORNE_FEATURES
-#include "layers_corne.h"
+#  include "layers_corne.h"
 #else
-#ifdef ORTHO_FEATURES
-#include "layers_ortho47.h"
-#else
-#include "layers_alice69.h"
-#endif
+#  ifdef ORTHO_FEATURES
+#    include "layers_ortho47.h"
+#    ifdef MACROPAD_FEATURES
+#      include "layers_macropad.h"
+#    else
+#      include "layers_alice69.h"
+#    endif
+#  endif
 #endif
 
 #define TAB_EXT LT(EXTEND, KC_TAB)
@@ -20,6 +22,7 @@
 #define TAB_CTL  LCTL_T(KC_TAB)
 #define GUI_CTL  LCTL_T(KC_LWIN)
 #define ALT_QUOT LALT_T(KC_QUOT)
+#define SFT_0    SFT_T(KC_0)
 
 #ifdef AZERTY_LAYER_ENABLE
 #define FR_ALTQU LALT_T(FR_QUOT)
@@ -48,12 +51,10 @@
 #define RS_LEAD TD(TD_RSFT_LEAD)
 
 // Backslash is MACRO layer on hold
-#define BSLS_MC LT(MACRO, KC_BSLS)
+//#define BSLS_MC LT(MACRO, KC_BSLS)
 
 // ESC is MEDIA layer on hold
-#ifdef ORTHO_FEATURES
 #define ESC_MD LT(MEDIA, KC_ESC)
-#endif
 
 // Shortcut for Crtl+Gui, Ctrl+Shift, Ctrl+Alt
 #define CG(kc) (QK_LCTL | QK_LGUI | (kc))
@@ -87,6 +88,17 @@
 #define HRM_PLUS LSFT_T(KC_PLUS)
 #define HRM_SLSH LALT_T(KC_SLSH)
 #define HRM_ASTR LGUI_T(KC_ASTR)
+//    Qwerty
+#ifdef QWERTY_LAYER_ENABLE
+#define QW_HRM_A LGUI_T(FR_A)
+#define QW_HRM_R LALT_T(FR_R)
+#define QW_HRM_S LSFT_T(FR_S)
+#define QW_HRM_T LCTL_T(FR_T)
+#define QW_HRM_N LCTL_T(FR_N)
+#define QW_HRM_E LSFT_T(FR_E)
+#define QW_HRM_I LALT_T(FR_I)
+#define QW_HRM_O LGUI_T(KC_O)
+#endif
 //    Azerty
 #ifdef AZERTY_LAYER_ENABLE
 #define FR_HRM_A LGUI_T(FR_A)
@@ -136,17 +148,18 @@
 //#define K_SYMBS TD(TD_ALTGR)
 #define K_SYMBS LT(SYMBOLS,KC_SPC)
 #ifdef AZERTY_LAYER_ENABLE
-//#define FR_SYMBS LT(FR_SYMB,KC_SPC)
 #define FR_SYMBS OSL(FR_ALTGR)
 #endif
-
-#define CAPS_EXT TD(TD_CAPS)
-#define K_CAPS TD(TD_CAPS)
-#define K_CBR TD(TD_CBR)
 
 #define K_SPC KC_SPC
 
 #define K_GNOME KC_F17 // to bind to window operations in Desktop
+
+// Tap dances
+
+#define CAPS_EXT TD(TD_CAPS)
+#define K_CAPS TD(TD_CAPS)
+#define K_CBR TD(TD_CBR)
 
 // LEADER is a tap dance with Backslash
 //#define K_LEAD TD(TD_LEAD)
@@ -191,8 +204,8 @@
 
 enum my_keycodes {
   CC_DISP = SAFE_RANGE,
-  C_CLMK1,              // Colemak layout 1
-  C_CLMK2,              // Colemak layout 2 with Home Row Mods
+  C_CLMK,               // Colemak layout (with HRM toggle)
+  C_QWERT,              // Qwerty layout
   C_AZERT,              // Azerty adaptation layout
   C_1HAND,              // Mirrored one handed layout
   C_LLOCK,              // Lock the current layer
@@ -221,6 +234,7 @@ enum my_keycodes {
   C_HELP,               // Display layer layout
   C_SYST,               // Enable the System layer
   C_UNDO,               // Language-aware undo (Ctrl-Z)
+  C_QU,                 // Qu
   C_UNDS,               // Language-aware underscore
   C_MINS,               // Language-aware dash
   C_QUOT,               // Language-aware quote
@@ -232,5 +246,3 @@ enum my_keycodes {
   C_BSLS,               // Language-aware backslash
   CC_TEST
 };
-
-#endif

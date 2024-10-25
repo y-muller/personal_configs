@@ -14,6 +14,11 @@
   </VirtualDirectory>
   <VirtualDirectory Name="tmux"/>
   <VirtualDirectory Name="QMK keyboards">
+    <VirtualDirectory Name="Ymd21">
+      <File Name="qmk_keyboards/ymd21/keymap.c"/>
+      <File Name="qmk_keyboards/ymd21/config.h"/>
+      <File Name="qmk_keyboards/ymd21/rules.mk"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="Corne46 rev4">
       <File Name="qmk_keyboards/corne46/rules.mk"/>
       <File Name="qmk_keyboards/corne46/keymap.c"/>
@@ -30,6 +35,10 @@
       <File Name="qmk_keyboards/kprepublic_cstc40/keymap.c"/>
     </VirtualDirectory>
     <VirtualDirectory Name="userspace">
+      <File Name="qmk_keyboards/userspace/keymap_wrappers.h"/>
+      <File Name="qmk_keyboards/userspace/overrides.h"/>
+      <File Name="qmk_keyboards/userspace/split_sync.h"/>
+      <File Name="qmk_keyboards/userspace/split_sync.c"/>
       <File Name="qmk_keyboards/userspace/rgb_map_corne.h"/>
       <File Name="qmk_keyboards/userspace/rgb_map_corne46.h"/>
       <File Name="qmk_keyboards/userspace/keymap_corne46.h"/>
@@ -37,6 +46,8 @@
       <File Name="qmk_keyboards/userspace/layers_corne.h"/>
       <File Name="qmk_keyboards/userspace/keymap_corne.h"/>
       <VirtualDirectory Name="features">
+        <File Name="qmk_keyboards/userspace/features/layer_lock.h"/>
+        <File Name="qmk_keyboards/userspace/features/layer_lock.c"/>
         <File Name="qmk_keyboards/userspace/features/achordion.h"/>
         <File Name="qmk_keyboards/userspace/features/achordion.c"/>
       </VirtualDirectory>
@@ -57,7 +68,6 @@
       <File Name="qmk_keyboards/userspace/custom_keys.h"/>
       <File Name="qmk_keyboards/userspace/keymap_alice69.h"/>
       <File Name="qmk_keyboards/userspace/tri_layer.c"/>
-      <File Name="qmk_keyboards/userspace/overrides.c"/>
       <File Name="qmk_keyboards/userspace/rgb_map_alice69.h"/>
       <File Name="qmk_keyboards/userspace/y-muller.h"/>
       <File Name="qmk_keyboards/userspace/y-muller.c"/>

@@ -49,6 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DYNAMIC_KEYMAP_LAYER_COUNT 16
 
 #define SPLIT_LED_STATE_ENABLE
+#define SPLIT_LAYER_STATE_ENABLE
 
 // Add a delay to solve issues with modifiers in macros
 #define TAP_CODE_DELAY 5
@@ -61,6 +62,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM_PER_KEY
 #define RETRO_TAPPING
+#define RETRO_TAPPING_PER_KEY
 #define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_RIGHT_CTRL
 
 // Leader key config
@@ -92,20 +94,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_TRANSACTION_IDS_USER                                                                                 \
         RPC_ID_USER_RUNTIME_STATE_SYNC, RPC_ID_USER_KEYMAP_SYNC, RPC_ID_USER_CONFIG_SYNC, RPC_ID_USER_AUTOCORRECT_STR, \
             RPC_ID_USER_DISPLAY_KEYLOG_STR, RPC_ID_USER_SUSPEND_STATE_SYNC
-
-#ifdef RGBLIGHT_ENABLE
-    #define RGBLIGHT_EFFECT_BREATHING
-    #define RGBLIGHT_EFFECT_RAINBOW_MOOD
-    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-    #define RGBLIGHT_EFFECT_SNAKE
-    #define RGBLIGHT_EFFECT_KNIGHT
-    #define RGBLIGHT_EFFECT_CHRISTMAS
-    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
-    #define RGBLIGHT_EFFECT_RGB_TEST
-    #define RGBLIGHT_EFFECT_ALTERNATING
-    #define RGBLIGHT_EFFECT_TWINKLE
-    #define RGBLIGHT_LIMIT_VAL 120
-    #define RGBLIGHT_HUE_STEP 10
-    #define RGBLIGHT_SAT_STEP 17
-    #define RGBLIGHT_VAL_STEP 17
-#endif

@@ -186,10 +186,10 @@ xkb_symbols "alt-intl" {
     key <AE06> { [ 6,            asciicircum, dead_circumflex, dead_circumflex ] };
     key <AE07> { [ 7,            ampersand,   dead_grave,      U2248 ] };
     key <AE08> { [ 8,            asterisk,    leftsinglequotemark,  multiply ] };
-    key <AE09> { [ 9,            parenleft,   rightsinglequotemark, dead_belowdot ] };
-    key <AE10> { [ 0,            parenright,  degree,          dead_abovering ] };
+    key <AE09> { [ 9,            parenleft,   leftsinglequotemark, leftdoublequotemark ] };
+    key <AE10> { [ 0,            parenright,  rightsinglequotemark, rightdoublequotemark ] };
     key <AE11> { [ minus,        underscore,  notequal,        yen ] };
-    key <AE12> { [ equal,        plus,        paragraph,       section ] };
+    key <AE12> { [ equal,        plus,        multiply,        division ] };
  
     key <AD01> { [ q,            Q,           dead_grave,      dead_grave ] };
     key <AD02> { [ w,            W,           dead_acute,      dead_acute ] };
@@ -211,8 +211,8 @@ xkb_symbols "alt-intl" {
     key <AC04> { [ f,            F,           dead_circumflex, dead_circumflex ] };
     key <AC05> { [ g,            G,           EuroSign,        endash ] };
     key <AC06> { [ h,            H,           ediaeresis,      Ediaeresis ] };
-    key <AC07> { [ j,            J,           ae,              AE ] };
-    key <AC08> { [ k,            K,           ellipsis,        infinity ] };
+    key <AC07> { [ j,            J,           ellipsis,        infinity ] };
+    key <AC08> { [ k,            K,           ae,              AE ] };
     key <AC09> { [ l,            L,           udiaeresis,      Udiaeresis ] };
     key <AC10> { [ semicolon,    colon,       odiaeresis,      Odiaeresis ] };
     key <AC11> { [ apostrophe,   quotedbl,    dead_acute,      dead_diaeresis ] };
