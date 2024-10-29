@@ -182,20 +182,20 @@ xkb_symbols "alt-intl" {
     key <AE02> { [ 2,            at,          twosuperior,     onehalf ] };
     key <AE03> { [ 3,            numbersign,  threesuperior,   threequarters ] };
     key <AE04> { [ 4,            dollar,      sterling,        currency ] };
-    key <AE05> { [ 5,            percent,     division,        permille ] };
+    key <AE05> { [ 5,            percent,     paragraph,       section ] };
     key <AE06> { [ 6,            asciicircum, dead_circumflex, dead_circumflex ] };
     key <AE07> { [ 7,            ampersand,   dead_grave,      U2248 ] };
-    key <AE08> { [ 8,            asterisk,    leftsinglequotemark,  multiply ] };
+    key <AE08> { [ 8,            asterisk,    division,        multiply ] };
     key <AE09> { [ 9,            parenleft,   leftsinglequotemark, leftdoublequotemark ] };
     key <AE10> { [ 0,            parenright,  rightsinglequotemark, rightdoublequotemark ] };
     key <AE11> { [ minus,        underscore,  notequal,        yen ] };
-    key <AE12> { [ equal,        plus,        multiply,        division ] };
+    key <AE12> { [ equal,        plus,        notequal,        plusminus ] };
  
     key <AD01> { [ q,            Q,           dead_grave,      dead_grave ] };
     key <AD02> { [ w,            W,           dead_acute,      dead_acute ] };
     key <AD03> { [ e,            E,           eacute,          Eacute ] };
     key <AD04> { [ r,            R,           acircumflex,     Acircumflex ] };
-    key <AD05> { [ t,            T,           trademark,       registered ] };
+    key <AD05> { [ t,            T,           trademark,       copyright ] };
     key <AD06> { [ y,            Y,           ugrave,          Ugrave ] };
     key <AD07> { [ u,            U,           ucircumflex,     Ucircumflex ] };
     key <AD08> { [ i,            I,           idiaeresis,      Idiaeresis ] };
@@ -206,9 +206,9 @@ xkb_symbols "alt-intl" {
     key <BKSL> { [ backslash,    bar,         backslash,       brokenbar ] };
 
     key <AC01> { [ a,            A,           agrave,          Agrave ] };
-    key <AC02> { [ s,            S,           mu,              section ] };
-    key <AC03> { [ d,            D,           degree,          caron ] };
-    key <AC04> { [ f,            F,           dead_circumflex, dead_circumflex ] };
+    key <AC02> { [ s,            S,           mu,              Greek_pi ] };
+    key <AC03> { [ d,            D,           degree,          macron ] };
+    key <AC04> { [ f,            F,           dead_circumflex, dead_caron ] };
     key <AC05> { [ g,            G,           EuroSign,        endash ] };
     key <AC06> { [ h,            H,           ediaeresis,      Ediaeresis ] };
     key <AC07> { [ j,            J,           ellipsis,        infinity ] };
