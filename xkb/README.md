@@ -12,13 +12,12 @@ Copy the xkb directory to `.config`.
 
 Set the modified keyboard option:
 ```
-dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin', 'yann_custom:intl']"
+dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'lv5:rctrl', 'compose:rwin', 'yann_custom:colemak']"
 ```
 
 To reload after a change:
 ```
-dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin']"
-dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin', 'yann_custom:intl']"
+dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'compose:rwin']" && dconf write /org/gnome/desktop/input-sources/xkb-options "['lv3:ralt_switch', 'lv5:rctrl', 'compose:rwin', 'yann_custom:colemak']"
 ```
 
 Get the current value:
