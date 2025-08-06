@@ -18,10 +18,10 @@ xkb_symbols "colemak" {
     key <AE12> { [ equal,        plus,        multiply,        notequal ] };
  
     key <AD01> { [ q,            Q,           dead_grave,      dead_grave,     greaterthanequal, 2,       a,             b ] };
-    key <AD02> { [ w,            W,           dead_acute,      dead_acute,     1,            2,           Greek_finalsmallsigma, Greek_SIGMA ] };
-    key <AC04> { [ f,            F,           dead_circumflex, dead_circumflex,U2191,        U2B06,       Greek_phi,     Greek_PHI ] };    // up arrows
+    key <AD02> { [ w,            W,           dead_acute,      dead_tilde,     1,            2,           Greek_finalsmallsigma, Greek_SIGMA ] };
+    key <AC04> { [ f,            F,           dead_circumflex, dead_macron,    U2191,        U2B06,       Greek_phi,     Greek_PHI ] };    // up arrows
     key <AD10> { [ p,            P,           dead_diaeresis,  dead_abovering, 1,            2,           Greek_pi,      Greek_PI ] };
-    key <AB05> { [ b,            B,           dead_tilde,      dead_macron,    1,            2,           Greek_beta,    Greek_BETA ] };
+    key <AB05> { [ b,            B,           sterling,        emdash,         1,            2,           Greek_beta,    Greek_BETA ] };
     key <AC07> { [ j,            J,           ae,              AE,             1,            2,           Greek_xi,      Greek_XI ] };
     key <AC09> { [ l,            L,           udiaeresis,      Udiaeresis,     leftdoublequotemark,  leftsinglequotemark,  Greek_lambda,  Greek_LAMBDA ] };
     key <AD07> { [ u,            U,           ucircumflex,     Ucircumflex,    rightdoublequotemark, rightsinglequotemark, Greek_theta,   Greek_THETA ] };
@@ -32,7 +32,7 @@ xkb_symbols "colemak" {
     key <AD04> { [ r,            R,           acircumflex,     Acircumflex,    U2190,         U2B05,      Greek_rho,     Greek_RHO ] };    // left arrows
     key <AC02> { [ s,            S,           ssharp,          infinity,       U2193,         U2B07,      Greek_sigma,   Greek_SIGMA ] };    // down arrows
     key <AD05> { [ t,            T,           trademark,       copyright,      U2192,         U2B95,      Greek_tau,     Greek_TAU ] };    // right arrows
-    key <AC05> { [ g,            G,           EuroSign,        endash,         1,             2,          Greek_gamma,   Greek_GAMMA ] };
+    key <AC05> { [ g,            G,           EuroSign,        endash,         yen,           2,          Greek_gamma,   Greek_GAMMA ] };
     key <AB07> { [ m,            M,           oe,              OE,             notequal,      U2243,      Greek_mu,      Greek_MU ] };    // almost equal ≃
     key <AB06> { [ n,            N,           egrave,          Egrave,         U2011,         2,          Greek_nu,      Greek_NU ] };    // no-break hyphen
     key <AD03> { [ e,            E,           eacute,          Eacute,         plusminus,     2,          Greek_epsilon, Greek_EPSILON ] };
@@ -41,14 +41,14 @@ xkb_symbols "colemak" {
     key <AC11> { [ apostrophe,   quotedbl,    dead_acute,      dead_diaeresis, 1,             2,          a,             b ] };
 
     key <AB01> { [ z,            Z,           adiaeresis,      Adiaeresis,     lessthanequal, 2,          Greek_zeta,    Greek_ZETA ] };
-    key <AB02> { [ x,            X,           ntilde,          Ntilde,         1,             2,          Greek_chi,     Greek_CHI ] };
-    key <AB03> { [ c,            C,           ccedilla,        Ccedilla,       1,             2,          Greek_psi,     Greek_PSI ] };
-    key <AC03> { [ d,            D,           degree,          ellipsis,       1,             2,          Greek_delta,   Greek_DELTA ] };
-    key <AB04> { [ v,            V,           sterling,        emdash,         yen,           U2030,      Greek_omega,   Greek_OMEGA ] };   // per mille
+    key <AB02> { [ x,            X,           ntilde,          Ntilde,         U1F44D,        U1F44B,     Greek_chi,     Greek_CHI ] };     // emoji: thumb up, wave
+    key <AB03> { [ c,            C,           ccedilla,        Ccedilla,       U1F601,        U1F603,     Greek_psi,     Greek_PSI ] };     // emoji: grin, smile
+    key <AC03> { [ d,            D,           degree,          ellipsis,       U1F923,        U1F630,     Greek_delta,   Greek_DELTA ] };   // emoji: rotfl, cold sweat
+    key <AB04> { [ v,            V,           0,               0,              1,             U2030,      Greek_omega,   Greek_OMEGA ] };   // per mille
     key <AC08> { [ k,            K,           0,               0,              1,             2,          Greek_kappa,   Greek_KAPPA ] };
-    key <AC06> { [ h,            H,           ediaeresis,      Ediaeresis,     1,             2,          Greek_eta,     Greek_ETA ] };
-    key <AB08> { [ comma,        less,        ecircumflex,     Ecircumflex,    1,             2,          a,             b ] };
-    key <AB09> { [ period,       greater,     icircumflex,     Icircumflex,    1,             2,          a,             b ] };
+    key <AC06> { [ h,            H,           ediaeresis,      Ediaeresis,     U2605,         U2B51,      Greek_eta,     Greek_ETA ] };     // star, small star
+    key <AB08> { [ comma,        less,        ecircumflex,     Ecircumflex,    U2606,         2,          a,             b ] };             // white star
+    key <AB09> { [ period,       greater,     icircumflex,     Icircumflex,    periodcentered,2,          a,             b ] };
     key <AB10> { [ slash,        question,    questiondown,    exclamdown,     brokenbar,     2,          a,             b ] };
 
     key <AD11> { [ bracketleft,  braceleft,   guillemotleft,   leftdoublequotemark ] };
