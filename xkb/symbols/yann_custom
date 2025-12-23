@@ -9,7 +9,7 @@ xkb_symbols "colemak" {
     key <AE03> { [ 3,            numbersign,  threesuperior,   threequarters ] };
     key <AE04> { [ 4,            dollar,      sterling,        currency ] };
     key <AE05> { [ 5,            percent,     EuroSign,        permille ] };
-    key <AE06> { [ 6,            asciicircum, dead_circumflex, dead_circumflex ] };
+    key <AE06> { [ 6,            asciicircum, dead_circumflex, dead_caron ] };
     key <AE07> { [ 7,            ampersand,   dead_grave,      dead_macron ] };
     key <AE08> { [ 8,            asterisk,    dead_belowdot,   dead_ogonek ] };
     key <AE09> { [ 9,            parenleft,   leftsinglequotemark, dead_breve ] };
@@ -17,9 +17,9 @@ xkb_symbols "colemak" {
     key <AE11> { [ minus,        underscore,  division,        yen ] };
     key <AE12> { [ equal,        plus,        multiply,        notequal ] };
  
-    key <AD01> { [ q,            Q,           dead_grave,      dead_grave,     greaterthanequal, 2,       a,             b ] };
+    key <AD01> { [ q,            Q,           dead_grave,      dead_macron,    greaterthanequal, 2,       a,             b ] };
     key <AD02> { [ w,            W,           dead_acute,      dead_tilde,     1,            2,           Greek_finalsmallsigma, Greek_SIGMA ] };
-    key <AC04> { [ f,            F,           dead_circumflex, dead_macron,    U2191,        U2B06,       Greek_phi,     Greek_PHI ] };    // up arrows
+    key <AC04> { [ f,            F,           dead_circumflex, dead_caron,     U2191,        U2B06,       Greek_phi,     Greek_PHI ] };    // up arrows
     key <AD10> { [ p,            P,           dead_diaeresis,  dead_abovering, 1,            2,           Greek_pi,      Greek_PI ] };
     key <AB05> { [ b,            B,           sterling,        emdash,         1,            2,           Greek_beta,    Greek_BETA ] };
     key <AC07> { [ j,            J,           ae,              AE,             1,            2,           Greek_xi,      Greek_XI ] };
