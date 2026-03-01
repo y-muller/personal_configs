@@ -1,5 +1,8 @@
 # Config files
 
+## ZMK keyboard configurations
+My [ZMK configs](https://github.com/y-muller/zmk-config-public) are in their own repository.
+
 ## [keyd](keyd/README.md) keyboard remapping
 After using programmable keyboards with QMK or ZMK firmware, the built-in keyboard on my laptop felt unusable. With [keyd](keyd/README.md) I was able to make it a bit more useful.
 
