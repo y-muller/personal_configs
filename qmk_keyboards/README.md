@@ -1,4 +1,24 @@
 # QMK config
+
+These configs are obsolete. I have not kept them up to date since I started using [ZMK keyboards](https://github.com/y-muller/zmk-config-public). 
+
+## QMK keyboards
+- Corne V3 and V4.1
+- KPrepublic CSTC40
+- Keychron V8
+- Keychron K11 Pro (bluetooth)
+- ~~Keychron V3~~
+- ~~Keychron K1 Pro  (bluetooth)~~
+
+for Bluetooth keyboards use Keychron's fork of QMK and the `wireless_playground` branch.
+
+Below is the layout for the Alice 69 keys keyboard. There are also the [Ortholinear 47 keys](ORTHO47.md)  and the more recent [Corne 42 keys](CORNE42.md).
+
+#### How to use
+Create a new keymap with `qmk new-keymap`, move the new directory to this repo and create a link.
+
+For shared files across keyboards, create a link in `users` with the github user name to the `userspace` directory of this repo.
+
 ## Alice 69 keys (Keychron)
 
 To get help, pressing `LShift-Help` shows a the layout for the current layer on screen until the key is released. In the main layer `Alt-Shift-Help` displays the layout for the AltGr symbols.

@@ -1,33 +1,25 @@
 # Config files
 
-## QMK keyboards
-- Corne
-- KPrepublic CSTC40
-- Keychron V8
-- Keychron K11 Pro (bluetooth)
-- ~~Keychron V3~~
-- ~~Keychron K1 Pro  (bluetooth)~~
+## [keyd](keyd/README.md) keyboard remapping
+After using programmable keyboards with QMK or ZMK firmware, the built-in keyboard on my laptop felt unusable. With [keyd](keyd/README.md) I was able to make it a bit more useful.
 
-for Bluetooth keyboards use Keychron's fork of QMK and the `wireless_playground` branch.
+![thinkpad_layout](img/layout_thinkpad.png)
 
-My layouts are described in the QMK section, for [Alice 69 keys](qmk_keyboards/README.md) layouts,
-[Ortholinear 47 keys](qmk_keyboards/ORTHO47.md)  and [Corne 42 keys](qmk_keyboards/CORNE42.md).
-
-#### How to use
-Create a new keymap with `qmk new-keymap`, move the new directory to this repo and create a link.
-
-For shared files across keyboards, create a link in `users` with the github user name to the `userspace` directory of this repo.
-
-## XKB user extensions
+## [XKB user extensions](xkb/README.md)
 
 XKB layouts can be modified by user configuration without modifying system files. See the [XKB page](xkb/README.md).
+
+## run-or-raise Gnome extension
+
+Used to launch applications, display the keyboard layout help...
+
+Copy the 'run-or-raise' directory in '~/.config'.
 
 ## Compose
 https://help.ubuntu.com/community/GtkComposeTable
 
 `.XCompose` for custom compose sequences.
 
-## run-or-raise Gnome extension
+## QMK keyboard configs
 
-Used to launch applications, display the keyboard layout help...
-
+The [configs for QMK](qmk_keyboards/README.md) are not maintained at the moment. I will get back to them later.
