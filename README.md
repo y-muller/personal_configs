@@ -19,6 +19,8 @@ Used to launch applications, display the keyboard layout help...
 Copy the 'run-or-raise' directory in '~/.config'.
 
 ## Compose
+The Compose key must be set to `ScrollLock` in the OS for it to work with the current keyd and ZMK configs.
+
 https://help.ubuntu.com/community/GtkComposeTable
 
 `.XCompose` for custom compose sequences.
