@@ -8,9 +8,11 @@ After using programmable keyboards with QMK or ZMK firmware, the built-in keyboa
 
 ![thinkpad_layout](img/layout_thinkpad.png)
 
-## [XKB user extensions](xkb/README.md)
+## [XKB user extensions](xkb/README_XKB.md)
 
-XKB layouts can be modified by user configuration without modifying system files. See the [XKB page](xkb/README.md).
+XKB layouts can be modified by user configuration without modifying system files. See the [XKB page](xkb/README_XKB.md).
+
+![altgr](img/layout_corne42_altgr.png)
 
 ## run-or-raise Gnome extension
 
@@ -23,7 +25,10 @@ The Compose key must be set to `ScrollLock` in the OS for it to work with the cu
 
 https://help.ubuntu.com/community/GtkComposeTable
 
-`.XCompose` for custom compose sequences.
+Create or edit the `.XCompose` file to add custom compose sequences. The format is as follows:
+```
+<Multi_key> <key>… : "text"
+```
 
 ## QMK keyboard configs
 
