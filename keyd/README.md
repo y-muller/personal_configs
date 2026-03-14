@@ -44,7 +44,7 @@ While the Mode key (the physical right control) is pressed, the following functi
     - level 5 (PrtSc key): additional symbols and emojis
     - level 7 (PrtSc then AltGr keys): greek characters
 
-The alternate characters are dependant on a custom XKB configuration that is based on the Colemak layout. When using the QWERTY layout, the positions seem a bit arbitrary.
+The alternate characters are dependant on a [custom XKB configuration](../XKB.md) that is based on the Colemak layout. When using the QWERTY layout, the positions seem a bit arbitrary.
 
 ## Config
 Edit the configuration:

@@ -11,7 +11,7 @@ filetype plugin on
 filetype indent on
 
 " Turn syntax highlighting on.
-syntax on
+"syntax on
 
 " Add numbers to each line on the left-hand side.
 set number
@@ -86,28 +86,9 @@ set encoding=utf8
 "set guifont=CommitMonoNerdFont-Regular\ 13
 
 " airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme='violet'
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme='violet'
 
-" Colemak
-" cursor to u n e i
-noremap u k
-noremap n h
-noremap i l
-noremap e j
-" insert to s to resolve conflict
-noremap s i
-
-" undo to z to resolve conflict
-noremap z u
-noremap Z U
-
-" next to k to resolve conflict
-noremap k n
-noremap K N
-
-" fold to f
-noremap f z
-
+" personal remaps
 noremap ; :
 

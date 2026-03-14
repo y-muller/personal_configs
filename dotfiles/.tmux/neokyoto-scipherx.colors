@@ -1,0 +1,25 @@
+# Colour definitions
+
+c_statusfg="colour250"
+c_statusbg="colour233"
+
+c_sessionfg="colour232"
+c_sessionbg="colour255"
+c_sessionprefixfg="colour255"
+c_sessionprefixbg="colour179"
+
+c_wintxt="colour255"
+c_winbg="colour67"
+c_winnum="colour74"
+c_wincurtxt="colour255"
+c_wincurbg="colour133"
+c_wincurnum="colour177"
+
+c_gitbg="colour59"
+
+c_hostfg="colour253"
+c_hostbg="colour24"
+
+SEPR=''
+SEPL=''
+
