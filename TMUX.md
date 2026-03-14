@@ -38,3 +38,6 @@ xterm*|rxvt*)
     ;;
 ```
 
+## gitmux
+.gitmux.conf
+

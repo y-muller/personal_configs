@@ -1,3 +1,5 @@
+# If running in Tmux separate the history by session and pane
+
 if [[ $TMUX_PANE ]]; then
     if [ ! -d $HOME/.bash_history_tmux ]; then
         mkdir $HOME/.bash_history_tmux
