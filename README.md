@@ -6,19 +6,23 @@ My [ZMK configs](https://github.com/y-muller/zmk-config-public) are in their own
 ## [keyd](keyd/README.md) keyboard remapping
 After using programmable keyboards with QMK or ZMK firmware, the built-in keyboard on my laptop felt unusable. With [keyd](keyd/README.md) I was able to make it a bit more useful.
 
-![thinkpad_layout](img/layout_thinkpad.png)
+[![thinkpad_layout](img/layout_thinkpad.png)](keyd/README.md)
 
-## [XKB user extensions](xkb/README_XKB.md)
+## [XKB user extensions](XKB.md)
 
-XKB layouts can be modified by user configuration without modifying system files. See the [XKB page](xkb/README_XKB.md).
+XKB layouts can be modified by user configuration without modifying system files. See the [XKB page](XKB.md).
 
-![altgr](img/layout_corne42_altgr.png)
+[![altgr](img/layout_corne42_altgr.png)](XKB.md)
+
+## [tmux](TMUX.md)
+
+An incredibly useful tool for the command line. See [my tmux config](TMUX.md) details.
 
 ## run-or-raise Gnome extension
 
 Used to launch applications, display the keyboard layout help...
 
-Copy the 'run-or-raise' directory in '~/.config'.
+The configuration is in '~/.config/run-or-raise'.
 
 ## Compose
 The Compose key must be set to `ScrollLock` in the OS for it to work with the current keyd and ZMK configs.

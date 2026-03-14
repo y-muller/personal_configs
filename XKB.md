@@ -5,7 +5,7 @@ unchanged from the default US layout. The other levels are entirely custom.
 
 #### Alternate symbols layout
 
-![altgr](../img/layout_corne42_altgr.png)
+![altgr](img/layout_corne42_altgr.png)
 
 The AltGr symbols (levels 3 and 4), in black in the diagram above, are mostly accented
 characters for French and Spanish. The French accented vowels are grouped around their
