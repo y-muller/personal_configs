@@ -22,7 +22,7 @@ xkb_symbols "colemak" {
     key <AC04> { [ f,            F,           dead_circumflex, dead_caron,     U2191,        U2B06,       Greek_phi,     Greek_PHI ] };    // up arrows
     key <AD10> { [ p,            P,           dead_diaeresis,  dead_abovering, 1,            2,           Greek_pi,      Greek_PI ] };
     key <AB05> { [ b,            B,           sterling,        emdash,         1,            2,           Greek_beta,    Greek_BETA ] };
-    key <AC07> { [ j,            J,           ae,              AE,             1,            2,           Greek_xi,      Greek_XI ] };
+    key <AC07> { [ j,            J,           ae,              AE,             U21B5,        2,           Greek_xi,      Greek_XI ] };      // return character
     key <AC09> { [ l,            L,           udiaeresis,      Udiaeresis,     leftdoublequotemark,  leftsinglequotemark,  Greek_lambda,  Greek_LAMBDA ] };
     key <AD07> { [ u,            U,           ucircumflex,     Ucircumflex,    rightdoublequotemark, rightsinglequotemark, Greek_theta,   Greek_THETA ] };
     key <AD06> { [ y,            Y,           ugrave,          Ugrave,         guillemotleft,  2,         Greek_upsilon, Greek_UPSILON ] };
@@ -32,7 +32,7 @@ xkb_symbols "colemak" {
     key <AD04> { [ r,            R,           acircumflex,     Acircumflex,    U2190,         U2B05,      Greek_rho,     Greek_RHO ] };    // left arrows
     key <AC02> { [ s,            S,           uacute,          Uacute,         U2193,         U2B07,      Greek_sigma,   Greek_SIGMA ] };    // down arrows
     key <AD05> { [ t,            T,           trademark,       copyright,      U2192,         U2B95,      Greek_tau,     Greek_TAU ] };    // right arrows
-    key <AC05> { [ g,            G,           EuroSign,        endash,         yen,           2,          Greek_gamma,   Greek_GAMMA ] };
+    key <AC05> { [ g,            G,           EuroSign,        endash,         yen,           cent,       Greek_gamma,   Greek_GAMMA ] };
     key <AB07> { [ m,            M,           oe,              OE,             notequal,      U2243,      Greek_mu,      Greek_MU ] };    // almost equal ≃
     key <AB06> { [ n,            N,           egrave,          Egrave,         U2011,         2,          Greek_nu,      Greek_NU ] };    // no-break hyphen
     key <AD03> { [ e,            E,           eacute,          Eacute,         plusminus,     2,          Greek_epsilon, Greek_EPSILON ] };
