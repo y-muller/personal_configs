@@ -21,7 +21,7 @@ xkb_symbols "colemak" {
     key <AD02> { [ w,            W,           dead_acute,      dead_tilde,     section,      paragraph,   Greek_finalsmallsigma, Greek_SIGMA ] };
     key <AC04> { [ f,            F,           dead_circumflex, dead_caron,     U2191,        U2B06,       Greek_phi,     Greek_PHI ] };    // up arrows
     key <AD10> { [ p,            P,           dead_diaeresis,  dead_abovering, U21E7,        U2B7E,       Greek_pi,      Greek_PI ] };     // shift, tab characters
-    key <AB05> { [ b,            B,           sterling,        emdash,         U2BA0,        2,           Greek_beta,    Greek_BETA ] };   // return character
+    key <AB05> { [ b,            B,           sterling,        emdash,         U2BA0,        U2423,       Greek_beta,    Greek_BETA ] };   // return, space characters
     key <AC07> { [ j,            J,           ae,              AE,             1,            2,           Greek_xi,      Greek_XI ] };
     key <AC09> { [ l,            L,           udiaeresis,      Udiaeresis,     leftdoublequotemark,  leftsinglequotemark,  Greek_lambda,  Greek_LAMBDA ] };
     key <AD07> { [ u,            U,           ucircumflex,     Ucircumflex,    rightdoublequotemark, rightsinglequotemark, Greek_theta,   Greek_THETA ] };
